@@ -1,0 +1,2 @@
+# FineUIMvc.EmptyProject
+FineUIMvc.EmptyProject
