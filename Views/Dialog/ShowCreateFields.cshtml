@@ -1,0 +1,94 @@
+﻿@{
+    var F = @Html.F();
+}
+
+@section head {
+    <link type="text/css" rel="stylesheet" href="~/res/css/index.css" />
+}
+@section body {
+    @{ 
+        ////如果是修改，则不允许修改字段的类型
+        bool b = ViewBag.ID==""?false:true;
+    }
+
+    @(F.Form()
+        .BodyPadding(5)
+        .AutoScroll(true)
+        .ShowHeader(false)
+        .ShowBorder(false)
+        .ID("form_AddFields")
+        .IsViewPort(true)
+        .Toolbars(
+            F.Toolbar()
+                .ID("Toolbar1")
+                .ToolbarAlign(ToolbarAlign.Right)
+                .Position(ToolbarPosition.Bottom)
+                .Items(
+                    F.Button()
+                        .ID("btn_Add")
+                        .Text("保存")
+                        .IconFont(IconFont.Send)
+                        .OnClick(Url.Action("btnAdd_Click"), "form_AddFields")
+                )
+        )
+        .Rows(
+            F.FormRow()
+                .Items(
+                    F.TextBox().ID("txt_Name").Label("字段名称:").LabelAlign(LabelAlign.Right).Text(ViewBag.NAME)
+                ),
+            F.FormRow()
+                 .Items(
+                     F.DropDownList().ID("cmb_Type").Label("类型:").LabelAlign(LabelAlign.Right).AutoSelectFirstItem(true).Items((ListItem[])ViewBag.Items).OnSelectedIndexChanged(Url.Action("cmb_Type_SelectedIndexChanged"), "cmb_Type").Readonly(b)
+                  ),
+            F.FormRow()
+                 .Items(
+                     F.DropDownList().ID("cmb_Word").Label("词典类型 :").LabelAlign(LabelAlign.Right).AutoSelectFirstItem(true).Items((ListItem[])ViewBag.Words).Enabled(false)
+                ),
+            F.FormRow().Items(F.TextBox().ID("txt_Order").Label("排序:").LabelAlign(LabelAlign.Right).Text(ViewBag.ORDER)),
+            F.FormRow().Items(F.DropDownList().ID("cmb_Show").Label("列显示:").LabelAlign(LabelAlign.Right).AutoSelectFirstItem(true).Items(
+                F.ListItem().Text("显示").Value("1"),
+                F.ListItem().Text("不显示").Value("0")).SelectedValue(ViewBag.Show)
+            ),
+            F.FormRow().Items(F.DropDownList().ID("cmb_Query").Label("查询显示:").LabelAlign(LabelAlign.Right).AutoSelectFirstItem(true).Items(
+                F.ListItem().Text("显示").Value("1"),
+                F.ListItem().Text("不显示").Value("0")).SelectedValue(ViewBag.Query)
+            ),
+            F.FormRow().Items(F.DropDownList().ID("cmb_Writer").Label("编辑显示:").LabelAlign(LabelAlign.Right).AutoSelectFirstItem(true).Items(
+                F.ListItem().Text("显示").Value("1"),
+                F.ListItem().Text("不显示").Value("0")).SelectedValue(ViewBag.Edit)
+            ),
+            F.FormRow().Items(F.DropDownList().ID("cmb_Tongji").Label("统计显示:").LabelAlign(LabelAlign.Right).AutoSelectFirstItem(true).Items(
+                F.ListItem().Text("显示").Value("1"),
+                F.ListItem().Text("不显示").Value("0")).SelectedValue(ViewBag.Tongji)
+            ),
+            F.FormRow().Items(F.TextBox().Hidden(true).ID("txt_AID").Text(ViewBag.AID)),
+            F.FormRow().Items(F.TextBox().Hidden(true).ID("txt_ID").Text(ViewBag.ID))
+       )
+    )
+}
+
+@section script {
+    <script src="~/res/js/grid.js"></script>
+    <script>
+        function renderActions(value, params) {
+            var deleteImageUrl = '@Url.Content("~/res/icon/delete.png")';
+            return '<a class="action-btn mybtn2" href="javascript:;"><img class="f-grid-cell-icon" src="' + deleteImageUrl + '"></a>';
+        }
+        @*F.ready(function () {
+            var grid = F.ui.grid_Where;
+            grid.el.on('click', 'a.action-btn', function (event) {
+                var targetEl = $(this);
+                var rowEl = targetEl.closest('.f-grid-row');
+                var rowData = grid.getRowData(rowEl);
+                alert(rowData);
+
+                // 触发后台事件
+                F.doPostBack('@Url.Action("grid_DelWhere")', {
+                    rowIndex: rowData.index
+                    //rowId: rowData.id,
+                    //rowText: rowData.text
+                });
+            });
+        });*@
+    </script>
+}

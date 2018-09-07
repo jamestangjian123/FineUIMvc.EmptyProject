@@ -1,0 +1,290 @@
+﻿@{
+    var F = @Html.F();
+}
+
+@{
+
+    var listWD = ViewBag.WD as List<FineUIMvc.EmptyProject.Models.T_SYSWD>;
+}
+
+@section head {
+    <link type="text/css" rel="stylesheet" href="~/res/css/index.css" />
+}
+
+@section body {
+    @(F.Grid()
+        .EnableCheckBoxSelect(true)
+        .EnableCollapse(true)                                           
+        .IsViewPort(true)
+        .ForceFit(false)
+        
+        .ShowHeader(false)
+        .ShowBorder(true)
+        .ID("Grid1")
+        .DataIDField("JN1_ID")
+        .DataTextField("JN1_Name")
+        .Columns(ViewBag.Grid1Columns)
+        .EnableColumnLines(true)
+            .AllowPaging(true)
+            .PageSize(20)
+            .IsDatabasePaging(true)
+            .ShowPagingMessage(true)
+            .OnPageIndexChanged(Url.Action("Grid1_PageIndexChanged"), "Grid1")
+        .Toolbars(
+            F.Toolbar()
+                .ID("tbGrid")
+                .ToolbarAlign(ToolbarAlign.Right)
+                .Items(
+                     F.Button()
+                        .ID("btn_AddArchive")
+                        .Text("添加档案")
+                        .Icon(Icon.BoxPicture)
+                        .ValidateForms("Toolbar1")
+                         .Hidden(!ViewBag.Edit)
+                        .Listener("click", "F.ui.win_Add.show();"),
+                     F.Button()
+                        .ID("btn_BrrDZ")
+                        .Text("电子借阅")
+                        .ValidateForms("Toolbar1")
+                        .Icon(Icon.PastePlain)
+                        .Listener("click", "onBrrDZ")
+                        .Hidden(ViewBag.View)
+                )
+            )
+            .RecordCount(ViewBag.Grid1RecordCount)
+            .DataSource(ViewBag.Grid1DataSource)
+    )
+
+    @F.HiddenField().ID("txt_AID").Text(ViewBag.AID);
+    @(F.Window()
+            .BodyPadding(10)
+            .AutoScroll(true)
+            .OnClose(Url.Action("windowJN_Close"), "Grid1", new Parameter ("pid",ViewBag.AID))
+            .CloseAction(CloseAction.HidePostBack)
+            .Hidden(true)
+            .IsModal(true)
+            .EnableResize(true)
+            .EnableCollapse(true)
+            .EnableMaximize(true)
+            .Title("添加")
+            .Icon(Icon.TagBlue)
+            .Height(600)
+            .Width(650)
+            .ID("win_Add")
+            .IFrameUrl(Url.Content("~/WS/WSJN1Info?aid=" + ViewBag.AID)) //+ FineUIMvc.EmptyProject.Models.Commons.iWSAJID.ToString()))
+            .IFrameName("frmMain2")
+            .EnableIFrame(true)
+    )
+           @(F.Window()
+                .BodyPadding(10)
+                .AutoScroll(true)
+                .OnClose(Url.Action("windAddJN_Close"), "Grid1", new Parameter[] { new Parameter() { Name = "pageindex", Value = "F.ui.Grid1.getPageIndex()" } })
+                .CloseAction(CloseAction.HidePostBack)
+                .Hidden(true)
+                .IsModal(true)
+                .EnableResize(true)
+                .EnableCollapse(true)
+                .EnableMaximize(true)
+                .Title("添加附件")
+                .Icon(Icon.TagBlue)
+                .Height(300)
+                .Width(650)
+                .ID("win_UploadFile")
+        //.IFrameUrl(Url.Content("~/Dialog/ShowCreateArchiveDialog?aid=" + ViewBag.AID)) //+ FineUIMvc.EmptyProject.Models.Commons.iWSAJID.ToString()))
+                .IFrameName("frmMain7")
+                .EnableIFrame(true)
+)
+    @(F.Window()
+            .BodyPadding(10)
+            .AutoScroll(true)
+            .IsViewPort(true)
+            .Hidden(true)
+            .IsModal(true)
+            .EnableResize(true)
+            .EnableCollapse(true)
+            .EnableMaximize(true)
+            .Title("浏览电子文件")
+            .Icon(Icon.Picture)
+            .ID("win_MLPic")
+            //.IFrameUrl(Url.Content("~/WS/WSJNInfo?aid=" + ViewBag.AID)) //+ FineUIMvc.EmptyProject.Models.Commons.iWSAJID.ToString()))
+            .IFrameName("frmMain3")
+            .EnableIFrame(true)
+            .Target(Target.Parent)
+    )
+@(F.Window()
+            .BodyPadding(10)
+            .AutoScroll(true)
+        //.OnClose(Url.Action("Window1_Close"))
+        //.CloseAction(CloseAction.HidePostBack)
+            .Hidden(true)
+            .IsModal(true)
+            .EnableResize(true)
+            .EnableCollapse(true)
+            .EnableMaximize(true)
+            .Title("电子借阅")
+            .Icon(Icon.TagBlue)
+            .Height(600)
+            .Width(650)
+            .ID("win_DZ")
+            .IFrameUrl(Url.Content("~/Dialog/ShowBrrowDZArchiveDialogJN?aid=" + ViewBag.ARID)) //+ FineUIMvc.EmptyProject.Models.Commons.iWSAJID.ToString()))
+            .IFrameName("frmMain3")
+            .EnableIFrame(true)
+)
+}
+
+@section script {
+    <script src="~/res/js/grid.js"></script>
+    <script>
+        function renderFile(value, params)
+        {
+            return '<a class="action-btn mybtn2" href="javascript:;">浏览</a>';
+        }
+
+        function getGridSelectedRows() {
+            var result = [], grid = F.ui.Grid1;
+            $.each(grid.getSelectedRows(true), function (index, item) {
+                var itemArr = [];
+                itemArr.push(item.id);
+                itemArr.push(item.values.JN_WH);
+                itemArr.push(item.values.JN_TM);
+                itemArr.push(item.values.ARCHIVETYPE);
+                itemArr.push(item.values.WS_AID);
+                //itemArr.push(item.values.GDBM);
+                ///附件路径，如果此字段=='1'的时候，代表了此条目时案卷级
+                itemArr.push(item.values.JN_V10);
+                itemArr.push(item.values.MJ);
+                ///归档部门ID
+                itemArr.push(item.values.WS_I01);
+                result.push(itemArr);
+            });
+
+            return result;
+        }
+
+        F.ready(function () {
+            var grid = F.ui.Grid1;
+            grid.el.on('click', 'a.action-btn', function (event) {
+                var targetEl = $(this);
+                var rowEl = targetEl.closest('.f-grid-row');
+                var rowData = grid.getRowData(rowEl);
+
+                
+                F.doPostBack('@Url.Action("ViewFile")', {
+                    type: "1", id: rowData.id, rid: @ViewBag.ARID
+                });
+                /*
+                if (rowData.values.MJ != '无密')
+                    F.alert("您所浏览的档案属于 " + rowData.values.MJ + " 级， 您必须在涉密档案模块进行浏览!");
+                //if (bm != rowData.values.MJ)
+                //    alert("您所浏览的档案属于 " + rowData.values.GDBM + " 您必须申请借阅后才能浏览");
+                //F.ui.alert("您所浏览的档案属于 " + rowData.values.GDBM + " 您必须申请借阅后才能浏览");
+                else {
+                    if (rowData.values.WS_V10 == '1')
+                    {
+                        ////有卷内目录，调出卷内目录来
+
+                    }
+                    else ////没有的则属于一文一件，直接调阅图片
+                        showPDF(rowData.values.WS_V10);
+                }*/
+            });
+        });
+        function renderFile(value, params)
+        {
+            ///alert(params);
+            return '<a class="action-btn mybtn2" href="javascript:;">浏览</a>';
+        }
+
+        function renderEdit(value, params)
+        {
+            return "<a href='javascript:EditWS(" + value + ");'><img src='/res/icon/pencil.png' width='16' heigth='16'></img></a>";
+        }
+        function renderDel(value, params)
+        {
+            return "<a href='javascript:DelWS(" + value + ");'><img src='/res/icon/delete.png'></img></a>";
+        }
+        function renderUpload(value, params)
+        {
+            return "<a href='javascript:UploadFile(" + value + ");'><img src='/res/icon/note_Add.png'></img></a>";
+        }
+
+        function UploadFile(id)
+        {  
+            var action = '@Url.Content("~/Dialog/ShowUploadFileJN?aid=")' + @ViewBag.AID + '&jnid=' + id;
+            F.ui.win_UploadFile.show(action, "上传附件");
+        }
+
+        function EditWS(id)
+        {
+            var action = '@Url.Content("~/WS/WSJN1Info?aid=")' + @ViewBag.AID + '&jnid=' + id;
+            F.ui.win_Add.show(action, "编辑档案");
+        }
+
+        function onBrrDZ(event) {
+            var grid = F.ui.Grid1;
+            if (!grid.hasSelection()) {
+                F.alert('没有选中要申请电子借阅的档案！');
+                return;
+            }
+            var items = getGridSelectedRows();
+            for (var i = 0; i < items.length; i++) {
+                var n = items[i];
+                var s = n[n.length - 1].toString();
+                //alert(s);
+                //alert(s.type);
+                if (s != null && s != '' && s != '无') {
+                    F.alert("您所申请的档案中含 " + s + " 级， 您必须在涉密档案模块进行浏览!");
+                    return;
+                }
+            }
+            // 触发后台事件
+            F.doPostBack('@Url.Action("btnBrrDZJN_Click")', {
+                'selected': getGridSelectedRows()
+            });
+        }
+
+        ///删除档案
+        function DelWS(value, params)
+        {
+            F.confirm({
+                message: '确定要删除选中的档案吗，删除后不能恢复？',
+                messageIcon: 'question',
+                ok: function () {
+                    // 触发后台事件
+                    F.doPostBack('@Url.Action("btnWSDelOF_Click")', 'Grid1', {
+                        opID: value
+                    });
+                }
+            });
+        }
+
+        F.ready(function () {
+            var grid = F.ui.Grid1;
+            grid.el.on('click', 'a.action-btn', function (event) {
+                var targetEl = $(this);
+                var rowEl = targetEl.closest('.f-grid-row');
+                var rowData = grid.getRowData(rowEl);
+                //alert(rowData.values.GDBM);
+                if (rowData.values.MJ != null && rowData.values.MJ != '' && rowData.values.MJ != '无')
+                    F.alert("您所浏览的档案属于 " + rowData.values.MJ + " 级， 您必须在涉密档案模块进行浏览!");
+                else if (rowData.values.GDBM != '' && bm != rowData.values.GDBM) //rowData.WS_I01)
+                {
+                    F.alert("您所浏览的档案属于 " + rowData.values.GDBM + " 您必须申请借阅后才能浏览");
+                }
+                    //if (bm != rowData.values.MJ)
+                    //    alert("您所浏览的档案属于 " + rowData.values.GDBM + " 您必须申请借阅后才能浏览");
+                    //F.ui.alert("您所浏览的档案属于 " + rowData.values.GDBM + " 您必须申请借阅后才能浏览");
+                else {
+                    if (rowData.values.WS_V10 == '1')
+                    {
+                        ////有卷内目录，调出卷内目录
+                        var action = '@Url.Content("~/WS/WSJN")' + '?aid=' + rowData.id;
+                        F.ui.win_ML.show(action, rowData.text + '的卷内目录');//(action);//("'" + action + "'");
+                    }
+                    else ////没有的则属于一文一件，直接调阅图片
+                        showPDF(rowData.values.WS_V10);
+                }
+            });
+        });
+    </script>
+}

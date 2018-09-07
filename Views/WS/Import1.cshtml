@@ -1,0 +1,64 @@
+﻿@{
+    var F = @Html.F();
+}
+
+@section head {
+    <link type="text/css" rel="stylesheet" href="~/res/css/index.css" />
+}
+@section body {
+
+    @(F.Form()
+        .BodyPadding(5)
+        .AutoScroll(true)
+            //.ShowHeader(false)
+        .ShowBorder(false)
+            //.Width(700)
+        .ID("form_UploadFile")
+        .Title(ViewBag.NAME)
+        .IsViewPort(true)
+        //.Toolbars(
+        //    F.Toolbar()
+        //        .ID("Toolbar1")
+        //        .ToolbarAlign(ToolbarAlign.Right)
+        //    // .Position(ToolbarPosition.Bottom)
+        //        .Items(
+        //            F.Button()
+        //                .ID("btnUploadFile")
+        //                .Text("保存")
+        //                .IconFont(IconFont.Send)
+        //                .ValidateForms("form_UploadFile")
+        //                        .OnClick(Url.Action("btnUploadFilePDF_Click"), "form_UploadFile")
+        //        )
+        //)
+        .Rows(
+            F.FormRow()
+                .Items(
+                     //  F.FileUpload().ID("upload_File").Label("上传pdf").LabelAlign(LabelAlign.Right).Required(true).ShowRedStar(true),
+                            //  F.Label().ID("txt_Remark").Text("上传pdf:"),
+                               F.Button().ID("BtnOpen").Text("上传案卷一文一件").OnClick(Url.Action("Openfile"), "form_UploadFile"),
+                               F.Button().ID("BtnOpen").Text("上传公文一文一件").OnClick(Url.Action("OpenfileMG"), "form_UploadFile"),
+                               F.Button().ID("BtnOpen").Text("上传卷内").OnClick(Url.Action("OpenfileJN"), "form_UploadFile")
+
+                )
+            //F.FormRow() .Items(
+            //F.FileUpload().ID("upload_File1").Label("上传PDF:").LabelAlign(LabelAlign.Right).Required(true).ShowRedStar(true).Width(550)
+            //)
+                   // F.FormRow().Items(F.TextBox().Hidden(true).ID("txt_ID").Text(ViewBag.NAME))
+       )
+    )
+    <br />
+    <br />
+    <br />
+    @{
+        if (ViewBag.INFO != "")
+        {
+            <center><label style="color:red">@ViewBag.INFO</label></center>
+        }
+    }
+}
+
+@section script {
+    <script>
+
+    </script>
+}

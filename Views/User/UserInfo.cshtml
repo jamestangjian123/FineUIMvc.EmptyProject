@@ -1,0 +1,98 @@
+﻿@{
+    var F = @Html.F();
+}
+
+@section head {
+    <link type="text/css" rel="stylesheet" href="~/res/css/index.css" />
+}
+@section body {
+
+    @{ 
+        var user = ViewBag.USER as FineUIMvc.EmptyProject.Models.T_USER;
+    }
+
+    @(F.Form()
+        .BodyPadding(5)
+        .AutoScroll(true)
+        .ShowHeader(false)
+        .ShowBorder(false)
+        .ID("form_User")
+        .IsViewPort(true)
+        .Toolbars(
+            F.Toolbar()
+                .ID("Toolbar1")
+                .ToolbarAlign(ToolbarAlign.Right)
+                .Position(ToolbarPosition.Bottom)
+                .Items(
+                    F.Button()
+                        .ID("btn_Save")
+                        .Text("保存")
+                        .IconFont(IconFont.Send)
+                        .OnClick(Url.Action("btnUserSave_Click"), "form_User")
+                )
+        )
+        .Rows(
+            F.FormRow()
+                .Items(
+                    F.TextBox().ID("txt_RName").Label("姓名:").LabelAlign(LabelAlign.Right).Text(user.U_REALNAME)
+                ),
+            F.FormRow()
+                .Items(
+                    F.TextBox().ID("txt_Name").Label("登录名:").LabelAlign(LabelAlign.Right).Text(user.U_NAME)
+                ),
+            F.FormRow()
+                .Items(
+                    F.TextBox().ID("txt_PWD1").Label("密码:").LabelAlign(LabelAlign.Right).Text(user.U_PWD).TextMode(TextMode.Password)
+                ),
+            F.FormRow()
+                .Items(
+                    F.TextBox().ID("txt_PWD2").Label("重复密码:").LabelAlign(LabelAlign.Right).Text(user.U_PWD).TextMode(TextMode.Password)
+                ),
+            F.FormRow()
+                 .Items(
+                     F.DropDownList().ID("cmb_Role").Label("角色:").LabelAlign(LabelAlign.Right).Items((ListItem[])ViewBag.Items)
+                  ),
+            F.FormRow().Items(F.TextBox().ID("txt_Bm").Label("部门:").LabelAlign(LabelAlign.Right).Text(user.U_V01)),
+            F.FormRow().Items(F.TextBox().ID("txt_Zw").Label("职位:").LabelAlign(LabelAlign.Right).Text(user.U_ZW)),
+            F.FormRow().Items(F.TextBox().ID("txt_Phone").Label("电话号码:").LabelAlign(LabelAlign.Right).Text(user.U_PHONE)),
+            F.FormRow().Items(F.TextBox().ID("txt_Email").Label("邮件:").LabelAlign(LabelAlign.Right).Text(user.U_EMAIL)),
+            F.FormRow().Items(F.DropDownList().ID("cmb_IsIP").Label("IP绑定:").LabelAlign(LabelAlign.Right).SelectedValue(user.U_ISIP.ToString()).AutoSelectFirstItem(true).Items(
+                F.ListItem().Text("是").Value("1"),
+                F.ListItem().Text("否").Value("0"))
+            ).Hidden(true),
+            F.FormRow().Items(F.TextBox().ID("txt_IP").Label("IP地址:").LabelAlign(LabelAlign.Right).Text(user.U_IP)).Hidden(true),
+            F.FormRow().Items(F.DropDownList().ID("cmb_Status").Label("是否启用:").LabelAlign(LabelAlign.Right).SelectedValue(user.U_STATUS.ToString()).AutoSelectFirstItem(true).Items(
+                F.ListItem().Text("启用").Value("1"),
+                F.ListItem().Text("禁用").Value("0"))
+            ),
+            F.FormRow().Items(F.TextBox().ID("txt_BZ").Label("备注:").LabelAlign(LabelAlign.Right).Text(user.U_REMARK)),
+            F.FormRow().Items(F.HiddenField().ID("txt_UserID").Text(ViewBag.UID))
+       )
+    )
+}
+
+@section script {
+    <script src="~/res/js/grid.js"></script>
+    <script>
+        function renderActions(value, params) {
+            var deleteImageUrl = '@Url.Content("~/res/icon/delete.png")';
+            return '<a class="action-btn mybtn2" href="javascript:;"><img class="f-grid-cell-icon" src="' + deleteImageUrl + '"></a>';
+        }
+        @*F.ready(function () {
+            var grid = F.ui.grid_Where;
+            grid.el.on('click', 'a.action-btn', function (event) {
+                var targetEl = $(this);
+                var rowEl = targetEl.closest('.f-grid-row');
+                var rowData = grid.getRowData(rowEl);
+                alert(rowData);
+
+                // 触发后台事件
+                F.doPostBack('@Url.Action("grid_DelWhere")', {
+                    rowIndex: rowData.index
+                    //rowId: rowData.id,
+                    //rowText: rowData.text
+                });
+            });
+        });*@
+    </script>
+}

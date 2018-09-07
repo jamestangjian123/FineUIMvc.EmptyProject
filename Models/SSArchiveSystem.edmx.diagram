@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8c6c802100f14769ba31bff1f6f2396a" Name="Diagram1">
+        <EntityTypeShape EntityType="GGArchiveSystemModel.T_MODEL" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="GGArchiveSystemModel.T_ROLE" Width="1.5" PointX="4.375" PointY="0.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="GGArchiveSystemModel.T_SINGLEINFO" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="false" />
+        <EntityTypeShape EntityType="GGArchiveSystemModel.T_QX" Width="1.5" PointX="4.375" PointY="1.375" IsExpanded="false" />
+        <EntityTypeShape EntityType="GGArchiveSystemModel.T_Log" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="false" />
+        <EntityTypeShape EntityType="GGArchiveSystemModel.T_USER" Width="1.5" PointX="2.625" PointY="1.375" IsExpanded="false" />
+        <EntityTypeShape EntityType="GGArchiveSystemModel.V_USER" Width="1.5" PointX="4.375" PointY="2" IsExpanded="false" />
+        <EntityTypeShape EntityType="GGArchiveSystemModel.T_DOCUMENT" Width="1.5" PointX="0.75" PointY="2" IsExpanded="false" />
+        <EntityTypeShape EntityType="GGArchiveSystemModel.T_ProjectInfo" Width="1.5" PointX="6.125" PointY="0.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="GGArchiveSystemModel.T_TEXT" Width="1.5" PointX="6.125" PointY="1.375" IsExpanded="false" />
+        <EntityTypeShape EntityType="GGArchiveSystemModel.T_WSJN1" Width="1.5" PointX="2.625" PointY="2" IsExpanded="false" />
+        <EntityTypeShape EntityType="GGArchiveSystemModel.T_Query" Width="1.5" PointX="2.625" PointY="2.5" IsExpanded="false" />
+        <EntityTypeShape EntityType="GGArchiveSystemModel.T_SYSWD" Width="1.5" PointX="4.375" PointY="2.5" IsExpanded="false" />
+        <EntityTypeShape EntityType="GGArchiveSystemModel.T_Message" Width="1.5" PointX="4.375" PointY="3.125" IsExpanded="false" />
+        <EntityTypeShape EntityType="GGArchiveSystemModel.T_WSAJ1" Width="1.5" PointX="2.625" PointY="0.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="GGArchiveSystemModel.V_WSAJ" Width="1.5" PointX="2.625" PointY="3" IsExpanded="false" />
+        <EntityTypeShape EntityType="GGArchiveSystemModel.V_WSJN" Width="1.5" PointX="6.375" PointY="2.5" IsExpanded="false" />
+        <EntityTypeShape EntityType="GGArchiveSystemModel.V_XM" Width="1.5" PointX="6.375" PointY="2" IsExpanded="false" />
+        <EntityTypeShape EntityType="GGArchiveSystemModel.V_TEXT1" Width="1.5" PointX="0.75" PointY="3" IsExpanded="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

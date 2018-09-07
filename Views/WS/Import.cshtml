@@ -1,0 +1,54 @@
+﻿@{
+    var F = @Html.F();
+}
+
+@section head {
+    <link type="text/css" rel="stylesheet" href="~/res/css/index.css" />
+}
+@section body {
+    @(F.Form()
+        .BodyPadding(5)
+        .AutoScroll(true)
+       // .ShowHeader(false)
+        .Title(ViewBag.NAME)
+        .ShowBorder(false)
+        .ID("form_ML")
+        .IsViewPort(true)
+        .Rows(
+            F.FormRow()
+                .Items(
+                    F.FileUpload().ID("upload_File").Label("导入Excel:").LabelAlign(LabelAlign.Right).Required(true).ShowRedStar(true),
+                            F.Button()
+                                .ID("btnUploadFile")
+                                .Text("保存")
+                                .IconFont(IconFont.Send)
+            //        .ButtonAlign(ToolbarAlign.Right)
+                                .ValidateForms("form_UploadFile")
+                                .OnClick(Url.Action("btnUploadFileXLS_Click"), "form_ML")
+                )
+ 
+        )
+        
+        )
+    @* .Toolbars(
+                F.Toolbar()
+                    .ID("Toolbar1")
+                    .ToolbarAlign(ToolbarAlign.Right)
+                   // .Position(ToolbarPosition.Bottom)
+                    .Items(
+                        F.Button()
+                            .ID("btnUploadFile")
+                            .Text("保存")
+                            .IconFont(IconFont.Send)
+                            .ValidateForms("form_UploadFile")
+                            .OnClick(Url.Action("btnUploadFileXLS_Click"), "form_ML")
+                    )
+            )
+    )*@
+}
+
+@section script {
+    <script src="~/res/js/grid.js"></script>
+    <script>
+    </script>
+}

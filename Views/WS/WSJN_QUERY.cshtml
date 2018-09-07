@@ -1,0 +1,115 @@
+﻿@{
+    var F = @Html.F();
+}
+
+@{
+
+    var listWD = ViewBag.WD as List<FineUIMvc.EmptyProject.Models.T_SYSWD>;
+}
+
+@section head {
+    <link type="text/css" rel="stylesheet" href="~/res/css/index.css" />
+}
+
+@section body {
+    @(F.Grid()
+        .EnableCheckBoxSelect(true)
+        .IsViewPort(true)
+        .ForceFit(false)
+        .Title("目录查询")
+        .ShowHeader(false)
+        .ShowBorder(true)
+        .ID("GridML_Query")
+        .DataIDField("JN_ID")
+        .DataTextField("WS_ID")
+        .Columns(ViewBag.Grid1Columns)
+        .EnableColumnLines(true)
+        .AllowPaging(true)
+        .PageSize(20)
+        .IsDatabasePaging(true)
+        .ShowPagingMessage(true)
+        .RecordCount(ViewBag.Grid1RecordCount)
+        .DataSource(ViewBag.Grid1DataSource)
+        .OnPageIndexChanged(Url.Action("GridMLQuery_PageIndexChanged"), "GridML_Query")
+        .Toolbars(
+            F.Toolbar()
+                .ID("tbGrid")
+                .ToolbarAlign(ToolbarAlign.Right)
+                .Items(
+                    F.TextBox().ID("txt_DH").Label("档号").LabelAlign(LabelAlign.Right),
+                    F.TextBox().ID("txt_WH").Label("文号").LabelAlign(LabelAlign.Right),
+                    F.TextBox().ID("txt_ZRZ").Label("责任者").LabelAlign(LabelAlign.Right),
+                    F.TextBox().ID("txt_TM").Label("题名").LabelAlign(LabelAlign.Right),
+                    F.Button()
+                        .ID("btnMLtQuery")
+                        .Text("查询")
+                        .Icon(Icon.ApplicationViewIcons).OnClick(Url.Action("btnMLtQuery_Click"),
+                        "GridML_Query", new Parameter[] { new Parameter("dh", "F.ui.txt_DH.getValue()")
+                        , new Parameter("wh", "F.ui.txt_WH.getValue()")
+                        , new Parameter("zrz", "F.ui.txt_ZRZ.getValue()")
+                        , new Parameter("tm", "F.ui.txt_TM.getValue()")
+                        , new Parameter("aid", ViewBag.AID)
+                        })
+                 )
+            )
+    )
+
+    @F.HiddenField().ID("txt_AID").Text(ViewBag.AID);
+    @(F.Window()
+            .BodyPadding(10)
+            .AutoScroll(true)
+            //.OnClose(Url.Action("Window1_Close"))
+            //.CloseAction(CloseAction.HidePostBack)
+            .Hidden(true)
+            .IsModal(true)
+            .EnableResize(true)
+            .EnableCollapse(true)
+            .EnableMaximize(true)
+            .Title("详细信息")
+            .Icon(Icon.TagBlue)
+            .Height(600)
+            .Width(650)
+            .ID("win_Info")
+            .IFrameUrl(Url.Content("~/Dialog/ShowArchiveInfo?aid="))
+            .IFrameName("frmMain3")
+            .EnableIFrame(true)
+    )
+}
+
+@section script {
+    <script src="~/res/js/grid.js"></script>
+    <script>
+        function renderFile(value, params)
+        {
+            return '<a class="action-btn mybtn2" href="javascript:;">浏览</a>';
+        }
+
+        function renderInfo(value, params) {
+            ///alert(params);
+            return '<a class="action-btn2 mybtn2" href="javascript:;">案卷信息</a>';
+        }
+
+        F.ready(function () {
+            var grid = F.ui.GridML_Query;
+            grid.el.on('click', 'a.action-btn', function (event) {
+                var targetEl = $(this);
+                var rowEl = targetEl.closest('.f-grid-row');
+                var rowData = grid.getRowData(rowEl);
+
+                if (rowData.values.MJ != '无密' && rowData.values.MJ != null && rowData.values.MJ != '')
+                    F.alert("您所浏览的档案属于 " + rowData.values.MJ + " 级， 您必须在涉密档案模块进行浏览!");
+                else {
+                    showPDF(rowData.values.JN_V10);
+                }
+            });
+            grid.el.on('click', 'a.action-btn2', function (event) {
+                var targetEl = $(this);
+                var rowEl = targetEl.closest('.f-grid-row');
+                var rowData = grid.getRowData(rowEl);
+
+                 var action = '@Url.Content("~/Dialog/ShowArchiveInfo")' + '?aid=' + @ViewBag.AID + '&id=' + rowData.text;
+                 F.ui.win_Info.show(action, "案卷信息");
+            });
+        });
+    </script>
+}

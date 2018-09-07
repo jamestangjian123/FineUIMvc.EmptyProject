@@ -1,0 +1,53 @@
+﻿@{
+    var F = @Html.F();
+}
+
+@section head {
+    <link type="text/css" rel="stylesheet" href="~/res/css/index.css" />
+}
+@section body {
+    @(F.Form()
+        .BodyPadding(5)
+        .AutoScroll(true)
+        .ShowHeader(false)
+        .ShowBorder(false)
+        .ID("form_ML")
+        .IsViewPort(true)
+        .Rows(
+            F.FormRow().Items(F.HiddenField().ID("txt_PID").LabelAlign(LabelAlign.Right).Text(ViewBag.PID)),
+                    F.FormRow().Items(F.HiddenField().ID("txt_MID").LabelAlign(LabelAlign.Right).Text(ViewBag.MID)),            
+            F.FormRow().Items(F.HiddenField().ID("txt_ID").LabelAlign(LabelAlign.Right).Text(ViewBag.WS1_ID)),
+                    F.FormRow().Items(F.TextBox().ID("txt_JH").Label("案卷号:").LabelAlign(LabelAlign.Right).Text(ViewBag.JH)),
+                    F.FormRow().Items(F.TextBox().ID("txt_TM").Label("案卷题名:").LabelAlign(LabelAlign.Right).Text(ViewBag.TM)),
+                    F.FormRow().Items(F.TextBox().ID("txt_YEAR").Label("年度:").LabelAlign(LabelAlign.Right).Text(ViewBag.YEAR)),// 
+                    F.FormRow().Items(F.DropDownList().ID("cmb_BGQX").Label("保管期限").LabelAlign(LabelAlign.Right).Items((ListItem[])ViewData["保管期限"]).SelectedValue(ViewBag.BGQX)),//                               
+                    F.FormRow().Items(F.TextBox().ID("txt_HJBH").Label("货架编号:").LabelAlign(LabelAlign.Right).Text(ViewBag.HJBH)),
+                            //F.FormRow().Items(F.TextBox().ID("txt_DrawNum").Label("图纸数:").LabelAlign(LabelAlign.Right).Text(ViewBag.DrawNum)),
+                            //F.FormRow().Items(F.TextBox().ID("txt_OtherNum").Label("其他数:").LabelAlign(LabelAlign.Right).Text(ViewBag.OtherNum)),
+                    F.FormRow().Items(F.DatePicker().ID("txt_GDRQ").Label("归档日期:").LabelAlign(LabelAlign.Right).SelectedDate(ViewBag.GDRQ)),
+                    F.FormRow().Items(F.TextBox().ID("txt_BZ").Label("备注:").LabelAlign(LabelAlign.Right).Text(ViewBag.BZ)),
+                    //F.FormRow().Items(F.TextBox().ID("txt_HH").Label("盒号:").LabelAlign(LabelAlign.Right).Text(ViewBag.HH)),
+
+            F.FormRow()
+            .Items(
+                F.Panel()
+                    .ID("Panel1")
+                    .CssStyle("text-align: right;")
+                    .ShowBorder(false)
+                    .ShowHeader(false)
+                    .Items(
+                        F.Button()
+                            .Text("保存")
+                            .ID("btnAddML")
+                            .OnClick(Url.Action("AddWSAJINFO"), "form_ML").Width(150)
+                    )
+                )
+           )
+    )
+}
+
+@section script {
+    <script src="~/res/js/grid.js"></script>
+    <script>
+    </script>
+}

@@ -1,0 +1,80 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>档案管理平台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script type="text/javascript" src="~/res/login2/js/jquery-1.9.0.min.js"></script>
+    <script type="text/javascript" src="~/res/login2/images/login.js"></script>
+    <link href="~/res/login2/css/login2.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        function login() {
+            var name = $('#txtName').val();
+            var pwd = $('#txtPwd').val();
+   
+            if (name == '' || pwd == '')
+                alert('请输入用户名或密码!');
+            else {
+                //$('.button_blue').attr("disabled", true);
+                $('.button_blue').css('background', '#808080');
+                $.ajax({    
+                    type: "GET",
+                    url: "/Login/Login",
+                    data: { name: name, pwd: pwd },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data == "OK")
+                            window.location.href = "/Home/Index";
+                        else {
+                            alert(data);
+                            $('.button_blue').css('background', '#2795dc');
+                            ///$('#infovalue').html("<font size='12' color='red'>" + data + "</font>");
+                        }
+                    }
+                });
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>@FineUIMvc.EmptyProject.Models.CShenGoSystemInfo._sTitle&nbsp;&nbsp;<span style="vertical-align:text-bottom;font-size:10px">@FineUIMvc.EmptyProject.Models.CShenGoSystemInfo._sVersion</span></h1>
+    <div class="login" style="margin-top:50px;">
+        <div class="header">
+            <div class="switch" id="switch">
+                <a class="switch_btn_focus" id="switch_qlogin" href="javascript:void(0);" tabindex="7">登录系统</a>
+            </div>
+        </div>
+        <div class="web_qr_login" id="web_qr_login" style="display: block; height: 235px;">
+            <!--登录-->
+            <div class="web_login" id="web_login">
+                <div class="login-box">
+                    <div class="login_form">
+                            <input type="hidden" name="did" value="0" />
+                            <input type="hidden" name="to" value="log" />
+                            <div class="uinArea" id="uinArea">
+                                <label class="input-tips" for="u">帐号：</label>
+                                <div class="inputOuter" id="uArea">
+                                    <input type="text" id="txtName" name="txtName" class="inputstyle" />
+                                </div>
+                            </div>
+                            <div class="pwdArea" id="pwdArea">
+                                <label class="input-tips" for="p">密码：</label>
+                                <div class="inputOuter" id="pArea">
+                                    <input type="password" id="txtPwd" name="txtPwd" class="inputstyle" />
+                                </div>
+                            </div>
+
+                            <div style="padding-left:50px;margin-top:20px;"><input type="submit" value="登 录" style="width:150px;" class="button_blue" onclick="login()" /></div>
+                    </div>
+                </div>
+            </div>
+            <!--登录end-->
+        </div>
+    </div>
+
+</body>
+</html>
+

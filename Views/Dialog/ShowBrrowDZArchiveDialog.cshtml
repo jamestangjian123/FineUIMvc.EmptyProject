@@ -1,0 +1,109 @@
+﻿@{
+    var F = @Html.F();
+}
+
+@section head {
+    <link type="text/css" rel="stylesheet" href="~/res/css/index.css" />
+}
+@section body {
+    @(F.Form()
+        .BodyPadding(5)
+        .AutoScroll(true)
+        .ShowHeader(false)
+        .ShowBorder(false)
+        .ID("form_Brr")
+        .IsViewPort(true)
+        .Rows(
+            F.FormRow()
+                .MarginTop(5)
+                .MarginBottom(5)
+                .Items(
+                   F.Grid()
+                    .ID("grid_Archive")
+                    //.DataIDField("DAID")
+                    .ForceFit(true)
+                    .EnableColumnLines(true)
+                    .ShowGridHeader(true)
+                    .Height(300)
+                    .Columns(
+                       F.RenderField().HeaderText("档案类型").DataField("DATYPE").Width(80).EnableFilter(false),
+                       F.RenderField().HeaderText("档号或唯一编号").DataField("KEY").Width(100).EnableFilter(false),
+                       F.RenderField().HeaderText("题名").DataField("TM").Width(200).EnableFilter(false),
+                       F.RenderField()
+                            .ColumnID("Actions")
+                            .HeaderText("取消")
+                            .Width(50)
+                            .RendererFunction("renderActions").Width(80)
+                    )
+                    .DataSource(ViewBag.db)
+                ),
+            F.FormRow()
+                .Items(
+                    F.DropDownList()
+                        .ID("cmb_Type")
+                        .Label("利用目的:")
+                        .LabelAlign(LabelAlign.Right)
+                        .AutoSelectFirstItem(false)
+                        .Items((ListItem[])ViewBag.LYMD)
+                    ),
+              F.FormRow()
+                 .Items(
+                     F.DatePicker()
+                        .Required(true)
+                        .DateFormatString("yyyy-MM-dd")
+                        .Label("借阅结束时间:")
+                        .LabelAlign(LabelAlign.Right)
+                        .EmptyText("请选择日期")
+                        .ID("date_Date")
+                        .SelectedDate(DateTime.Now)
+                    ),
+               F.FormRow()
+                 .Items(
+                     F.TextBox()
+                        .ID("txt_Remark")
+                        .Label("说明及备注:")
+                        .LabelAlign(LabelAlign.Right)
+                    ),
+              F.FormRow()
+                .Items(
+                    F.Panel()
+                        .ID("Panel1")
+                        .CssStyle("text-align: right;")
+                        .ShowBorder(false)
+                        .ShowHeader(false)
+                        .Items(
+                            F.Button()
+                                .Text("申请借阅")
+                                .ValidateForms("form_Brr")
+                                .ID("btn_Brr")
+                                .OnClick(Url.Action("btnBrr_Click"), "form_Brr")
+                        )
+                )
+           )
+    )
+}
+
+@section script {
+    <script src="~/res/js/grid.js"></script>
+    <script>
+        function renderActions(value, params) {
+            return '<a class="action-btn mybtn2" href="javascript:;">取消</a>';
+        }
+
+        F.ready(function () {
+            var grid = F.ui.grid_Archive;
+            grid.el.on('click', 'a.action-btn', function (event) {
+                var targetEl = $(this);
+                var rowEl = targetEl.closest('.f-grid-row');
+                var rowData = grid.getRowData(rowEl);
+
+                // 触发后台事件
+                F.doPostBack('@Url.Action("btn_DelDZ")', {
+                    rowIndex: rowData.index
+                    //rowId: rowData.id,
+                    //rowText: rowData.text
+                });
+            });
+        });
+    </script>
+}

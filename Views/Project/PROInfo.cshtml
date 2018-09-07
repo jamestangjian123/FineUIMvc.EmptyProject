@@ -1,0 +1,69 @@
+﻿@{
+    var F = @Html.F();
+}
+
+@section head {
+    <link type="text/css" rel="stylesheet" href="~/res/css/index.css" />
+}
+@section body {
+    @(F.Form()
+        .BodyPadding(5)
+        .AutoScroll(true)
+        .ShowHeader(false)
+        .ShowBorder(false)
+        .ID("form_ML")
+        .IsViewPort(true)
+        .Rows(
+            F.FormRow().Items(F.HiddenField().ID("txt_MID").LabelAlign(LabelAlign.Right).Text(ViewBag.MID)),
+            F.FormRow().Items(F.HiddenField().ID("txt_ID").LabelAlign(LabelAlign.Right).Text(ViewBag.PRID)),
+            F.FormRow().Items(F.TextBox().ID("txt_Name").Label("项目名称:").LabelAlign(LabelAlign.Right).Text(ViewBag.Name)),
+            F.FormRow().Items(F.DropDownList().ID("cmb_BGQX").Label("保管期限").LabelAlign(LabelAlign.Right).Items((ListItem[])ViewData["保管期限"]).SelectedValue(ViewBag.BGQX)),//
+            F.FormRow().Items(F.TextBox().ID("txt_PR_BH").Label("项目编号:").LabelAlign(LabelAlign.Right).Text(ViewBag.BH)),
+            F.FormRow().Items(F.TextBox().ID("txt_BuildUnit").Label("建设单位:").LabelAlign(LabelAlign.Right).Text(ViewBag.BuildUnit)),
+                    F.FormRow().Items(F.TextBox().ID("txt_BuildUnitPhone").Label("建设单位电话:").LabelAlign(LabelAlign.Right).Text(ViewBag.BuildUnitPhone)),
+            F.FormRow().Items(F.TextBox().ID("txt_BuildUnitAddress").Label("建设单位地址:").LabelAlign(LabelAlign.Right).Text(ViewBag.BuildUnitAddress)),
+
+                    F.FormRow().Items(F.TextBox().ID("txt_BuildAdress").Label("建设地址:").LabelAlign(LabelAlign.Right).Text(ViewBag.BuildAdress)),
+                    F.FormRow().Items(F.TextBox().ID("txt_DesignUnit").Label("设计单位:").LabelAlign(LabelAlign.Right).Text(ViewBag.DesignUnit)),
+                    F.FormRow().Items(F.TextBox().ID("txt_ConstructionUnit").Label("施工单位:").LabelAlign(LabelAlign.Right).Text(ViewBag.ConstructionUnit)),
+                    F.FormRow().Items(F.TextBox().ID("txt_SupervisionName").Label("监理名称:").LabelAlign(LabelAlign.Right).Text(ViewBag.SupervisionName)),
+                    F.FormRow().Items(F.TextBox().ID("txt_TotalArea").Label("总建筑面积:").LabelAlign(LabelAlign.Right).Text(ViewBag.TotalArea)),
+                    F.FormRow().Items(F.TextBox().ID("txt_TotalInvest").Label("工程总投资:").LabelAlign(LabelAlign.Right).Text(ViewBag.TotalInvest)),
+                    F.FormRow().Items(F.TextBox().ID("txt_ProAccounts").Label("工程决算:").LabelAlign(LabelAlign.Right).Text(ViewBag.ProAccounts)),
+                    F.FormRow().Items(F.TextBox().ID("txt_ProAccountsUnit").Label("决算单位:").LabelAlign(LabelAlign.Right).Text(ViewBag.ProAccountsUnit)),
+                    F.FormRow().Items(F.DatePicker().ID("txt_StartDay").Label("开工日期:").LabelAlign(LabelAlign.Right).SelectedDate(ViewBag.StartDay)),
+                    F.FormRow().Items(F.DatePicker().ID("txt_EndDay").Label("竣工日期:").LabelAlign(LabelAlign.Right).SelectedDate(ViewBag.EndDay)),
+                    F.FormRow().Items(F.DatePicker().ID("txt_StorageDay").Label("入库日期:").LabelAlign(LabelAlign.Right).SelectedDate(ViewBag.StorageDay)),
+                    F.FormRow().Items(F.TextBox().ID("txt_ARReceiver").Label("档案馆接受人:").LabelAlign(LabelAlign.Right).Text(ViewBag.ARReceiver)),
+                    F.FormRow().Items(F.TextBox().ID("txt_RKReceiver").Label("入库接受人:").LabelAlign(LabelAlign.Right).Text(ViewBag.RKReceiver)),
+                    F.FormRow().Items(F.TextBox().ID("txt_TotalNum").Label("总卷数:").LabelAlign(LabelAlign.Right).Text(ViewBag.TotalNum)),
+                    F.FormRow().Items(F.TextBox().ID("txt_FileNum").Label("文件个数:").LabelAlign(LabelAlign.Right).Text(ViewBag.FileNum)),
+                    F.FormRow().Items(F.TextBox().ID("txt_ImageNum").Label("图纸张数:").LabelAlign(LabelAlign.Right).Text(ViewBag.ImageNum)),
+                    F.FormRow().Items(F.TextBox().ID("txt_PhotoNum").Label("照片张数:").LabelAlign(LabelAlign.Right).Text(ViewBag.PhotoNum)),
+                    F.FormRow().Items(F.TextBox().ID("txt_VideoNum").Label("录像盘数:").LabelAlign(LabelAlign.Right).Text(ViewBag.VideoNum)),
+                    F.FormRow().Items(F.TextBox().ID("txt_VoiceNum").Label("声像数据光盘:").LabelAlign(LabelAlign.Right).Text(ViewBag.VoiceNum)),
+                    F.FormRow().Items(F.TextBox().ID("txt_BZUnit").Label("编制单位:").LabelAlign(LabelAlign.Right).Text(ViewBag.BZUnit)),
+                    F.FormRow().Items(F.DatePicker().ID("txt_BZDay").Label("编制日期:").LabelAlign(LabelAlign.Right).SelectedDate(ViewBag.BZDay)),                             
+            F.FormRow()
+            .Items(
+                F.Panel()
+                    .ID("Panel1")
+                    .CssStyle("text-align: right;")
+                    .ShowBorder(false)
+                    .ShowHeader(false)
+                    .Items(
+                        F.Button()
+                            .Text("保存")
+                            .ID("btnAddML")
+                            .OnClick(Url.Action("AddProject"), "form_ML").Width(150)
+                    )
+                )
+           )
+    )
+}
+
+@section script {
+    <script src="~/res/js/grid.js"></script>
+    <script>
+    </script>
+}

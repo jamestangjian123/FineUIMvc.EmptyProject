@@ -1,0 +1,59 @@
+﻿@model IEnumerable<FineUIMvc.EmptyProject.Models.T_MODEL>
+@{
+    var F = @Html.F();
+}
+
+@section head {
+    <link type="text/css" rel="stylesheet" href="~/res/css/index.css" />
+}
+
+@section body {
+    <div id="content">
+        @{
+            var listQX = ViewBag.QX as IEnumerable<FineUIMvc.EmptyProject.Models.T_QX>;
+
+            foreach (var n in Model)
+            {
+                string value = "0";
+                if (listQX != null)
+                {
+                    foreach (var nn in listQX)
+                    {
+                        if (nn.QX_MID == n.MD_ID)
+                        {
+                            value = nn.QX_STATUS.ToString();
+                            break;
+                        }
+                    }
+                }
+                @(F.DropDownList().ID("cmb_" + n.MD_ID).Label(n.MD_NAME).LabelAlign(LabelAlign.Right).Width(500).Items((ListItem[])ViewBag.Items).SelectedValue(value))
+            }
+        }
+
+        @F.HiddenField().ID("txt_RoleID").Text(ViewBag.RoleID);
+        
+    </div>
+
+   @(F.Form()
+            .BodyPadding(5)
+            .AutoScroll(true)
+            .ShowHeader(false)
+            .ShowBorder(false)
+            .ID("form_QX")
+            .IsViewPort(true)
+            .ContentEl("#content")
+            .Toolbars(
+                F.Toolbar()
+                    .ID("Toolbar1")
+                    .ToolbarAlign(ToolbarAlign.Right)
+                    .Position(ToolbarPosition.Bottom)
+                    .Items(
+                        F.Button()
+                            .ID("btn_QX")
+                            .Text("修改权限")
+                            .IconFont(IconFont.Send)
+                            .OnClick(Url.Action("btnQX_Click"), "form_QX")
+                    )
+            )
+        )
+}

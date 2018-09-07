@@ -1,0 +1,108 @@
+﻿@{
+    var F = @Html.F();
+}
+
+@section head {
+    <link type="text/css" rel="stylesheet" href="~/res/css/index.css" />
+}
+
+@section body{
+    @(F.Grid()
+        .EnableCheckBoxSelect(true)
+        .IsViewPort(true)
+        .ForceFit(false)
+        .Title("PDF文字检索")
+        .ShowHeader(true)
+        .ShowBorder(true)
+        .ID("Grid1")
+        .DataIDField("TEXT_ID")
+                .DataTextField("JN1_Scan")
+        .Columns(ViewBag.Grid1Columns)
+        .EnableColumnLines(true)
+        .PageSize(20)
+                .AllowPaging(true)
+        .OnPageIndexChanged(Url.Action("Grid1_PageIndexChanged"), "Grid1")
+        .IsDatabasePaging(true)
+        .ShowPagingMessage(true)
+        .Toolbars(
+            F.Toolbar()
+                .ID("tbGrid")
+                .ToolbarAlign(ToolbarAlign.Right)
+                .Items(
+                    F.Label().ID("lbl_ArchiveType"),
+                    ///F.Button().Text("选择档案类型").ID("btnSelectArchiveType").Listener("click", "F.ui.win_ArchiveType.show()"),
+                    F.TextBox().Text("").ID("txt_Content").Width(350).Label("关键字:").LabelAlign(LabelAlign.Left),
+                    //F.TextBox().Text("").ID("txt_Content1").Width(350).Label("二次检索:").LabelAlign(LabelAlign.Left),
+                    F.Button()
+                        .ID("btn_Query")
+                        .Text("全文检索")
+                        .Icon(Icon.Accept).OnClick(Url.Action("btnQuery_QWSJ"), "Grid1", new Parameter[] { new Parameter("content" , "F.ui.txt_Content.getValue()") })
+                       // .Listener("click", "btn_Query"),
+                 )
+            )
+        )
+      )
+@(F.Window()
+            .BodyPadding(10)
+            .AutoScroll(true)
+            .IsViewPort(true)
+            .Hidden(true)
+            .IsModal(true)
+            .EnableResize(true)
+            .EnableCollapse(true)
+            .EnableMaximize(true)
+            .Title("浏览电子文件")
+            .Icon(Icon.Picture)
+            .ID("win_MLPic")
+        //.IFrameUrl(Url.Content("~/WS/WSJNInfo?aid=" + ViewBag.AID)) //+ FineUIMvc.EmptyProject.Models.Commons.iWSAJID.ToString()))
+            .IFrameName("frmMain3")
+            .EnableIFrame(true)
+            .Target(Target.Parent)
+)
+}
+
+@section script {
+    <script src="~/res/js/grid.js"></script>
+    <script>
+        function getGridSelectedRows() {
+            var result = [], grid = F.ui.Grid1;
+            $.each(grid.getSelectedRows(true), function (index, item) {
+                var itemArr = [];
+                itemArr.push(item.id);
+                itemArr.push(item.text);
+                result.push(itemArr);
+            });
+
+            return result;
+        }
+
+        function renderFile(value, params)
+        {
+            //return "<a class='action-btn2 mybtn2' href='javascript:openView(" + value + ");'>浏览</a>";
+            return '<a class="action-btn mybtn2" href="javascript:;">浏览</a>';
+        }
+
+        function openView(path)
+        {
+            var cn = F.ui.txt_Content.getValue();
+            window.open('../../res/generic/web/viewer.html?file=/res/pdf/' + path + '&content=' + cn);
+        }
+
+        F.ready(function () {
+            var grid = F.ui.Grid1;
+            grid.el.on('click', 'a.action-btn', function (event) {
+                var targetEl = $(this);
+                var rowEl = targetEl.closest('.f-grid-row');
+                var rowData = grid.getRowData(rowEl);
+                openView(rowData.text);
+            });
+        });
+        @*function btn_Query() {
+            var grid = F.ui.Grid1;
+            var cn=F.ui.txt_Content.getValue();
+            var cn1=F.ui.txt_Content1.getValue();
+            var action = '@Url.Action("btnQuery_QWSJ")',grid, new {'content':cn,};
+            F.ui.win_Add.show(action, "添加档案");
+        }*@
+    </script>
+}

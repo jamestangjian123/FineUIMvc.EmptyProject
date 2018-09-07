@@ -1,0 +1,164 @@
+﻿@{
+    var F = @Html.F();
+}
+
+@section head {
+    <link type="text/css" rel="stylesheet" href="~/res/css/index.css" />
+}
+@section body {
+@(F.Form()
+        .BodyPadding(5)
+        .AutoScroll(true)
+        .ShowHeader(false)
+        .ShowBorder(false)
+        .ID("form_Where")
+        .IsViewPort(true)
+        .Toolbars(
+            F.Toolbar()
+                .ID("Toolbar1")
+                .ToolbarAlign(ToolbarAlign.Right)
+                .Position(ToolbarPosition.Bottom)
+                .Items(
+                    F.Button()
+                        .ID("btn_Query")
+                        .Text("点击查询")
+                        .IconFont(IconFont.Send)
+                        .OnClick(Url.Action("btnQuery_Click"), "form_Where")
+                )
+        )
+        .Rows(
+            F.FormRow()
+                .Items(
+                    F.DropDownList()
+                        .ID("cmb_Fields")
+                        .Label("字段名称:")
+                        .LabelAlign(LabelAlign.Right)
+                        .AutoSelectFirstItem(false)
+                        .OnSelectedIndexChanged(Url.Action("CmbFields_SelectedIndexChanged"), "cmb_Fields")
+                        .Items((ListItem[])ViewBag.Fields)
+                    ),
+            F.FormRow()
+                 .Items(
+                     F.DropDownList()
+                        .ID("cmb_Where")
+                        .Label("条件:")
+                        .LabelAlign(LabelAlign.Right)
+                        .AutoSelectFirstItem(true)
+                     ),
+              F.FormRow()
+                 .Items(
+                     F.TextBox()
+                        .ID("txt_Value")
+                        .Label("查询内容:")
+                        .LabelAlign(LabelAlign.Right)
+                        .Width(700)
+                    ),
+              F.FormRow()
+                 .Items(
+                     F.DropDownList()
+                        .ID("cmb_Word")
+                        .Label("查询内容:")
+                        .LabelAlign(LabelAlign.Right)
+                        .Hidden(true)
+                    ),
+              F.FormRow()
+                 .Items(
+                     F.DatePicker()
+                        .Required(true)
+                        .DateFormatString("yyyy-MM-dd")
+                        .Label("查询内容:")
+                        .LabelAlign(LabelAlign.Right)
+                        .EmptyText("请选择日期")
+                        .ID("date_Date")
+                        .SelectedDate(DateTime.Now)
+                        .Hidden(true)
+                    ),
+              F.FormRow()
+                 .Items(
+                     F.DropDownList()
+                        .ID("cmb_AndOr")
+                        .Label("与或关系:")
+                        .LabelAlign(LabelAlign.Right)
+                        .Width(1000)
+                        .AutoSelectFirstItem(true)
+                        .Items(
+                            F.ListItem()
+                                .Text("并且")
+                                .Value("and"),
+                            F.ListItem()
+                                .Text("或者")
+                                .Value("or")
+                         )
+                  ),
+              F.FormRow()
+                .Items(
+                    F.Panel()
+                        .ID("Panel1")
+                        .CssStyle("text-align: right;")
+                        .ShowBorder(false)
+                        .ShowHeader(false)
+                        .Items(
+                            F.Button()
+                                .Text("添加查询条件")
+                                .ValidateForms("Form1")
+                                .ID("btn_Add")
+                                .OnClick(Url.Action("btnAdd_Clcik"), "form_Where")
+                        )
+                ),
+               F.FormRow()
+                .MarginTop(5)
+                .Items(
+                   F.Grid()
+                    .ID("grid_Where")
+                    .ForceFit(true)
+                    .EnableColumnLines(true)
+                    .ShowGridHeader(true)
+                    .Columns(
+                       F.RenderField().HeaderText("字段名").DataField("Fields").Width(120),
+                       F.RenderField().HeaderText("条件").DataField("Where").Width(80),
+                       F.RenderField().HeaderText("内容").DataField("Value").Width(200),
+                       F.RenderField().HeaderText("与或关系").DataField("AndOr").Width(80),
+                       F.RenderField()
+                            .ColumnID("Actions")
+                            .HeaderText("删除条件")
+                            .Width(180)
+                            .RendererFunction("renderActions").Width(80)
+                    )
+                ),
+               F.FormRow()
+                 .Items(
+                     F.HiddenField()
+                        .ID("txt_AID").Text(ViewBag.AID)
+                    )
+           )
+    )
+}
+
+@section script {
+    <script src="~/res/js/grid.js"></script>
+    <script>
+        function renderActions(value, params) {
+            //var deleteImageUrl = '@Url.Content("~/res/icon/delete.png")';
+            return '<a class="action-btn mybtn2" href="javascript:;">点击删除</a>';
+        }
+
+       
+
+        F.ready(function () {
+            var grid = F.ui.grid_Where;
+            grid.el.on('click', 'a.action-btn', function (event) {
+                var targetEl = $(this);
+                var rowEl = targetEl.closest('.f-grid-row');
+                var rowData = grid.getRowData(rowEl);
+                ///alert(rowData);
+
+                // 触发后台事件
+                F.doPostBack('@Url.Action("grid_DelWhere")', {
+                    rowIndex: rowData.index
+                    //rowId: rowData.id,
+                    //rowText: rowData.text
+                });
+            });
+        });
+    </script>
+}

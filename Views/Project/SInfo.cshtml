@@ -1,0 +1,62 @@
+﻿@{
+    var F = @Html.F();
+}
+
+@section head {
+    <link type="text/css" rel="stylesheet" href="~/res/css/index.css" />
+}
+@section body {
+    @(F.Form()
+        .BodyPadding(5)
+        .AutoScroll(true)
+        .ShowHeader(false)
+        .ShowBorder(false)
+        .ID("form_ML")
+        .IsViewPort(true)
+        .Rows(
+            F.FormRow().Items(F.HiddenField().ID("txt_PID").LabelAlign(LabelAlign.Right).Text(ViewBag.PID)),
+            F.FormRow().Items(F.HiddenField().ID("txt_ID").LabelAlign(LabelAlign.Right).Text(ViewBag.SG_ID)),
+                    F.FormRow().Items(F.TextBox().ID("txt_Name").Label("单体名称:").LabelAlign(LabelAlign.Right).Text(ViewBag.Name)),
+                    F.FormRow().Items(F.TextBox().ID("txt_Xnum").Label("许可证号:").LabelAlign(LabelAlign.Right).Text(ViewBag.Xnum)),
+                    F.FormRow().Items(F.TextBox().ID("txt_Type").Label("结构类型:").LabelAlign(LabelAlign.Right).Text(ViewBag.Type)),
+                    F.FormRow().Items(F.TextBox().ID("txt_Area").Label("面积:").LabelAlign(LabelAlign.Right).Text(ViewBag.Area)),
+                    F.FormRow().Items(F.TextBox().ID("txt_Form").Label("形式:").LabelAlign(LabelAlign.Right).Text(ViewBag.Form)),
+                    F.FormRow().Items(F.TextBox().ID("txt_Bnum").Label("幢数:").LabelAlign(LabelAlign.Right).Text(ViewBag.Bnum)),
+                    F.FormRow().Items(F.TextBox().ID("txt_High").Label("高度:").LabelAlign(LabelAlign.Right).Text(ViewBag.High)),
+                    F.FormRow().Items(F.TextBox().ID("txt_Znum").Label("桩数:").LabelAlign(LabelAlign.Right).Text(ViewBag.Znum)),
+                    F.FormRow().Items(F.TextBox().ID("txt_Deep").Label("深度:").LabelAlign(LabelAlign.Right).Text(ViewBag.Deep)),
+                    F.FormRow().Items(F.TextBox().ID("txt_Underfloor").Label("地下层数:").LabelAlign(LabelAlign.Right).Text(ViewBag.Underfloor)),
+                    F.FormRow().Items(F.TextBox().ID("txt_Overfloor").Label("地上层数:").LabelAlign(LabelAlign.Right).Text(ViewBag.Overfloor)),
+                    F.FormRow().Items(F.TextBox().ID("txt_CZ").Label("材质:").LabelAlign(LabelAlign.Right).Text(ViewBag.CZ)),
+                    F.FormRow().Items(F.TextBox().ID("txt_Length").Label("长度:").LabelAlign(LabelAlign.Right).Text(ViewBag.Length)),
+
+                    F.FormRow().Items(F.TextBox().ID("txt_Vnum").Label("伏数:").LabelAlign(LabelAlign.Right).Text(ViewBag.Vnum)),
+                    F.FormRow().Items(F.TextBox().ID("txt_PD").Label("坡度:").LabelAlign(LabelAlign.Right).Text(ViewBag.PD)),
+                    F.FormRow().Items(F.TextBox().ID("txt_Norms").Label("规格:").LabelAlign(LabelAlign.Right).Text(ViewBag.Norms)),
+                    
+                    F.FormRow().Items(F.TextBox().ID("txt_Dunit").Label("设计单位:").LabelAlign(LabelAlign.Right).Text(ViewBag.Dunit)),
+                    F.FormRow().Items(F.TextBox().ID("txt_Wunit").Label("施工单位:").LabelAlign(LabelAlign.Right).Text(ViewBag.Wunit)),
+                    F.FormRow().Items(F.TextBox().ID("txt_Junit").Label("监理单位:").LabelAlign(LabelAlign.Right).Text(ViewBag.Junit)),
+            F.FormRow()
+            .Items(
+                F.Panel()
+                    .ID("Panel1")
+                    .CssStyle("text-align: right;")
+                    .ShowBorder(false)
+                    .ShowHeader(false)
+                    .Items(
+                        F.Button()
+                            .Text("保存")
+                            .ID("btnAddML")
+                            .OnClick(Url.Action("AddSingle"), "form_ML").Width(150)
+                    )
+                )
+           )
+    )
+}
+
+@section script {
+    <script src="~/res/js/grid.js"></script>
+    <script>
+    </script>
+}

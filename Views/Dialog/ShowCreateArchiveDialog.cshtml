@@ -1,0 +1,92 @@
+﻿@model IEnumerable<ShenGoArchiveSystemDal.T_SYFIELDS>
+@{
+    var F = @Html.F();
+}
+
+@section head {
+    <link type="text/css" rel="stylesheet" href="~/res/css/index.css" />
+}
+
+@section body {
+    <div id="content">
+    @{
+        ShenGoArchiveSystemDal.T_WSAJ en = null; //new ShenGoArchiveSystemDal.T_WSAJ();
+        string wsid = "";
+        if (ViewBag.WSAJ != null)
+        {
+            en = ViewBag.WSAJ as ShenGoArchiveSystemDal.T_WSAJ;
+            wsid = en.WS_ID.ToString();
+        }
+
+
+        foreach (var n in Model)
+        {
+            string value = "";
+            if (en != null)
+            {
+                var ty = en.GetType();
+                var ty1 = ty.GetProperty(n.Name).GetValue(en);
+                if (ty1 != null) 
+                {
+                    value = ty1.ToString();
+                }
+            }
+            if (n.Type == 1 || n.Type == 2)
+            {
+                @(F.TextBox().ID("txt_" + n.Name).Label(n.Fields).LabelAlign(LabelAlign.Right).Width(500).Text(value))
+            }
+            else if (n.Type == 3)
+            {
+                DateTime dt = DateTime.Now;
+                if (value != null && value != "")
+                {
+                    dt = Convert.ToDateTime(value);
+                }
+                @(F.DatePicker().ID("date_" + n.Name).Label(n.Fields).LabelAlign(LabelAlign.Right).Width(500).SelectedDate(dt))
+            }
+            else if (n.Type == 5)
+            {
+                if (value != null && value != "")
+                {
+                    @(F.DropDownList().ID("cmb_" + n.Name).Label(n.Fields).LabelAlign(LabelAlign.Right).Width(500).Items((ListItem[])ViewData[n.V01]).SelectedValue(value))
+                }
+                else
+                {
+                    @(F.DropDownList().ID("cmb_" + n.Name).Label(n.Fields).LabelAlign(LabelAlign.Right).Width(500).Items((ListItem[])ViewData[n.V01]))
+                }
+            }
+        }
+    }
+
+
+    @F.HiddenField().ID("hidd_AID").Text(ViewBag.AID)
+    @F.HiddenField().ID("hidd_WSID").Text(wsid)
+</div>
+
+
+
+@(F.Form()
+        .BodyPadding(5)
+        .AutoScroll(true)
+        .ShowHeader(false)
+        .ShowBorder(false)
+        .ID("form_Add")
+        .IsViewPort(true)
+        .ContentEl("#content")
+        .Toolbars(
+            F.Toolbar()
+                .ID("Toolbar1")
+                .ToolbarAlign(ToolbarAlign.Right)
+                .Position(ToolbarPosition.Bottom)
+                .Items(
+                    F.Button()
+                        .ID("btn_Add")
+                        .Text("添加信息")
+                        .IconFont(IconFont.Send)
+                        .OnClick(Url.Action("btnAddNew_Click"), "form_Add").Hidden(ViewBag.WSAJ == null ? false : true),
+                    F.Button().ID("btn_Modify").Text("修改信息").IconFont(IconFont.Pencil).OnClick(Url.Action("btnModifyAJ_Click"),"form_Add").Hidden(ViewBag.WSAJ==null ? true: false)
+
+                )
+        )
+   )
+}

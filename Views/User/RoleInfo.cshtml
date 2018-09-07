@@ -1,0 +1,93 @@
+﻿@{
+    var F = @Html.F();
+}
+
+@section head {
+    <link type="text/css" rel="stylesheet" href="~/res/css/index.css" />
+}
+@section body {
+    @{
+        var _en = ViewBag.En as FineUIMvc.EmptyProject.Models.T_ROLE;
+    }
+
+    @(F.Form()
+        .BodyPadding(5)
+        .AutoScroll(true)
+        .ShowHeader(false)
+        .ShowBorder(false)
+        .ID("form_Role")
+        .IsViewPort(true)
+        .Toolbars(
+            F.Toolbar()
+                .ID("Toolbar1")
+                .ToolbarAlign(ToolbarAlign.Right)
+                .Position(ToolbarPosition.Bottom)
+                .Items(
+                    F.Button()
+                        .ID("btn_Save")
+                        .Text("添加")
+                        .IconFont(IconFont.Send)
+                        .OnClick(Url.Action("btnAddRole_Click"), "form_Role").Hidden(ViewBag.Add),
+                    F.Button().ID("btn_Modify").Text("修改").IconFont(IconFont.Send).OnClick(Url.Action("btnModifyRole_Click"), "form_Role").Hidden(!ViewBag.Add)
+                )
+        )
+        .Rows(
+            F.FormRow()
+                .Items(
+                    F.TextBox().ID("txt_Name").Label("角色名:").LabelAlign(LabelAlign.Right).Text(_en.ROLE_NAME)
+                ),
+            ///不要了
+            F.FormRow().Items(F.DropDownList().ID("cmb_View").Label("本部门档案浏览:").LabelAlign(LabelAlign.Right).LabelWidth(200).AutoSelectFirstItem(true).Items(
+                F.ListItem().Text("允许").Value("1"),
+                F.ListItem().Text("禁止").Value("0")).Hidden(true)
+            ),
+            ///不要了
+             F.FormRow().Items(F.DropDownList().ID("cmb_Modify").Label("本部门档案编辑:").LabelAlign(LabelAlign.Right).LabelWidth(200).AutoSelectFirstItem(true).Items(
+                F.ListItem().Text("允许").Value("1"),
+                F.ListItem().Text("禁止").Value("0")).Hidden(true)
+            ),
+            ///这里改成档案节点，而不是部门了
+                    F.FormRow().Items(F.DropDownList().ID("cmb_ViewBM").EnableMultiSelect(true).Label("可浏览档案:").LabelAlign(LabelAlign.Right).Items((ListItem[])ViewBag.Items)),
+            F.FormRow().Items(F.DropDownList().ID("cmb_ModifyBM").EnableMultiSelect(true).Label("可编辑档案:").LabelAlign(LabelAlign.Right).Items((ListItem[])ViewBag.Items2)),
+                    F.FormRow().Items(F.DropDownList().ID("cmb_PrintBM").EnableMultiSelect(true).Label("可打印档案:").LabelAlign(LabelAlign.Right).Items((ListItem[])ViewBag.Items3)),
+            F.FormRow().Items(F.DropDownList().ID("cmb_Status").Label("是否启用:").LabelAlign(LabelAlign.Right).AutoSelectFirstItem(true).Items(
+                F.ListItem().Text("启用").Value("1"),
+                F.ListItem().Text("禁用").Value("0")).SelectedValue(_en.ROLE_STATUS.ToString())
+            ),
+                    F.FormRow().Items(F.DropDownList().ID("cmd_Department").EnableMultiSelect(true).Label("上级角色").LabelAlign(LabelAlign.Right).Items((ListItem[])ViewBag.Items1).SelectedValue(_en.ROLE_RID.ToString())),
+            F.FormRow()
+                .Items(
+                    F.TextBox().ID("txt_BZ").Label("说明:").LabelAlign(LabelAlign.Right).Text(_en.ROLE_REMARK)),
+             F.FormRow()
+                .Items(
+                    F.TextBox().ID("txt_RoleID").Label("说明:").LabelAlign(LabelAlign.Right).Text(ViewBag.RoleID).Hidden(true))
+       )
+    )
+}
+
+
+@section script {
+    <script src="~/res/js/grid.js"></script>
+    <script>
+        function renderActions(value, params) {
+            var deleteImageUrl = '@Url.Content("~/res/icon/delete.png")';
+            return '<a class="action-btn mybtn2" href="javascript:;"><img class="f-grid-cell-icon" src="' + deleteImageUrl + '"></a>';
+        }
+        @*F.ready(function () {
+            var grid = F.ui.grid_Where;
+            grid.el.on('click', 'a.action-btn', function (event) {
+                var targetEl = $(this);
+                var rowEl = targetEl.closest('.f-grid-row');
+                var rowData = grid.getRowData(rowEl);
+                alert(rowData);
+
+                // 触发后台事件
+                F.doPostBack('@Url.Action("grid_DelWhere")', {
+                    rowIndex: rowData.index
+                    //rowId: rowData.id,
+                    //rowText: rowData.text
+                });
+            });
+        });*@
+    </script>
+}

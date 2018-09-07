@@ -1,0 +1,53 @@
+﻿@{
+    var F = @Html.F();
+}
+
+@section head {
+    <link type="text/css" rel="stylesheet" href="~/res/css/index.css" />
+}
+@section body {
+    @{
+        ////如果是修改，则不允许修改字段的类型
+        bool b = ViewBag.ID == "" ? false : true;
+    }
+
+    @(F.Form()
+        .BodyPadding(5)
+        .AutoScroll(true)
+        .ShowHeader(false)
+        .ShowBorder(false)
+        .ID("form_UploadFile")
+        .IsViewPort(true)
+        .Toolbars(
+            F.Toolbar()
+                .ID("Toolbar1")
+                .ToolbarAlign(ToolbarAlign.Left)
+                .Position(ToolbarPosition.Top)
+                .Items(
+                    F.Button()
+                        .ID("btnDownloadFile")
+                        .Text("下载")
+                        .IconFont(IconFont.Send)
+                        .ValidateForms("form_UploadFile")
+                        .Listener("click", "onDownloadFile"),
+        F.HiddenField().ID("txt_AID").Text(ViewBag.DownFileName)
+                )
+        )
+)
+    <br />
+    <br />
+    <br />
+    @{
+
+    }
+}
+
+@section script {
+<script src="~/res/js/grid.js"></script>
+    <script>
+    function onDownloadFile() {
+        var url = "/Dialog/DownloadFile?FileName=@ViewBag.DownFileName";
+       window.open(url);
+    }
+</script>
+}

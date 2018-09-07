@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ViewFilevideo</title>
+    <script src="../../js/jquery-1.10.2.min.js"></script>
+   <script type="text/javascript">
+       $(document).ready(function () {
+
+           var src = "../../pdf/" + getUrlParam("file");
+           var sourceDom = $("<source src=\"" + src + "\">");
+           $("#video-box video").append(sourceDom);
+           $("#video-box").show();
+           // 自动播放
+           //$("#video-box video")[0].play()
+       });
+
+       function getUrlParam(name) {
+           var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+           var r = window.location.search.substr(1).match(reg); //匹配目标参数
+           if (r != null) return unescape(r[2]); return null; //返回参数值
+       }
+    </script>
+</head>
+<body>
+    <div> 
+        
+
+        <div id="video-box">
+            <video style="object-fit: fill;height: 600px;" controls>
+                <source src="">
+            </video>
+        </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,150 @@
+﻿@{
+    var F = @Html.F();
+}
+
+@section head {
+    <link type="text/css" rel="stylesheet" href="~/res/css/index.css" />
+}
+
+@section body {
+    @(F.Grid()
+        .EnableCheckBoxSelect(true)
+        .IsViewPort(true)
+        .ForceFit(true)
+        .Title("角色设定")
+        .ShowHeader(true)
+        .ShowBorder(true)
+        .ID("GridRole")
+        .DataIDField("ROLE_ID")
+        .Columns(ViewBag.Grid1Columns)
+        .EnableColumnLines(true)
+        .AllowPaging(true)
+        .PageSize(20)
+        .IsDatabasePaging(true)
+        .ShowPagingMessage(true)
+        .RecordCount(ViewBag.Grid1RecordCount)
+        .DataSource(ViewBag.Grid1DataSource)
+        .OnPageIndexChanged(Url.Action("GridRole_PageIndexChanged"), "GridRole")
+        .Toolbars(
+            F.Toolbar()
+                .ID("tbGrid")
+                .ToolbarAlign(ToolbarAlign.Right)
+                .Items(
+                    F.TextBox().ID("txt_Name").Label("角色名").LabelAlign(LabelAlign.Right),
+                    F.Button()
+                        .ID("btnRoleQuery")
+                        .Text("查询")
+                        .Icon(Icon.ApplicationViewIcons).OnClick(Url.Action("btnRoleQuery_Click"), "GridRole", new Parameter("name", "F.ui.txt_Name.getValue()")),
+                    F.Button().ID("btnAddRole").Text("添加").Icon(Icon.Add).Listener("click", "AddRole()")
+                 )
+            )
+    )
+
+    @(F.Window()
+        .BodyPadding(10)
+        .AutoScroll(true)
+            //.OnClose(Url.Action("Window1_Close"))
+            //.CloseAction(CloseAction.HidePostBack)
+        .Hidden(true)
+        .IsModal(true)
+        .EnableResize(true)
+        .EnableCollapse(true)
+        .EnableMaximize(true)
+        .Title("模块权限")
+        .Icon(Icon.TagBlue)
+        .Height(600)
+        .Width(650)
+        .ID("win_Info")
+        .IFrameName("frmMain3")
+        .EnableIFrame(true)
+    )
+
+    @(F.Window()
+        .BodyPadding(10)
+        .AutoScroll(true)
+        .OnClose(Url.Action("winRole_Close"), "GridRole")
+        .CloseAction(CloseAction.HidePostBack)
+        .Hidden(true)
+        .IsModal(true)
+        .EnableResize(true)
+        .EnableCollapse(true)
+        .EnableMaximize(true)
+        .Title("角色信息")
+        .Icon(Icon.TagBlue)
+        .Height(600)
+        .Width(650)
+        .ID("win_Role")
+        .IFrameName("frmMain3")
+        .EnableIFrame(true)
+    )
+}
+
+@section script {
+    <script src="~/res/js/grid.js"></script>
+    <script>
+        var bm = '@ViewBag.BM';
+        var bms = bm.split(',');
+        function renderInfo(value, params) {
+            if (value == 1)
+                return "<img src='/res/icon/accept.png'></img>";
+            else
+                return "<img src='/res/icon/error.png'></img>";
+        }
+
+        function renderQX(value, params) {
+            return '<a class="action-btn mybtn2" href="javascript:;">设置权限</a>';
+        }
+
+        function renderEdit(value, params) {
+            return '<a class="action-btn2 mybtn2" href="javascript:;">编辑角色</a>';
+        }
+
+        function renderBM(value, params) {
+            var vu = '';
+            var strs = value.split(',');
+            for (var i = 0; i < strs.length; i++)
+            {
+                for (var j = 0; j < bms.length; j++)
+                {
+                    var strs2 = bms[j].split('|');
+                    if (strs[i] == strs2[0]) {
+                        vu += strs2[1] + ",";
+                        break;
+                    }
+                }
+            }
+            return '<label>' + vu + '</label>';
+        }
+
+        ///添加角色
+        function AddRole() {
+            var action = '@Url.Content("~/User/RoleInfo")';
+            F.ui.win_Role.show(action, "添加角色");
+        }
+        ///修改角色
+        function ModifyRole(id)
+        {
+
+        }
+
+        F.ready(function () {
+            var grid = F.ui.GridRole;
+            grid.el.on('click', 'a.action-btn', function (event) {
+                var targetEl = $(this);
+                var rowEl = targetEl.closest('.f-grid-row');
+                var rowData = grid.getRowData(rowEl);
+                var action = '@Url.Content("~/User/RoleQX")' + '?roleid=' + rowData.id;
+                ///alert(action);
+                F.ui.win_Info.show(action);//(action);//("'" + action + "'");
+            });
+             grid.el.on('click', 'a.action-btn2', function (event) {
+                var targetEl = $(this);
+                var rowEl = targetEl.closest('.f-grid-row');
+                var rowData = grid.getRowData(rowEl);
+                var action = '@Url.Content("~/User/RoleInfo")' + '?roleid=' + rowData.id;
+                ///alert(action);
+                F.ui.win_Role.show(action, "编辑角色");//(action);//("'" + action + "'");
+            });
+        });
+    </script>
+}

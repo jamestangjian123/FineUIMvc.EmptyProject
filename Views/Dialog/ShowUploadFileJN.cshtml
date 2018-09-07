@@ -1,0 +1,59 @@
+﻿@{
+    var F = @Html.F();
+}
+
+@section head {
+    <link type="text/css" rel="stylesheet" href="~/res/css/index.css" />
+}
+@section body {
+    @{
+        ////如果是修改，则不允许修改字段的类型
+        bool b = ViewBag.ID == "" ? false : true;
+    }
+
+    @(F.Form()
+        .BodyPadding(5)
+        .AutoScroll(true)
+        .ShowHeader(false)
+        .ShowBorder(false)
+        .ID("form_UploadFile")
+        .IsViewPort(true)
+        .Toolbars(
+            F.Toolbar()
+                .ID("Toolbar1")
+                .ToolbarAlign(ToolbarAlign.Right)
+                .Position(ToolbarPosition.Bottom)
+                .Items(
+                    F.Button()
+                        .ID("btnUploadFile")
+                        .Text("保存")
+                        .IconFont(IconFont.Send)
+                        .ValidateForms("form_UploadFile")
+                        .OnClick(Url.Action("JNbtnUploadFile_Click"), "form_UploadFile")
+                )
+        )
+        .Rows(
+            F.FormRow()
+                .Items(
+                    F.FileUpload().ID("upload_File").Label("上传文件:").LabelAlign(LabelAlign.Right).Required(true).ShowRedStar(true)
+                ),
+            F.FormRow().Items(F.TextBox().Hidden(true).ID("txt_AID").Text(ViewBag.AID)),
+            F.FormRow().Items(F.TextBox().Hidden(true).ID("txt_ID").Text(ViewBag.ID))
+       )
+    )
+    <br />
+    <br />
+    <br />
+    @{
+        if (ViewBag.INFO != "")
+        {
+            <center><label style="color:red">@ViewBag.INFO</label></center>
+        }
+    }
+}
+
+@section script {
+    <script>
+
+    </script>
+}

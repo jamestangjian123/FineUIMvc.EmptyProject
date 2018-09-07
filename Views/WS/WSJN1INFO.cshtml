@@ -1,0 +1,52 @@
+﻿@{
+    var F = @Html.F();
+}
+
+@section head {
+    <link type="text/css" rel="stylesheet" href="~/res/css/index.css" />
+}
+@section body {
+    @(F.Form()
+        .BodyPadding(5)
+        .AutoScroll(true)
+        .ShowHeader(false)
+        .ShowBorder(false)
+        .ID("form_ML")
+        .IsViewPort(true)
+        .Rows(
+            F.FormRow().Items(F.HiddenField().ID("txt_AJID").LabelAlign(LabelAlign.Right).Text(ViewBag.AJID)),
+            F.FormRow().Items(F.HiddenField().ID("txt_ID").LabelAlign(LabelAlign.Right).Text(ViewBag.JN1_ID)),
+                    F.FormRow().Items(F.TextBox().ID("txt_XH").Label("序号:").LabelAlign(LabelAlign.Right).Text(ViewBag.XH)),            
+                    F.FormRow().Items(F.TextBox().ID("txt_Name").Label("文件名称:").LabelAlign(LabelAlign.Right).Text(ViewBag.Name)),
+                    F.FormRow().Items(F.TextBox().ID("txt_BH").Label("文件编号:").LabelAlign(LabelAlign.Right).Text(ViewBag.BH)),
+                    F.FormRow().Items(F.TextBox().ID("txt_YS").Label("页数:").LabelAlign(LabelAlign.Right).Text(ViewBag.YS)),
+                    //F.FormRow().Items(F.TextBox().ID("txt_Type").Label("图幅:").LabelAlign(LabelAlign.Right).Text(ViewBag.Type)),
+                    //F.FormRow().Items(F.TextBox().ID("txt_Start").Label("页号起:").LabelAlign(LabelAlign.Right).Text(ViewBag.Start)),
+                    //F.FormRow().Items(F.TextBox().ID("txt_End").Label("页号止:").LabelAlign(LabelAlign.Right).Text(ViewBag.End)),
+                    F.FormRow().Items(F.TextBox().ID("txt_ZRZ").Label("责任者:").LabelAlign(LabelAlign.Right).Text(ViewBag.ZRZ)),
+                    F.FormRow().Items(F.DatePicker().ID("txt_RQ").Label("日期:").LabelAlign(LabelAlign.Right).SelectedDate(ViewBag.RQ)),
+                    F.FormRow().Items(F.TextBox().ID("txt_Remark").Label("备注:").LabelAlign(LabelAlign.Right).Text(ViewBag.Remark)),
+
+            F.FormRow()
+            .Items(
+                F.Panel()
+                    .ID("Panel1")
+                    .CssStyle("text-align: right;")
+                    .ShowBorder(false)
+                    .ShowHeader(false)
+                    .Items(
+                        F.Button()
+                            .Text("保存")
+                            .ID("btnAddML")
+                            .OnClick(Url.Action("AddWSJN1INFO"), "form_ML").Width(150)
+                    )
+                )
+           )
+    )
+}
+
+@section script {
+    <script src="~/res/js/grid.js"></script>
+    <script>
+    </script>
+}

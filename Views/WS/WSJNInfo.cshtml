@@ -1,0 +1,48 @@
+﻿@{
+    var F = @Html.F();
+}
+
+@section head {
+    <link type="text/css" rel="stylesheet" href="~/res/css/index.css" />
+}
+@section body {
+    @(F.Form()
+        .BodyPadding(5)
+        .AutoScroll(true)
+        .ShowHeader(false)
+        .ShowBorder(false)
+        .ID("form_ML")
+        .IsViewPort(true)
+        .Rows(
+            F.FormRow().Items(F.HiddenField().ID("txt_AID").LabelAlign(LabelAlign.Right).Text(ViewBag.AJID)),
+            F.FormRow().Items(F.HiddenField().ID("txt_ID").LabelAlign(LabelAlign.Right).Text(ViewBag.JNID)),
+            F.FormRow().Items(F.TextBox().ID("txt_XH").Label("序号:").LabelAlign(LabelAlign.Right).Text(ViewBag.XH)),
+            F.FormRow().Items(F.TextBox().ID("txt_WH").Label("文号:").LabelAlign(LabelAlign.Right).Text(ViewBag.WH)),
+            F.FormRow().Items(F.TextBox().ID("txt_ZRZ").Label("责任者:").LabelAlign(LabelAlign.Right).Text(ViewBag.ZRZ)),
+            F.FormRow().Items(F.TextBox().ID("txt_TM").Label("题名:").LabelAlign(LabelAlign.Right).Text(ViewBag.TM)),
+            F.FormRow().Items(F.DatePicker().ID("txt_RQ").Label("日期:").LabelAlign(LabelAlign.Right).Text(ViewBag.RQ)),
+            F.FormRow().Items(F.TextBox().ID("txt_YC").Label("页次:").LabelAlign(LabelAlign.Right).Text(ViewBag.YH)),
+            F.FormRow().Items(F.TextBox().ID("txt_BZ").Label("备注:").LabelAlign(LabelAlign.Right).Text(ViewBag.REMARK)),            
+            F.FormRow()
+            .Items(
+                F.Panel()
+                    .ID("Panel1")
+                    .CssStyle("text-align: right;")
+                    .ShowBorder(false)
+                    .ShowHeader(false)
+                    .Items(
+                        F.Button()
+                            .Text("保存")
+                            .ID("btnAddML")
+                            .OnClick(Url.Action("AddWSJN"), "form_ML").Width(150)
+                    )
+                )
+           )
+    )
+}
+
+@section script {
+    <script src="~/res/js/grid.js"></script>
+    <script>
+    </script>
+}

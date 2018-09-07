@@ -1,0 +1,499 @@
+﻿@{
+    var F = @Html.F();
+}
+
+@{
+
+    var listWD = ViewBag.WD as List<FineUIMvc.EmptyProject.Models.T_SYSWD>;
+}
+
+@section head {
+    <link type="text/css" rel="stylesheet" href="~/res/css/index.css" />
+}
+
+@section body {
+    @(F.Grid()
+        .EnableCheckBoxSelect(true)
+        .EnableCollapse(true)
+        .IsViewPort(true)
+        .ForceFit(false)
+                .Title(ViewBag.NAME)
+        .ShowHeader(true)
+        .ShowBorder(true)
+        .ID("Grid1")
+                .DataIDField("SG_ID")
+                .DataTextField("SG_Name")
+        .Columns(ViewBag.Grid1Columns)
+        .EnableColumnLines(true)
+        .AllowPaging(true)
+        .PageSize(20)
+        .IsDatabasePaging(true)
+        .ShowPagingMessage(true)
+        .OnPageIndexChanged(Url.Action("Grid1_PageIndexChanged"), "Grid1")
+        .Toolbars(
+            F.Toolbar()
+                .ID("tbGrid")
+                .ToolbarAlign(ToolbarAlign.Right)
+                .Items(
+                    F.TextBox().Hidden(true)
+                        .ID("txt_BasicNdQuery")
+                        .Label("档号")
+                        .LabelAlign(LabelAlign.Right)
+                        .Width(250),
+                    F.TextBox().Hidden(true)
+                        .Label("年度")
+                        .LabelAlign(LabelAlign.Right)
+                        .LabelWidth(50)
+                        .Width(100),
+                     F.TextBox()
+                        .Label("题名").Hidden(true)
+                        .LabelAlign(LabelAlign.Right)
+                        .LabelWidth(50)
+                        .Width(250),
+                    F.Button()
+                        .ID("btn_AdvSearch")
+                        .Text("档案查询")
+                        .ValidateForms("Toolbar1")
+                        .Icon(Icon.ImageMagnify)
+                        .Listener("click", "F.ui.win_AdvQuery.show();"),
+                    F.ToolbarSeparator(),
+                     F.Button()
+                        .ID("btn_BasicSearch")
+                        .Text("目录查询")
+                        .Icon(Icon.SystemSearch)
+                        .Listener("click", "F.ui.win_MLList.show()").Hidden(true),
+                    F.ToolbarSeparator().Hidden(true),
+            //F.Button()
+            //    .ID("btn_BrrDZ")
+            //    .Text("电子借阅")
+            //    .ValidateForms("Toolbar1")
+            //    .Icon(Icon.PastePlain)
+            //    .Listener("click", "onBrrDZ"),
+            //.OnClick(Url.Action("btn_"), "Grid1"),
+            //F.Button()
+            //    .ID("btn_AdvSearch")
+            //    .Text("实体借阅")
+            //    .ValidateForms("Toolbar1")
+            //    .Icon(Icon.Book)
+            //    .OnClick(Url.Action("btnSearch_Click"), "Grid1").Hidden(true),
+            //F.Button()
+            //    .ID("btn_ToBUser")
+            //    .Text("对外借阅")
+            //    .ValidateForms("Toolbar1")
+            //    .Icon(Icon.PastePlain)
+            //    .Hidden(!ViewBag.Edit)
+            //    .Listener("click", "onToBUser"),
+            //.OnClick(Url.Action("btn_"), "Grid1"),
+            //F.Button()
+            //    .ID("btn_Document")
+            //    .Text("添加收藏")
+            //    .Icon(Icon.FilmAdd)
+            //    .ValidateForms("Toolbar1")
+            //    .Listener("click", "onToMyDocument"),
+            //.OnClick(Url.Action("btnDocument_Click"), "Grid1"),
+                     F.Button()
+                        .ID("btn_AddArchive")
+                        .Text("添加单体")
+                        .Icon(Icon.BoxPicture)
+                        .ValidateForms("Toolbar1")
+            // .Hidden(!ViewBag.Edit)
+                        .Listener("click", "onAddNewPRO")
+                )
+            )
+            .RecordCount(ViewBag.Grid1RecordCount)
+            .DataSource(ViewBag.Grid1DataSource)
+            .RowDataBoundFunction("onGrid1RowDataBound")
+    )
+
+    @F.HiddenField().ID("txt_AID").Text(ViewBag.PID);
+
+    @(F.Window()
+            .BodyPadding(10)
+            .AutoScroll(true)
+            //.OnClose(Url.Action("Window1_Close"))
+            //.CloseAction(CloseAction.HidePostBack)
+            .Hidden(true)
+            .IsModal(true)
+            .EnableResize(true)
+            .EnableCollapse(true)
+            .EnableMaximize(true)
+            .Title("高级查询")
+            .Icon(Icon.TagBlue)
+            .Height(600)
+            .Width(650)
+            .ID("win_AdvQuery")
+            .IFrameUrl(Url.Content("~/Dialog/ShowQueryArchiveDialog?aid=" + ViewBag.PID))
+            .IFrameName("frmMain")
+            .EnableIFrame(true)
+            .OnClose(Url.Action("win_AdvQueryClose"), "Grid1")
+            .CloseAction(CloseAction.HidePostBack)
+    )
+    @(F.Window()
+            .BodyPadding(10)
+            .AutoScroll(true)
+            .OnClose(Url.Action("windAdd_CloseST"), "Grid1", new Parameter[] { new Parameter() { Name = "pageindex", Value = "F.ui.Grid1.getPageIndex()" } })
+            .CloseAction(CloseAction.HidePostBack)
+            .Hidden(true)
+            .IsModal(true)
+            .EnableResize(true)
+            .EnableCollapse(true)
+            .EnableMaximize(true)
+            .Title("添加档案")
+            .Icon(Icon.TagBlue)
+            .Height(600)
+            .Width(650)
+            .ID("win_Add")
+            .IFrameUrl(Url.Content("~/Project/PROInfo?mid=" + ViewBag.PID)) //+ FineUIMvc.EmptyProject.Models.Commons.iWSAJID.ToString()))
+            .IFrameName("frmMain2")
+            .EnableIFrame(true)
+    )
+    @(F.Window()
+                .BodyPadding(1)
+                .AutoScroll(true)
+                .IsViewPort(true)
+                .OnClose(Url.Action("Window1_Close"))
+            //.CloseAction(CloseAction.HidePostBack)
+                .Hidden(true)
+                .IsModal(true)
+                .EnableResize(true)
+                .EnableCollapse(true)
+                .EnableMaximize(true)
+                .Title("卷内目录")
+                .Icon(Icon.TagBlue)
+                .Height(800)
+                .Width(1000)
+                .ID("win_UploadFile")
+                .IFrameName("frmMain5")
+                .EnableIFrame(true))
+    @(F.Window()
+            .BodyPadding(10)
+            .AutoScroll(true)
+            //.OnClose(Url.Action("Window1_Close"))
+            //.CloseAction(CloseAction.HidePostBack)
+            .Hidden(true)
+            .IsModal(true)
+            .EnableResize(true)
+            .EnableCollapse(true)
+            .EnableMaximize(true)
+            .Title("电子借阅")
+            .Icon(Icon.TagBlue)
+            .Height(600)
+            .Width(650)
+            .ID("win_DZ")
+            .IFrameUrl(Url.Content("~/Dialog/ShowBrrowDZArchiveDialog?aid=" + ViewBag.PID)) //+ FineUIMvc.EmptyProject.Models.Commons.iWSAJID.ToString()))
+            .IFrameName("frmMain3")
+            .EnableIFrame(true)
+    )
+    @(F.Window()
+                .BodyPadding(10)
+                .AutoScroll(true)
+            //.OnClose(Url.Action("Window1_Close"))
+            //.CloseAction(CloseAction.HidePostBack)
+                .Hidden(true)
+                .IsModal(true)
+                .EnableResize(true)
+                .EnableCollapse(true)
+                .EnableMaximize(true)
+                .Title("对外借阅")
+                .Icon(Icon.TagBlue)
+                .Height(600)
+                .Width(650)
+                .ID("win_Out")
+                .IFrameUrl(Url.Content("~/Visitor/ArchiveToBUSER?aid=" + ViewBag.PID)) //FineUIMvc.EmptyProject.Models.Commons.iWSAJID.ToString()))
+                .IFrameName("frmMain4")
+                .EnableIFrame(true)
+    )
+    @(F.Window()
+                .BodyPadding(1)
+                .AutoScroll(true)
+                .IsViewPort(true)
+                .OnClose(Url.Action("Window1_Close"))
+            //.CloseAction(CloseAction.HidePostBack)
+                .Hidden(true)
+                .IsModal(true)
+                .EnableResize(true)
+                .EnableCollapse(true)
+                .EnableMaximize(true)
+                .Title("卷内目录")
+                .Icon(Icon.TagBlue)
+                .Height(800)
+                .Width(1000)
+                .ID("win_ML")
+                .IFrameName("frmMain5")
+                .EnableIFrame(true)
+    )
+    @(F.Window()
+                .BodyPadding(1)
+                .AutoScroll(true)
+                .IsViewPort(true)
+            //.OnClose(Url.Action("Window1_Close"))
+            //.CloseAction(CloseAction.HidePostBack)
+                .Hidden(true)
+                .IsModal(true)
+                .EnableResize(true)
+                .EnableCollapse(true)
+                .EnableMaximize(true)
+                .Title("卷内目录")
+                .Icon(Icon.TagBlue)
+                .Height(800)
+                .Width(1000)
+                .ID("win_MLList")
+                .IFrameUrl(Url.Content("~/WS/WSJN_QUERY?aid=" + ViewBag.PID)) //FineUIMvc.EmptyProject.Models.Commons.iWSAJID.ToString()))
+                .IFrameName("frmMain6")
+                .EnableIFrame(true)
+    )
+}
+
+@section script {
+    <script src="~/res/js/grid.js"></script>
+    <script>
+        var arr = @Html.Raw(Json.Encode(listWD));
+        var bm = '@ViewBag.UBM';
+
+        function getGridSelectedRows() {
+            var result = [], grid = F.ui.Grid1;
+            $.each(grid.getSelectedRows(true), function (index, item) {
+                var itemArr = [];
+                itemArr.push(item.id);
+                itemArr.push(item.text);
+                itemArr.push(item.values.WS_TM);
+                itemArr.push(item.values.ARCHIVETYPE);
+                itemArr.push(item.values.WS_AID);
+                itemArr.push(item.values.GDBM);
+                ///附件路径，如果此字段=='1'的时候，代表了此条目时案卷级
+                itemArr.push(item.values.WS_V10);
+                itemArr.push(item.values.MJ);
+                ///归档部门ID
+                itemArr.push(item.values.WS_I01);
+                result.push(itemArr);
+            });
+
+            return result;
+        }
+
+        function onAddNewPRO() {
+            var action = '@Url.Content("~/Project/SInfo?pid=")' + @ViewBag.PID + '&wsid=';
+            F.ui.win_Add.show(action, "添加项目");
+        }
+
+        function onBrrDZ(event) {
+            var grid = F.ui.Grid1;
+            if (!grid.hasSelection()) {
+                F.alert('没有选中要申请电子借阅的档案！');
+                return;
+            }
+
+            var items = getGridSelectedRows();
+            for (var i= 0; i < items.length;i++)
+            {
+                var n = items[i];
+                var s = n[n.length - 1].toString();
+                //alert(s);
+                //alert(s.type);
+                if (s != null && s != '' && s != '无')
+                {
+                    F.alert("您所申请的档案中含 " + s + " 级， 您必须在涉密档案模块进行浏览!");
+                    return;
+                }
+            }
+            // 触发后台事件
+            F.doPostBack('@Url.Action("btnBrrDZ_Click")', {
+                'selected': getGridSelectedRows()
+            });
+        }
+
+        function onToBUser(event)
+        {
+            var grid = F.ui.Grid1;
+            if (!grid.hasSelection()) {
+                F.alert('没有选中要申请对外借阅的档案！');
+                return;
+            }
+            var items = getGridSelectedRows();
+            for (var i = 0; i < items.length; i++) {
+                var n = items[i];
+                var s = n[n.length - 1].toString();
+                //alert(s);
+                //alert(s.type);
+                if (s != null && s != '' && s != '无') {
+                    F.alert("您所申请的档案中含 " + s + " 级， 您必须在涉密档案模块进行浏览!");
+                    return;
+                }
+            }
+            // 触发后台事件
+            F.doPostBack('@Url.Action("btnToBUser_Click")', {
+                'selected': getGridSelectedRows()
+            });
+        }
+
+        function onToMyDocument(event)
+        {
+            var grid = F.ui.Grid1;
+            if (!grid.hasSelection()) {
+                F.alert('没有选中要收藏的档案！');
+                return;
+            }
+            var items = getGridSelectedRows();
+            for (var i = 0; i < items.length; i++) {
+                var n = items[i];
+                var s = n[n.length - 1].toString();
+                //alert(s);
+                //alert(s.type);
+                if (s != null && s != '' && s != '无') {
+                    F.alert("您所申请的档案中含 " + s + " 级， 您必须在涉密档案模块进行浏览!");
+                    return;
+                }
+            }
+            // 触发后台事件
+            F.doPostBack('@Url.Action("btnDocument_Click")', {
+                'selected': getGridSelectedRows()
+            });
+        }
+
+        function onGrid1RowDataBound(rowData) {
+        }
+
+        ///看PDF
+        function showPDF(src) {
+            /*var grid = F.ui.Grid1;
+            alert(grid);
+            var targetEl = $(this);
+            var rowEl = targetEl.closest('.f-grid-row');
+            var rowData = grid.getRowData(rowEl);
+            alert(rowData.values);*/
+            //alert(getGridSelectedRows().length);
+            //alert(src);
+            ///var content = Ext.getCmp('txt_content').getValue();
+            //content = encodeURI(encodeURI(content));
+            //alert(content);
+            //alert("A:" + content);
+            //var d = decodeURI(decodeURI(content));
+            //alert(content + "," + d);
+            //window.open('../../generic/web/viewer.aspx?file=' + src + '&content=' + content);
+            window.open('../../res/generic/web/viewer.html?file=/res/pdf/' + src); ///+ '&content=' + content);
+        }
+
+
+        // 文本 - 是否在校
+        function renderJD(value, params) {
+            //alert(arr.WD_NAME);
+            var type = params['columnId'];
+            if (type == "WS_JD") {
+                if (value == "1")
+                    return "销毁";
+                else
+                    return "";
+            }
+        }
+
+        function renderFile(value, params)
+        {
+            ///alert(params);
+            return '<a class="action-btn mybtn2" href="javascript:;">浏览</a>';
+        }
+
+        function renderEdit(value, params)
+        {
+            return "<a href='javascript:EditWS(" + value + ");'><img src='/res/icon/pencil.png' width='16' heigth='16'></img></a>";
+        }
+        function renderDel(value, params)
+        {
+            return "<a href='javascript:DelWS(" + value + ");'><img src='/res/icon/delete.png'></img></a>";
+        }
+        function renderUpload(value, params)
+        {
+            return "<a href='javascript:UploadFile(" + value + ");'><img src='/res/icon/note_Add.png'></img></a>";
+        }
+
+        function UploadFile(id)
+        {
+            var action = '@Url.Content("~/Project/Single?aid=")' + id + '&name=' ;
+            F.ui.win_UploadFile.show(action, "详情");
+        }
+
+        function EditWS(id)
+        {
+            var action = '@Url.Content("~/Project/SInfo?pid=")' + @ViewBag.PID + '&sgid=' + id;
+            F.ui.win_Add.show(action, "单体详情");
+        }
+
+        ///删除档案
+        function DelWS(value, params)
+        {
+            F.confirm({
+                message: '确定要删除选中的档案吗，删除后不能恢复？',
+                messageIcon: 'question',
+                ok: function () {
+                    // 触发后台事件
+                    F.doPostBack('@Url.Action("btnWSDel_ClickST")', 'Grid1', {
+                        opID: value
+                    });
+                }
+            });
+        }
+
+        F.ready(function () {
+            var grid = F.ui.Grid1;
+            grid.el.on('click', 'a.action-btn', function (event) {
+                var targetEl = $(this);
+                var rowEl = targetEl.closest('.f-grid-row');
+                var rowData = grid.getRowData(rowEl);
+                var action = '@Url.Content("~/WS/WSAJ?name=")' +@ViewBag.PID+ '&aid=' + rowData.id ;
+                @*var action = '@Url.Content("~/WS/WSJN?arid=")' +@ViewBag.MID+ '&aid=' + rowData.id ;*@
+                F.ui.win_ML.show(action, rowData.values.PR_Name);
+
+                //alert(rowData.values.GDBM);
+                @*if (rowData.values.MJ != null && rowData.values.MJ != '' && rowData.values.MJ != '无')
+                    F.alert("您所浏览的档案属于 " + rowData.values.MJ + " 级， 您必须在涉密档案模块进行浏览!");
+                else if (rowData.values.GDBM != '' && bm != rowData.values.GDBM) //rowData.WS_I01)
+                {
+                    F.alert("您所浏览的档案属于 " + rowData.values.GDBM + " 您必须申请借阅后才能浏览");
+                }
+                    //if (bm != rowData.values.MJ)
+                    //    alert("您所浏览的档案属于 " + rowData.values.GDBM + " 您必须申请借阅后才能浏览");
+                    //F.ui.alert("您所浏览的档案属于 " + rowData.values.GDBM + " 您必须申请借阅后才能浏览");
+                else {
+                    if (rowData.values.WS_V10 == '1')
+                    {
+                        ////有卷内目录，调出卷内目录
+                        var action = '@Url.Content("~/WS/WSJN?arid=")' +@ViewBag.AID+ '&aid=' + rowData.id ;
+                        F.ui.win_ML.show(action, rowData.text + '的卷内目录');//(action);//("'" + action + "'");
+                    }
+                    else ////没有的则属于一文一件，直接调阅图片
+                        showPDF(rowData.values.WS_V10);
+                }*@
+            });
+        });
+        function renderWord(value, params) {
+            if (value == "1")
+                return "永久";
+            else if (value == "2")
+                return "长期";
+            else if (value == "3")
+                return "30年";
+            else if (value == "4")
+                return "10年";
+            else if (value == "5")
+                return "短期";
+        }
+
+        @*function renderWord(value, params) {
+            //alert(arr.WD_NAME);
+            var type = params['columnId'];
+            ///词典名称
+            @*var name = params['columnId'];
+
+            for (var n in '@listWD')
+            {
+                if (n.TYPE = name && n.ID == value)
+                {
+                    return n.NAME;
+                }
+            }
+            for (var name in arr) {//遍历对象属性名
+                if (arr[name].WD_TYPE == type && arr[name].WD_ID == value)
+                    return arr[name].WD_NAME;
+            }
+        }*@
+    </script>
+}

@@ -1,0 +1,95 @@
+﻿@{
+    var F = @Html.F();
+}
+
+@section head {
+    <link type="text/css" rel="stylesheet" href="~/res/css/index.css" />
+}
+
+@section body {
+    @(F.Grid()
+        .EnableCheckBoxSelect(true)
+        .IsViewPort(true)
+        .ForceFit(true)
+        .Title("用户设定")
+        .ShowHeader(true)
+        .ShowBorder(true)
+        .ID("GridUser")
+        .DataIDField("U_ID")
+        .Columns(ViewBag.Grid1Columns)
+        .EnableColumnLines(true)
+        .AllowPaging(true)
+        .PageSize(20)
+        .IsDatabasePaging(true)
+        .ShowPagingMessage(true)
+        .RecordCount(ViewBag.Grid1RecordCount)
+        .DataSource(ViewBag.Grid1DataSource)
+        .OnPageIndexChanged(Url.Action("GridUser_PageIndexChanged"), "GridUser")
+        .Toolbars(
+            F.Toolbar()
+                .ID("tbGrid")
+                .ToolbarAlign(ToolbarAlign.Right)
+                .Items(
+                    F.TextBox().ID("txt_Name").Label("姓名").LabelAlign(LabelAlign.Right),
+                    F.Button()
+                        .ID("btnUserQuery")
+                        .Text("查询")
+                        .Icon(Icon.ApplicationViewIcons).OnClick(Url.Action("btnUserQuery_Click"), "GridUser", new Parameter("name", "F.ui.txt_Name.getValue()")),
+                    F.Button().ID("btnUserAdd").Text("添加用户").Listener("click", "ShowNewUser()")
+                 )
+            )
+    )
+
+    @(F.Window()
+        .BodyPadding(10)
+        .AutoScroll(true)
+        .OnClose(Url.Action("winUserInfo_Close"), "GridUser")
+        .CloseAction(CloseAction.HidePostBack)
+        .Hidden(true)
+        .IsModal(true)
+        .EnableResize(true)
+        .EnableCollapse(true)
+        .EnableMaximize(true)
+        .Title("用户信息")
+        .Icon(Icon.TagBlue)
+        .Height(600)
+        .Width(650)
+        .ID("win_Info")
+        .IFrameName("frmMain3")
+        .EnableIFrame(true)
+    )
+}
+
+@section script {
+    <script src="~/res/js/grid.js"></script>
+    <script>
+        function renderInfo(value, params) {
+            if (value == 1)
+                return "<img src='/res/icon/accept.png'></img>";
+            else
+                return "<img src='/res/icon/error.png'></img>";
+        }
+
+        function renderModify(value, params) {
+            return '<a class="action-btn mybtn2" href="javascript:;">点击修改信息</a>';
+        }
+
+        function ShowNewUser() {
+            var action = '@Url.Content("~/User/UserInfo")';
+            F.ui.win_Info.show(action)
+        }
+
+        F.ready(function () {
+            var grid = F.ui.GridUser;
+            grid.el.on('click', 'a.action-btn', function (event) {
+                var targetEl = $(this);
+                var rowEl = targetEl.closest('.f-grid-row');
+                var rowData = grid.getRowData(rowEl);
+                var action = '@Url.Content("~/User/UserInfo")' + '?id=' + rowData.id;
+                ///alert(action);
+                F.ui.win_Info.show(action);//(action);//("'" + action + "'");
+
+            });
+        });
+    </script>
+}

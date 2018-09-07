@@ -1,0 +1,2459 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GGArchiveSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="T_DOCUMENT">
+          <Key>
+            <PropertyRef Name="DOC_ID" />
+          </Key>
+          <Property Name="DOC_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DOC_NAME" Type="varchar" MaxLength="100" />
+          <Property Name="DOC_FILE" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DOC_PATH" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DOC_ATYPE" Type="int" Nullable="false" />
+          <Property Name="DOC_AID" Type="int" Nullable="false" />
+          <Property Name="DOC_NID" Type="int" Nullable="false" />
+          <Property Name="DOC_SIZE" Type="varchar" MaxLength="50" />
+          <Property Name="DOC_TYPE" Type="varchar" MaxLength="50" />
+          <Property Name="DOC_ORDER" Type="int" />
+          <Property Name="DOC_DATET" Type="datetime" />
+          <Property Name="DOC_V01" Type="varchar" MaxLength="50" />
+          <Property Name="DOC_V02" Type="varchar" MaxLength="50" />
+          <Property Name="DOC_V03" Type="varchar" MaxLength="50" />
+          <Property Name="DOC_V04" Type="varchar" MaxLength="50" />
+          <Property Name="DOC_V05" Type="varchar" MaxLength="50" />
+          <Property Name="DOC_V06" Type="varchar" MaxLength="50" />
+          <Property Name="DOC_V07" Type="varchar" MaxLength="50" />
+          <Property Name="DOC_V08" Type="varchar" MaxLength="50" />
+          <Property Name="DOC_I01" Type="int" />
+          <Property Name="DOC_I02" Type="int" />
+          <Property Name="DOC_I03" Type="int" />
+          <Property Name="DOC_I04" Type="int" />
+          <Property Name="DOC_I05" Type="int" />
+          <Property Name="DOC_D01" Type="datetime" />
+          <Property Name="DOC_D02" Type="datetime" />
+          <Property Name="DOC_D03" Type="datetime" />
+          <Property Name="DOC_STATUS" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_Log">
+          <Key>
+            <PropertyRef Name="Log_ID" />
+          </Key>
+          <Property Name="Log_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Log_Type" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Log_UName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Log_UID" Type="int" Nullable="false" />
+          <Property Name="Log_Content" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Log_Date" Type="datetime" Nullable="false" />
+          <Property Name="Log_Level" Type="int" />
+          <Property Name="Log_Remark" Type="varchar" MaxLength="200" />
+          <Property Name="Log_V01" Type="varchar" MaxLength="50" />
+          <Property Name="Log_V02" Type="varchar" MaxLength="50" />
+          <Property Name="Log_V03" Type="varchar" MaxLength="50" />
+          <Property Name="Log_V04" Type="varchar" MaxLength="50" />
+          <Property Name="Log_V05" Type="varchar" MaxLength="50" />
+          <Property Name="Log_V06" Type="varchar" MaxLength="50" />
+          <Property Name="Log_V07" Type="varchar" MaxLength="50" />
+          <Property Name="Log_I01" Type="int" />
+          <Property Name="Log_I02" Type="int" />
+          <Property Name="Log_I03" Type="int" />
+          <Property Name="Log_D01" Type="datetime" />
+          <Property Name="Log_D02" Type="datetime" />
+        </EntityType>
+        <EntityType Name="T_Message">
+          <Key>
+            <PropertyRef Name="Message_ID" />
+          </Key>
+          <Property Name="Message_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Message_NO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Message_WH" Type="varchar" MaxLength="50" />
+          <Property Name="Message_Title" Type="varchar" MaxLength="50" />
+          <Property Name="Message_Date" Type="datetime" />
+          <Property Name="Message_Type" Type="varchar" MaxLength="50" />
+          <Property Name="Message_SendUnit" Type="varchar" MaxLength="50" />
+          <Property Name="Message_ReceiveUnit" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Message_Sender" Type="varchar" MaxLength="50" />
+          <Property Name="Message_Remark" Type="varchar" MaxLength="200" />
+          <Property Name="MG_V01" Type="varchar" MaxLength="50" />
+          <Property Name="MG_V02" Type="varchar" MaxLength="50" />
+          <Property Name="MG_V03" Type="varchar" MaxLength="50" />
+          <Property Name="MG_V04" Type="int" />
+          <Property Name="MG_V05" Type="datetime" />
+          <Property Name="MG_mid" Type="int" Nullable="false" />
+          <Property Name="Message_BGQX" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="T_MODEL">
+          <Key>
+            <PropertyRef Name="MD_ID" />
+          </Key>
+          <Property Name="MD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MD_PID" Type="int" Nullable="false" />
+          <Property Name="MD_ORDER" Type="int" />
+          <Property Name="MD_NAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MD_ISARCHIVE" Type="int" Nullable="false" />
+          <Property Name="MD_PATH" Type="varchar" MaxLength="100" />
+          <Property Name="MD_ICON" Type="varchar" MaxLength="100" />
+          <Property Name="MD_STATUS" Type="int" Nullable="false" />
+          <Property Name="MD_CONTROLLERS" Type="varchar" MaxLength="50" />
+          <Property Name="MD_ACTION" Type="varchar" MaxLength="50" />
+          <Property Name="MD_V01" Type="varchar" MaxLength="50" />
+          <Property Name="MD_V02" Type="varchar" MaxLength="50" />
+          <Property Name="MD_V03" Type="varchar" MaxLength="50" />
+          <Property Name="MD_V04" Type="varchar" MaxLength="50" />
+          <Property Name="MD_I01" Type="int" />
+          <Property Name="MD_I02" Type="int" />
+          <Property Name="MD_I03" Type="int" />
+        </EntityType>
+        <EntityType Name="T_ProjectInfo">
+          <Key>
+            <PropertyRef Name="PR_ID" />
+          </Key>
+          <Property Name="PR_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PR_Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PR_BuildUnit" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PR_BuildUnitPhone" Type="varchar" MaxLength="50" />
+          <Property Name="PR_BuildUnitAddress" Type="varchar" MaxLength="50" />
+          <Property Name="PR_BuildAdress" Type="varchar" MaxLength="50" />
+          <Property Name="PR_DesignUnit" Type="varchar" MaxLength="50" />
+          <Property Name="PR_ConstructionUnit" Type="varchar" MaxLength="50" />
+          <Property Name="PR_SupervisionName" Type="varchar" MaxLength="50" />
+          <Property Name="PR_TotalArea" Type="varchar" MaxLength="50" />
+          <Property Name="PR_StartDay" Type="datetime" />
+          <Property Name="PR_EndDay" Type="datetime" />
+          <Property Name="PR_StorageDay" Type="datetime" />
+          <Property Name="PR_BGQX" Type="varchar" MaxLength="50" />
+          <Property Name="PR_TotalInvest" Type="varchar" MaxLength="50" />
+          <Property Name="PR_ARReceiver" Type="varchar" MaxLength="50" />
+          <Property Name="PR_RKReceiver" Type="varchar" MaxLength="50" />
+          <Property Name="PR_TotalNum" Type="int" />
+          <Property Name="PR_FileNum" Type="int" />
+          <Property Name="PR_ImageNum" Type="int" />
+          <Property Name="PR_PhotoNum" Type="int" />
+          <Property Name="PR_VideoNum" Type="int" />
+          <Property Name="PR_VoiceNum" Type="int" />
+          <Property Name="PR_BZUnit" Type="varchar" MaxLength="50" />
+          <Property Name="PR_BZDay" Type="datetime" />
+          <Property Name="PR_ProAccounts" Type="varchar" MaxLength="50" />
+          <Property Name="PR_ProAccountsUnit" Type="varchar" MaxLength="50" />
+          <Property Name="PR_MID" Type="int" />
+          <Property Name="PR_BH" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="T_Query">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="Fields" Type="varchar" MaxLength="50" />
+          <Property Name="Grade" Type="int" />
+          <Property Name="Table" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="T_QX">
+          <Key>
+            <PropertyRef Name="QX_ID" />
+          </Key>
+          <Property Name="QX_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QX_RID" Type="int" Nullable="false" />
+          <Property Name="QX_MID" Type="int" Nullable="false" />
+          <Property Name="QX_STATUS" Type="int" Nullable="false" />
+          <Property Name="QX_V01" Type="varchar" MaxLength="50" />
+          <Property Name="QX_V02" Type="varchar" MaxLength="50" />
+          <Property Name="QX_V03" Type="varchar" MaxLength="50" />
+          <Property Name="QX_I01" Type="int" />
+          <Property Name="QX_I02" Type="int" />
+          <Property Name="QX_I03" Type="int" />
+          <Property Name="QX_D01" Type="datetime" />
+          <Property Name="QX_D02" Type="datetime" />
+        </EntityType>
+        <EntityType Name="T_ROLE">
+          <Key>
+            <PropertyRef Name="ROLE_ID" />
+          </Key>
+          <Property Name="ROLE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ROLE_NAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ROLE_REMARK" Type="varchar" MaxLength="300" />
+          <Property Name="ROLE_STATUS" Type="int" Nullable="false" />
+          <Property Name="ROLE_VIEWPIC" Type="int" Nullable="false" />
+          <Property Name="ROLE_MODIFY" Type="int" Nullable="false" />
+          <Property Name="ROLE_V01" Type="varchar" MaxLength="50" />
+          <Property Name="ROLE_V02" Type="varchar" MaxLength="50" />
+          <Property Name="ROLE_V03" Type="varchar" MaxLength="50" />
+          <Property Name="ROLE_V04" Type="varchar" MaxLength="50" />
+          <Property Name="ROLE_V05" Type="varchar" MaxLength="200" />
+          <Property Name="ROLE_I01" Type="int" />
+          <Property Name="ROLE_I02" Type="int" />
+          <Property Name="ROLE_I03" Type="int" />
+          <Property Name="ROLE_I04" Type="int" />
+          <Property Name="ROLE_I05" Type="int" />
+          <Property Name="ROLE_D01" Type="datetime" />
+          <Property Name="ROLE_D02" Type="datetime" />
+          <Property Name="ROLE_DATE" Type="datetime" />
+          <Property Name="ROLE_RID" Type="int" />
+        </EntityType>
+        <EntityType Name="T_SINGLEINFO">
+          <Key>
+            <PropertyRef Name="SG_ID" />
+          </Key>
+          <Property Name="SG_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SG_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SG_Xnum" Type="varchar" MaxLength="50" />
+          <Property Name="SG_Type" Type="varchar" MaxLength="50" />
+          <Property Name="SG_Area" Type="varchar" MaxLength="50" />
+          <Property Name="SG_Form" Type="varchar" MaxLength="50" />
+          <Property Name="SG_Bnum" Type="varchar" MaxLength="50" />
+          <Property Name="SG_High" Type="varchar" MaxLength="50" />
+          <Property Name="SG_Znum" Type="varchar" MaxLength="50" />
+          <Property Name="SG_Deep" Type="varchar" MaxLength="50" />
+          <Property Name="SG_Underfloor" Type="varchar" MaxLength="50" />
+          <Property Name="SG_Overfloor" Type="varchar" MaxLength="50" />
+          <Property Name="SG_CZ" Type="varchar" MaxLength="50" />
+          <Property Name="SG_Length" Type="varchar" MaxLength="50" />
+          <Property Name="SG_Vnum" Type="varchar" MaxLength="50" />
+          <Property Name="SG_PD" Type="varchar" MaxLength="50" />
+          <Property Name="SG_Norms" Type="varchar" MaxLength="50" />
+          <Property Name="SG_Dunit" Type="varchar" MaxLength="50" />
+          <Property Name="SG_Wunit" Type="varchar" MaxLength="50" />
+          <Property Name="SG_Junit" Type="varchar" MaxLength="50" />
+          <Property Name="SG_Remark" Type="varchar" MaxLength="50" />
+          <Property Name="SG_V01" Type="int" />
+          <Property Name="SG_V02" Type="int" />
+          <Property Name="SG_V03" Type="datetime" />
+          <Property Name="SG_V04" Type="varchar" MaxLength="50" />
+          <Property Name="SG_V05" Type="varchar" MaxLength="50" />
+          <Property Name="SG_V06" Type="varchar" MaxLength="50" />
+          <Property Name="SG_V07" Type="varchar" MaxLength="50" />
+          <Property Name="SG_V08" Type="varchar" MaxLength="50" />
+          <Property Name="SG_V09" Type="varchar" MaxLength="50" />
+          <Property Name="SG_V10" Type="varchar" MaxLength="50" />
+          <Property Name="SG_PID" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="T_SYSWD">
+          <Key>
+            <PropertyRef Name="WD_ID" />
+          </Key>
+          <Property Name="WD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WD_NAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="WD_CODE" Type="int" />
+          <Property Name="WD_TYPE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="WD_ORDER" Type="int" />
+          <Property Name="WD_STATUS" Type="int" />
+        </EntityType>
+        <EntityType Name="T_TEXT">
+          <Key>
+            <PropertyRef Name="TEXT_ID" />
+          </Key>
+          <Property Name="TEXT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TEXT_DOCID" Type="int" Nullable="false" />
+          <Property Name="TEXT_CONTENT" Type="text" Nullable="false" />
+          <Property Name="TEXT_PAGENUM" Type="int" Nullable="false" />
+          <Property Name="TEXT_STATUS" Type="int" Nullable="false" />
+          <Property Name="TEXT_V01" Type="varchar" MaxLength="50" />
+          <Property Name="TEXT_V02" Type="varchar" MaxLength="50" />
+          <Property Name="TEXT_V03" Type="varchar" MaxLength="50" />
+          <Property Name="TEXT_D01" Type="datetime" />
+          <Property Name="TEXT_D02" Type="datetime" />
+          <Property Name="TEXT_I01" Type="int" />
+          <Property Name="TEXT_I02" Type="int" />
+        </EntityType>
+        <EntityType Name="T_USER">
+          <Key>
+            <PropertyRef Name="U_ID" />
+          </Key>
+          <Property Name="U_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="U_NAME" Type="varchar" MaxLength="50" />
+          <Property Name="U_PWD" Type="varchar" MaxLength="50" />
+          <Property Name="U_ROLEID" Type="int" Nullable="false" />
+          <Property Name="U_DEPARMENT" Type="int" />
+          <Property Name="U_ZW" Type="varchar" MaxLength="50" />
+          <Property Name="U_STATUS" Type="int" Nullable="false" />
+          <Property Name="U_REALNAME" Type="varchar" MaxLength="50" />
+          <Property Name="U_PHONE" Type="varchar" MaxLength="50" />
+          <Property Name="U_EMAIL" Type="varchar" MaxLength="50" />
+          <Property Name="U_REMARK" Type="varchar" MaxLength="300" />
+          <Property Name="U_SEX" Type="varchar" MaxLength="2" />
+          <Property Name="U_PHOTO" Type="varchar" MaxLength="50" />
+          <Property Name="U_V01" Type="varchar" MaxLength="50" />
+          <Property Name="U_V02" Type="varchar" MaxLength="50" />
+          <Property Name="U_V03" Type="varchar" MaxLength="50" />
+          <Property Name="U_V04" Type="varchar" MaxLength="50" />
+          <Property Name="U_V05" Type="varchar" MaxLength="50" />
+          <Property Name="U_I01" Type="int" />
+          <Property Name="U_I02" Type="int" />
+          <Property Name="U_I03" Type="int" />
+          <Property Name="U_I04" Type="int" />
+          <Property Name="U_I05" Type="int" />
+          <Property Name="U_D01" Type="datetime" />
+          <Property Name="U_D02" Type="datetime" />
+          <Property Name="U_DATE" Type="datetime" />
+          <Property Name="U_IP" Type="varchar" MaxLength="50" />
+          <Property Name="U_ISIP" Type="int" />
+        </EntityType>
+        <EntityType Name="T_WSAJ1">
+          <Key>
+            <PropertyRef Name="WS1_ID" />
+          </Key>
+          <Property Name="WS1_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WS1_JH" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="WS1_TM" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="WS1_BGQX" Type="varchar" MaxLength="50" />
+          <Property Name="WS1_YEAR" Type="varchar" MaxLength="50" />
+          <Property Name="WS1_FileNum" Type="int" />
+          <Property Name="WS1_DrawNum" Type="int" />
+          <Property Name="WS1_OtherNum" Type="int" />
+          <Property Name="WS1_GDRQ" Type="datetime" />
+          <Property Name="WS1_BZ" Type="varchar" MaxLength="50" />
+          <Property Name="WS1_HH" Type="int" />
+          <Property Name="WS1_HJBH" Type="varchar" MaxLength="50" />
+          <Property Name="WS1_PID" Type="varchar" MaxLength="50" />
+          <Property Name="WS1_MID" Type="int" />
+          <Property Name="WS1_V01" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="T_WSJN1">
+          <Key>
+            <PropertyRef Name="JN1_ID" />
+          </Key>
+          <Property Name="JN1_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JN1_Name" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="JN1_XH" Type="int" />
+          <Property Name="JN1_BH" Type="varchar" MaxLength="300" />
+          <Property Name="JN1_YS" Type="int" />
+          <Property Name="JN1_Start" Type="int" />
+          <Property Name="JN1_End" Type="int" />
+          <Property Name="JN1_Type" Type="varchar" MaxLength="50" />
+          <Property Name="JN1_ZRZ" Type="varchar" MaxLength="50" />
+          <Property Name="JN1_RQ" Type="datetime" />
+          <Property Name="JN1_Remark" Type="varchar" MaxLength="50" />
+          <Property Name="JN1_Scan" Type="varchar" MaxLength="50" />
+          <Property Name="JN1_AJID" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“GGArchiveSystem.dbo.V_TEXT1”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="V_TEXT1">
+          <Key>
+            <PropertyRef Name="TEXT_ID" />
+            <PropertyRef Name="TEXT_DOCID" />
+            <PropertyRef Name="TEXT_CONTENT" />
+            <PropertyRef Name="TEXT_PAGENUM" />
+            <PropertyRef Name="TEXT_STATUS" />
+          </Key>
+          <Property Name="TEXT_ID" Type="int" Nullable="false" />
+          <Property Name="TEXT_DOCID" Type="int" Nullable="false" />
+          <Property Name="TEXT_CONTENT" Type="text" Nullable="false" />
+          <Property Name="TEXT_PAGENUM" Type="int" Nullable="false" />
+          <Property Name="TEXT_STATUS" Type="int" Nullable="false" />
+          <Property Name="TEXT_V01" Type="varchar" MaxLength="50" />
+          <Property Name="TEXT_V02" Type="varchar" MaxLength="50" />
+          <Property Name="TEXT_V03" Type="varchar" MaxLength="50" />
+          <Property Name="TEXT_D01" Type="datetime" />
+          <Property Name="TEXT_D02" Type="datetime" />
+          <Property Name="TEXT_I01" Type="int" />
+          <Property Name="TEXT_I02" Type="int" />
+          <Property Name="DOC_ID" Type="int" />
+          <Property Name="DOC_NAME" Type="varchar" MaxLength="100" />
+          <Property Name="DOC_FILE" Type="varchar" MaxLength="100" />
+          <Property Name="DOC_PATH" Type="varchar" MaxLength="100" />
+          <Property Name="DOC_ATYPE" Type="int" />
+          <Property Name="DOC_AID" Type="int" />
+          <Property Name="DOC_NID" Type="int" />
+          <Property Name="DOC_SIZE" Type="varchar" MaxLength="50" />
+          <Property Name="DOC_TYPE" Type="varchar" MaxLength="50" />
+          <Property Name="DOC_ORDER" Type="int" />
+          <Property Name="DOC_DATET" Type="datetime" />
+          <Property Name="DOC_V01" Type="varchar" MaxLength="50" />
+          <Property Name="DOC_V02" Type="varchar" MaxLength="50" />
+          <Property Name="DOC_V03" Type="varchar" MaxLength="50" />
+          <Property Name="DOC_V04" Type="varchar" MaxLength="50" />
+          <Property Name="DOC_V05" Type="varchar" MaxLength="50" />
+          <Property Name="DOC_V06" Type="varchar" MaxLength="50" />
+          <Property Name="DOC_V07" Type="varchar" MaxLength="50" />
+          <Property Name="DOC_V08" Type="varchar" MaxLength="50" />
+          <Property Name="DOC_I01" Type="int" />
+          <Property Name="DOC_I02" Type="int" />
+          <Property Name="DOC_I03" Type="int" />
+          <Property Name="DOC_I04" Type="int" />
+          <Property Name="DOC_I05" Type="int" />
+          <Property Name="DOC_D01" Type="datetime" />
+          <Property Name="DOC_D02" Type="datetime" />
+          <Property Name="DOC_D03" Type="datetime" />
+          <Property Name="DOC_STATUS" Type="int" />
+          <Property Name="JN1_ID" Type="int" />
+          <Property Name="JN1_Name" Type="varchar" MaxLength="300" />
+          <Property Name="JN1_XH" Type="int" />
+          <Property Name="JN1_BH" Type="varchar" MaxLength="300" />
+          <Property Name="JN1_YS" Type="int" />
+          <Property Name="JN1_Start" Type="int" />
+          <Property Name="JN1_End" Type="int" />
+          <Property Name="JN1_Type" Type="varchar" MaxLength="50" />
+          <Property Name="JN1_ZRZ" Type="varchar" MaxLength="50" />
+          <Property Name="JN1_RQ" Type="datetime" />
+          <Property Name="JN1_Remark" Type="varchar" MaxLength="50" />
+          <Property Name="JN1_Scan" Type="varchar" MaxLength="50" />
+          <Property Name="JN1_AJID" Type="varchar" MaxLength="50" />
+          <Property Name="WS1_ID" Type="int" />
+          <Property Name="WS1_JH" Type="varchar" MaxLength="50" />
+          <Property Name="WS1_TM" Type="varchar" MaxLength="100" />
+          <Property Name="WS1_BGQX" Type="varchar" MaxLength="50" />
+          <Property Name="WS1_YEAR" Type="varchar" MaxLength="50" />
+          <Property Name="WS1_FileNum" Type="int" />
+          <Property Name="WS1_DrawNum" Type="int" />
+          <Property Name="WS1_OtherNum" Type="int" />
+          <Property Name="WS1_GDRQ" Type="datetime" />
+          <Property Name="WS1_BZ" Type="varchar" MaxLength="50" />
+          <Property Name="WS1_HH" Type="int" />
+          <Property Name="WS1_HJBH" Type="varchar" MaxLength="50" />
+          <Property Name="WS1_PID" Type="varchar" MaxLength="50" />
+          <Property Name="WS1_MID" Type="int" />
+          <Property Name="WS1_V01" Type="varchar" MaxLength="100" />
+          <Property Name="MD_ID" Type="int" />
+          <Property Name="MD_PID" Type="int" />
+          <Property Name="MD_ORDER" Type="int" />
+          <Property Name="MD_NAME" Type="varchar" MaxLength="50" />
+          <Property Name="MD_ISARCHIVE" Type="int" />
+          <Property Name="MD_PATH" Type="varchar" MaxLength="100" />
+          <Property Name="MD_ICON" Type="varchar" MaxLength="100" />
+          <Property Name="MD_STATUS" Type="int" />
+          <Property Name="MD_CONTROLLERS" Type="varchar" MaxLength="50" />
+          <Property Name="MD_ACTION" Type="varchar" MaxLength="50" />
+          <Property Name="MD_V01" Type="varchar" MaxLength="50" />
+          <Property Name="MD_V02" Type="varchar" MaxLength="50" />
+          <Property Name="MD_V03" Type="varchar" MaxLength="50" />
+          <Property Name="MD_V04" Type="varchar" MaxLength="50" />
+          <Property Name="MD_I01" Type="int" />
+          <Property Name="MD_I02" Type="int" />
+          <Property Name="MD_I03" Type="int" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“GGArchiveSystem.dbo.V_USER”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="V_USER">
+          <Key>
+            <PropertyRef Name="U_ID" />
+            <PropertyRef Name="U_NAME" />
+            <PropertyRef Name="U_PWD" />
+            <PropertyRef Name="U_ROLEID" />
+            <PropertyRef Name="U_STATUS" />
+          </Key>
+          <Property Name="U_ID" Type="int" Nullable="false" />
+          <Property Name="U_NAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="U_PWD" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="U_ROLEID" Type="int" Nullable="false" />
+          <Property Name="U_DEPARMENT" Type="int" />
+          <Property Name="U_ZW" Type="varchar" MaxLength="50" />
+          <Property Name="U_STATUS" Type="int" Nullable="false" />
+          <Property Name="U_REALNAME" Type="varchar" MaxLength="50" />
+          <Property Name="U_PHONE" Type="varchar" MaxLength="50" />
+          <Property Name="U_EMAIL" Type="varchar" MaxLength="50" />
+          <Property Name="U_REMARK" Type="varchar" MaxLength="300" />
+          <Property Name="U_SEX" Type="varchar" MaxLength="2" />
+          <Property Name="U_PHOTO" Type="varchar" MaxLength="50" />
+          <Property Name="U_V01" Type="varchar" MaxLength="50" />
+          <Property Name="U_V02" Type="varchar" MaxLength="50" />
+          <Property Name="U_V03" Type="varchar" MaxLength="50" />
+          <Property Name="U_V04" Type="varchar" MaxLength="50" />
+          <Property Name="U_V05" Type="varchar" MaxLength="50" />
+          <Property Name="U_I01" Type="int" />
+          <Property Name="U_I02" Type="int" />
+          <Property Name="U_I03" Type="int" />
+          <Property Name="U_I04" Type="int" />
+          <Property Name="U_I05" Type="int" />
+          <Property Name="U_D01" Type="datetime" />
+          <Property Name="U_D02" Type="datetime" />
+          <Property Name="U_DATE" Type="datetime" />
+          <Property Name="U_IP" Type="varchar" MaxLength="50" />
+          <Property Name="U_ISIP" Type="int" />
+          <Property Name="ROLE_ID" Type="int" />
+          <Property Name="ROLE_NAME" Type="varchar" MaxLength="50" />
+          <Property Name="ROLE_REMARK" Type="varchar" MaxLength="300" />
+          <Property Name="ROLE_STATUS" Type="int" />
+          <Property Name="ROLE_VIEWPIC" Type="int" />
+          <Property Name="ROLE_MODIFY" Type="int" />
+          <Property Name="ROLE_V01" Type="varchar" MaxLength="50" />
+          <Property Name="ROLE_V02" Type="varchar" MaxLength="50" />
+          <Property Name="ROLE_V03" Type="varchar" MaxLength="50" />
+          <Property Name="ROLE_V04" Type="varchar" MaxLength="50" />
+          <Property Name="ROLE_V05" Type="varchar" MaxLength="200" />
+          <Property Name="ROLE_I01" Type="int" />
+          <Property Name="ROLE_I02" Type="int" />
+          <Property Name="ROLE_I03" Type="int" />
+          <Property Name="ROLE_I04" Type="int" />
+          <Property Name="ROLE_I05" Type="int" />
+          <Property Name="ROLE_D01" Type="datetime" />
+          <Property Name="ROLE_D02" Type="datetime" />
+          <Property Name="ROLE_DATE" Type="datetime" />
+          <Property Name="ROLE_RID" Type="int" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“GGArchiveSystem.dbo.V_WSAJ”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="V_WSAJ">
+          <Key>
+            <PropertyRef Name="WS1_ID" />
+            <PropertyRef Name="WS1_JH" />
+            <PropertyRef Name="WS1_TM" />
+          </Key>
+          <Property Name="WS1_ID" Type="int" Nullable="false" />
+          <Property Name="WS1_JH" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="WS1_TM" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="WS1_BGQX" Type="varchar" MaxLength="50" />
+          <Property Name="WS1_YEAR" Type="varchar" MaxLength="50" />
+          <Property Name="WS1_FileNum" Type="int" />
+          <Property Name="WS1_DrawNum" Type="int" />
+          <Property Name="WS1_OtherNum" Type="int" />
+          <Property Name="WS1_GDRQ" Type="datetime" />
+          <Property Name="WS1_BZ" Type="varchar" MaxLength="50" />
+          <Property Name="WS1_HH" Type="int" />
+          <Property Name="WS1_HJBH" Type="varchar" MaxLength="50" />
+          <Property Name="WS1_PID" Type="varchar" MaxLength="50" />
+          <Property Name="WS1_MID" Type="int" />
+          <Property Name="WS1_V01" Type="varchar" MaxLength="100" />
+          <Property Name="MD_ID" Type="int" />
+          <Property Name="MD_PID" Type="int" />
+          <Property Name="MD_ORDER" Type="int" />
+          <Property Name="MD_NAME" Type="varchar" MaxLength="50" />
+          <Property Name="MD_ISARCHIVE" Type="int" />
+          <Property Name="MD_PATH" Type="varchar" MaxLength="100" />
+          <Property Name="MD_ICON" Type="varchar" MaxLength="100" />
+          <Property Name="MD_STATUS" Type="int" />
+          <Property Name="MD_CONTROLLERS" Type="varchar" MaxLength="50" />
+          <Property Name="MD_ACTION" Type="varchar" MaxLength="50" />
+          <Property Name="MD_V01" Type="varchar" MaxLength="50" />
+          <Property Name="MD_V02" Type="varchar" MaxLength="50" />
+          <Property Name="MD_V03" Type="varchar" MaxLength="50" />
+          <Property Name="MD_V04" Type="varchar" MaxLength="50" />
+          <Property Name="MD_I01" Type="int" />
+          <Property Name="MD_I02" Type="int" />
+          <Property Name="MD_I03" Type="int" />
+          <Property Name="PR_ID" Type="int" />
+          <Property Name="PR_Name" Type="varchar" MaxLength="100" />
+          <Property Name="PR_BuildUnit" Type="varchar" MaxLength="50" />
+          <Property Name="PR_BuildUnitPhone" Type="varchar" MaxLength="50" />
+          <Property Name="PR_BuildUnitAddress" Type="varchar" MaxLength="50" />
+          <Property Name="PR_BuildAdress" Type="varchar" MaxLength="50" />
+          <Property Name="PR_DesignUnit" Type="varchar" MaxLength="50" />
+          <Property Name="PR_ConstructionUnit" Type="varchar" MaxLength="50" />
+          <Property Name="PR_SupervisionName" Type="varchar" MaxLength="50" />
+          <Property Name="PR_TotalArea" Type="varchar" MaxLength="50" />
+          <Property Name="PR_StartDay" Type="datetime" />
+          <Property Name="PR_EndDay" Type="datetime" />
+          <Property Name="PR_StorageDay" Type="datetime" />
+          <Property Name="PR_BGQX" Type="varchar" MaxLength="50" />
+          <Property Name="PR_TotalInvest" Type="varchar" MaxLength="50" />
+          <Property Name="PR_ARReceiver" Type="varchar" MaxLength="50" />
+          <Property Name="PR_RKReceiver" Type="varchar" MaxLength="50" />
+          <Property Name="PR_TotalNum" Type="int" />
+          <Property Name="PR_FileNum" Type="int" />
+          <Property Name="PR_ImageNum" Type="int" />
+          <Property Name="PR_PhotoNum" Type="int" />
+          <Property Name="PR_VideoNum" Type="int" />
+          <Property Name="PR_VoiceNum" Type="int" />
+          <Property Name="PR_BZUnit" Type="varchar" MaxLength="50" />
+          <Property Name="PR_BZDay" Type="datetime" />
+          <Property Name="PR_ProAccounts" Type="varchar" MaxLength="50" />
+          <Property Name="PR_ProAccountsUnit" Type="varchar" MaxLength="50" />
+          <Property Name="PR_MID" Type="int" />
+          <Property Name="PR_BH" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“GGArchiveSystem.dbo.V_WSJN”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="V_WSJN">
+          <Key>
+            <PropertyRef Name="JN1_ID" />
+            <PropertyRef Name="JN1_Name" />
+          </Key>
+          <Property Name="JN1_ID" Type="int" Nullable="false" />
+          <Property Name="JN1_Name" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="JN1_XH" Type="int" />
+          <Property Name="JN1_BH" Type="varchar" MaxLength="300" />
+          <Property Name="JN1_YS" Type="int" />
+          <Property Name="JN1_Start" Type="int" />
+          <Property Name="JN1_End" Type="int" />
+          <Property Name="JN1_Type" Type="varchar" MaxLength="50" />
+          <Property Name="JN1_ZRZ" Type="varchar" MaxLength="50" />
+          <Property Name="JN1_RQ" Type="datetime" />
+          <Property Name="JN1_Remark" Type="varchar" MaxLength="50" />
+          <Property Name="JN1_Scan" Type="varchar" MaxLength="50" />
+          <Property Name="JN1_AJID" Type="varchar" MaxLength="50" />
+          <Property Name="WS1_ID" Type="int" />
+          <Property Name="WS1_JH" Type="varchar" MaxLength="50" />
+          <Property Name="WS1_TM" Type="varchar" MaxLength="100" />
+          <Property Name="WS1_BGQX" Type="varchar" MaxLength="50" />
+          <Property Name="WS1_YEAR" Type="varchar" MaxLength="50" />
+          <Property Name="WS1_FileNum" Type="int" />
+          <Property Name="WS1_DrawNum" Type="int" />
+          <Property Name="WS1_OtherNum" Type="int" />
+          <Property Name="WS1_GDRQ" Type="datetime" />
+          <Property Name="WS1_BZ" Type="varchar" MaxLength="50" />
+          <Property Name="WS1_HH" Type="int" />
+          <Property Name="WS1_HJBH" Type="varchar" MaxLength="50" />
+          <Property Name="WS1_PID" Type="varchar" MaxLength="50" />
+          <Property Name="WS1_MID" Type="int" />
+          <Property Name="WS1_V01" Type="varchar" MaxLength="100" />
+          <Property Name="MD_ID" Type="int" />
+          <Property Name="MD_PID" Type="int" />
+          <Property Name="MD_ORDER" Type="int" />
+          <Property Name="MD_NAME" Type="varchar" MaxLength="50" />
+          <Property Name="MD_ISARCHIVE" Type="int" />
+          <Property Name="MD_PATH" Type="varchar" MaxLength="100" />
+          <Property Name="MD_ICON" Type="varchar" MaxLength="100" />
+          <Property Name="MD_STATUS" Type="int" />
+          <Property Name="MD_CONTROLLERS" Type="varchar" MaxLength="50" />
+          <Property Name="MD_ACTION" Type="varchar" MaxLength="50" />
+          <Property Name="MD_V01" Type="varchar" MaxLength="50" />
+          <Property Name="MD_V02" Type="varchar" MaxLength="50" />
+          <Property Name="MD_V03" Type="varchar" MaxLength="50" />
+          <Property Name="MD_V04" Type="varchar" MaxLength="50" />
+          <Property Name="MD_I01" Type="int" />
+          <Property Name="MD_I02" Type="int" />
+          <Property Name="MD_I03" Type="int" />
+          <Property Name="PR_ID" Type="int" />
+          <Property Name="PR_Name" Type="varchar" MaxLength="100" />
+          <Property Name="PR_BuildUnit" Type="varchar" MaxLength="50" />
+          <Property Name="PR_BuildUnitPhone" Type="varchar" MaxLength="50" />
+          <Property Name="PR_BuildUnitAddress" Type="varchar" MaxLength="50" />
+          <Property Name="PR_BuildAdress" Type="varchar" MaxLength="50" />
+          <Property Name="PR_DesignUnit" Type="varchar" MaxLength="50" />
+          <Property Name="PR_ConstructionUnit" Type="varchar" MaxLength="50" />
+          <Property Name="PR_SupervisionName" Type="varchar" MaxLength="50" />
+          <Property Name="PR_TotalArea" Type="varchar" MaxLength="50" />
+          <Property Name="PR_StartDay" Type="datetime" />
+          <Property Name="PR_EndDay" Type="datetime" />
+          <Property Name="PR_StorageDay" Type="datetime" />
+          <Property Name="PR_BGQX" Type="varchar" MaxLength="50" />
+          <Property Name="PR_TotalInvest" Type="varchar" MaxLength="50" />
+          <Property Name="PR_ARReceiver" Type="varchar" MaxLength="50" />
+          <Property Name="PR_RKReceiver" Type="varchar" MaxLength="50" />
+          <Property Name="PR_TotalNum" Type="int" />
+          <Property Name="PR_FileNum" Type="int" />
+          <Property Name="PR_ImageNum" Type="int" />
+          <Property Name="PR_PhotoNum" Type="int" />
+          <Property Name="PR_VideoNum" Type="int" />
+          <Property Name="PR_VoiceNum" Type="int" />
+          <Property Name="PR_BZUnit" Type="varchar" MaxLength="50" />
+          <Property Name="PR_BZDay" Type="datetime" />
+          <Property Name="PR_ProAccounts" Type="varchar" MaxLength="50" />
+          <Property Name="PR_ProAccountsUnit" Type="varchar" MaxLength="50" />
+          <Property Name="PR_MID" Type="int" />
+          <Property Name="PR_BH" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“GGArchiveSystem.dbo.V_XM”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="V_XM">
+          <Key>
+            <PropertyRef Name="PR_ID" />
+            <PropertyRef Name="PR_Name" />
+            <PropertyRef Name="PR_BuildUnit" />
+          </Key>
+          <Property Name="PR_ID" Type="int" Nullable="false" />
+          <Property Name="PR_Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PR_BuildUnit" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PR_BuildUnitPhone" Type="varchar" MaxLength="50" />
+          <Property Name="PR_BuildUnitAddress" Type="varchar" MaxLength="50" />
+          <Property Name="PR_BuildAdress" Type="varchar" MaxLength="50" />
+          <Property Name="PR_DesignUnit" Type="varchar" MaxLength="50" />
+          <Property Name="PR_ConstructionUnit" Type="varchar" MaxLength="50" />
+          <Property Name="PR_SupervisionName" Type="varchar" MaxLength="50" />
+          <Property Name="PR_TotalArea" Type="varchar" MaxLength="50" />
+          <Property Name="PR_StartDay" Type="datetime" />
+          <Property Name="PR_EndDay" Type="datetime" />
+          <Property Name="PR_StorageDay" Type="datetime" />
+          <Property Name="PR_BGQX" Type="varchar" MaxLength="50" />
+          <Property Name="PR_TotalInvest" Type="varchar" MaxLength="50" />
+          <Property Name="PR_ARReceiver" Type="varchar" MaxLength="50" />
+          <Property Name="PR_RKReceiver" Type="varchar" MaxLength="50" />
+          <Property Name="PR_TotalNum" Type="int" />
+          <Property Name="PR_FileNum" Type="int" />
+          <Property Name="PR_ImageNum" Type="int" />
+          <Property Name="PR_PhotoNum" Type="int" />
+          <Property Name="PR_VideoNum" Type="int" />
+          <Property Name="PR_VoiceNum" Type="int" />
+          <Property Name="PR_BZUnit" Type="varchar" MaxLength="50" />
+          <Property Name="PR_BZDay" Type="datetime" />
+          <Property Name="PR_ProAccounts" Type="varchar" MaxLength="50" />
+          <Property Name="PR_ProAccountsUnit" Type="varchar" MaxLength="50" />
+          <Property Name="PR_MID" Type="int" />
+          <Property Name="PR_BH" Type="varchar" MaxLength="50" />
+          <Property Name="MD_ID" Type="int" />
+          <Property Name="MD_PID" Type="int" />
+          <Property Name="MD_ORDER" Type="int" />
+          <Property Name="MD_NAME" Type="varchar" MaxLength="50" />
+          <Property Name="MD_ISARCHIVE" Type="int" />
+          <Property Name="MD_PATH" Type="varchar" MaxLength="100" />
+          <Property Name="MD_ICON" Type="varchar" MaxLength="100" />
+          <Property Name="MD_STATUS" Type="int" />
+          <Property Name="MD_CONTROLLERS" Type="varchar" MaxLength="50" />
+          <Property Name="MD_ACTION" Type="varchar" MaxLength="50" />
+          <Property Name="MD_V01" Type="varchar" MaxLength="50" />
+          <Property Name="MD_V02" Type="varchar" MaxLength="50" />
+          <Property Name="MD_V03" Type="varchar" MaxLength="50" />
+          <Property Name="MD_V04" Type="varchar" MaxLength="50" />
+          <Property Name="MD_I01" Type="int" />
+          <Property Name="MD_I02" Type="int" />
+          <Property Name="MD_I03" Type="int" />
+        </EntityType>
+        <EntityContainer Name="GGArchiveSystemModelStoreContainer">
+          <EntitySet Name="T_DOCUMENT" EntityType="Self.T_DOCUMENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_Log" EntityType="Self.T_Log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_Message" EntityType="Self.T_Message" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_MODEL" EntityType="Self.T_MODEL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_ProjectInfo" EntityType="Self.T_ProjectInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_Query" EntityType="Self.T_Query" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_QX" EntityType="Self.T_QX" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_ROLE" EntityType="Self.T_ROLE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_SINGLEINFO" EntityType="Self.T_SINGLEINFO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_SYSWD" EntityType="Self.T_SYSWD" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_TEXT" EntityType="Self.T_TEXT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_USER" EntityType="Self.T_USER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_WSAJ1" EntityType="Self.T_WSAJ1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_WSJN1" EntityType="Self.T_WSJN1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="V_TEXT1" EntityType="Self.V_TEXT1" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [V_TEXT1].[TEXT_ID] AS [TEXT_ID], 
+    [V_TEXT1].[TEXT_DOCID] AS [TEXT_DOCID], 
+    [V_TEXT1].[TEXT_CONTENT] AS [TEXT_CONTENT], 
+    [V_TEXT1].[TEXT_PAGENUM] AS [TEXT_PAGENUM], 
+    [V_TEXT1].[TEXT_STATUS] AS [TEXT_STATUS], 
+    [V_TEXT1].[TEXT_V01] AS [TEXT_V01], 
+    [V_TEXT1].[TEXT_V02] AS [TEXT_V02], 
+    [V_TEXT1].[TEXT_V03] AS [TEXT_V03], 
+    [V_TEXT1].[TEXT_D01] AS [TEXT_D01], 
+    [V_TEXT1].[TEXT_D02] AS [TEXT_D02], 
+    [V_TEXT1].[TEXT_I01] AS [TEXT_I01], 
+    [V_TEXT1].[TEXT_I02] AS [TEXT_I02], 
+    [V_TEXT1].[DOC_ID] AS [DOC_ID], 
+    [V_TEXT1].[DOC_NAME] AS [DOC_NAME], 
+    [V_TEXT1].[DOC_FILE] AS [DOC_FILE], 
+    [V_TEXT1].[DOC_PATH] AS [DOC_PATH], 
+    [V_TEXT1].[DOC_ATYPE] AS [DOC_ATYPE], 
+    [V_TEXT1].[DOC_AID] AS [DOC_AID], 
+    [V_TEXT1].[DOC_NID] AS [DOC_NID], 
+    [V_TEXT1].[DOC_SIZE] AS [DOC_SIZE], 
+    [V_TEXT1].[DOC_TYPE] AS [DOC_TYPE], 
+    [V_TEXT1].[DOC_ORDER] AS [DOC_ORDER], 
+    [V_TEXT1].[DOC_DATET] AS [DOC_DATET], 
+    [V_TEXT1].[DOC_V01] AS [DOC_V01], 
+    [V_TEXT1].[DOC_V02] AS [DOC_V02], 
+    [V_TEXT1].[DOC_V03] AS [DOC_V03], 
+    [V_TEXT1].[DOC_V04] AS [DOC_V04], 
+    [V_TEXT1].[DOC_V05] AS [DOC_V05], 
+    [V_TEXT1].[DOC_V06] AS [DOC_V06], 
+    [V_TEXT1].[DOC_V07] AS [DOC_V07], 
+    [V_TEXT1].[DOC_V08] AS [DOC_V08], 
+    [V_TEXT1].[DOC_I01] AS [DOC_I01], 
+    [V_TEXT1].[DOC_I02] AS [DOC_I02], 
+    [V_TEXT1].[DOC_I03] AS [DOC_I03], 
+    [V_TEXT1].[DOC_I04] AS [DOC_I04], 
+    [V_TEXT1].[DOC_I05] AS [DOC_I05], 
+    [V_TEXT1].[DOC_D01] AS [DOC_D01], 
+    [V_TEXT1].[DOC_D02] AS [DOC_D02], 
+    [V_TEXT1].[DOC_D03] AS [DOC_D03], 
+    [V_TEXT1].[DOC_STATUS] AS [DOC_STATUS], 
+    [V_TEXT1].[JN1_ID] AS [JN1_ID], 
+    [V_TEXT1].[JN1_Name] AS [JN1_Name], 
+    [V_TEXT1].[JN1_XH] AS [JN1_XH], 
+    [V_TEXT1].[JN1_BH] AS [JN1_BH], 
+    [V_TEXT1].[JN1_YS] AS [JN1_YS], 
+    [V_TEXT1].[JN1_Start] AS [JN1_Start], 
+    [V_TEXT1].[JN1_End] AS [JN1_End], 
+    [V_TEXT1].[JN1_Type] AS [JN1_Type], 
+    [V_TEXT1].[JN1_ZRZ] AS [JN1_ZRZ], 
+    [V_TEXT1].[JN1_RQ] AS [JN1_RQ], 
+    [V_TEXT1].[JN1_Remark] AS [JN1_Remark], 
+    [V_TEXT1].[JN1_Scan] AS [JN1_Scan], 
+    [V_TEXT1].[JN1_AJID] AS [JN1_AJID], 
+    [V_TEXT1].[WS1_ID] AS [WS1_ID], 
+    [V_TEXT1].[WS1_JH] AS [WS1_JH], 
+    [V_TEXT1].[WS1_TM] AS [WS1_TM], 
+    [V_TEXT1].[WS1_BGQX] AS [WS1_BGQX], 
+    [V_TEXT1].[WS1_YEAR] AS [WS1_YEAR], 
+    [V_TEXT1].[WS1_FileNum] AS [WS1_FileNum], 
+    [V_TEXT1].[WS1_DrawNum] AS [WS1_DrawNum], 
+    [V_TEXT1].[WS1_OtherNum] AS [WS1_OtherNum], 
+    [V_TEXT1].[WS1_GDRQ] AS [WS1_GDRQ], 
+    [V_TEXT1].[WS1_BZ] AS [WS1_BZ], 
+    [V_TEXT1].[WS1_HH] AS [WS1_HH], 
+    [V_TEXT1].[WS1_HJBH] AS [WS1_HJBH], 
+    [V_TEXT1].[WS1_PID] AS [WS1_PID], 
+    [V_TEXT1].[WS1_MID] AS [WS1_MID], 
+    [V_TEXT1].[WS1_V01] AS [WS1_V01], 
+    [V_TEXT1].[MD_ID] AS [MD_ID], 
+    [V_TEXT1].[MD_PID] AS [MD_PID], 
+    [V_TEXT1].[MD_ORDER] AS [MD_ORDER], 
+    [V_TEXT1].[MD_NAME] AS [MD_NAME], 
+    [V_TEXT1].[MD_ISARCHIVE] AS [MD_ISARCHIVE], 
+    [V_TEXT1].[MD_PATH] AS [MD_PATH], 
+    [V_TEXT1].[MD_ICON] AS [MD_ICON], 
+    [V_TEXT1].[MD_STATUS] AS [MD_STATUS], 
+    [V_TEXT1].[MD_CONTROLLERS] AS [MD_CONTROLLERS], 
+    [V_TEXT1].[MD_ACTION] AS [MD_ACTION], 
+    [V_TEXT1].[MD_V01] AS [MD_V01], 
+    [V_TEXT1].[MD_V02] AS [MD_V02], 
+    [V_TEXT1].[MD_V03] AS [MD_V03], 
+    [V_TEXT1].[MD_V04] AS [MD_V04], 
+    [V_TEXT1].[MD_I01] AS [MD_I01], 
+    [V_TEXT1].[MD_I02] AS [MD_I02], 
+    [V_TEXT1].[MD_I03] AS [MD_I03]
+    FROM [dbo].[V_TEXT1] AS [V_TEXT1]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="V_USER" EntityType="Self.V_USER" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [V_USER].[U_ID] AS [U_ID], 
+    [V_USER].[U_NAME] AS [U_NAME], 
+    [V_USER].[U_PWD] AS [U_PWD], 
+    [V_USER].[U_ROLEID] AS [U_ROLEID], 
+    [V_USER].[U_DEPARMENT] AS [U_DEPARMENT], 
+    [V_USER].[U_ZW] AS [U_ZW], 
+    [V_USER].[U_STATUS] AS [U_STATUS], 
+    [V_USER].[U_REALNAME] AS [U_REALNAME], 
+    [V_USER].[U_PHONE] AS [U_PHONE], 
+    [V_USER].[U_EMAIL] AS [U_EMAIL], 
+    [V_USER].[U_REMARK] AS [U_REMARK], 
+    [V_USER].[U_SEX] AS [U_SEX], 
+    [V_USER].[U_PHOTO] AS [U_PHOTO], 
+    [V_USER].[U_V01] AS [U_V01], 
+    [V_USER].[U_V02] AS [U_V02], 
+    [V_USER].[U_V03] AS [U_V03], 
+    [V_USER].[U_V04] AS [U_V04], 
+    [V_USER].[U_V05] AS [U_V05], 
+    [V_USER].[U_I01] AS [U_I01], 
+    [V_USER].[U_I02] AS [U_I02], 
+    [V_USER].[U_I03] AS [U_I03], 
+    [V_USER].[U_I04] AS [U_I04], 
+    [V_USER].[U_I05] AS [U_I05], 
+    [V_USER].[U_D01] AS [U_D01], 
+    [V_USER].[U_D02] AS [U_D02], 
+    [V_USER].[U_DATE] AS [U_DATE], 
+    [V_USER].[U_IP] AS [U_IP], 
+    [V_USER].[U_ISIP] AS [U_ISIP], 
+    [V_USER].[ROLE_ID] AS [ROLE_ID], 
+    [V_USER].[ROLE_NAME] AS [ROLE_NAME], 
+    [V_USER].[ROLE_REMARK] AS [ROLE_REMARK], 
+    [V_USER].[ROLE_STATUS] AS [ROLE_STATUS], 
+    [V_USER].[ROLE_VIEWPIC] AS [ROLE_VIEWPIC], 
+    [V_USER].[ROLE_MODIFY] AS [ROLE_MODIFY], 
+    [V_USER].[ROLE_V01] AS [ROLE_V01], 
+    [V_USER].[ROLE_V02] AS [ROLE_V02], 
+    [V_USER].[ROLE_V03] AS [ROLE_V03], 
+    [V_USER].[ROLE_V04] AS [ROLE_V04], 
+    [V_USER].[ROLE_V05] AS [ROLE_V05], 
+    [V_USER].[ROLE_I01] AS [ROLE_I01], 
+    [V_USER].[ROLE_I02] AS [ROLE_I02], 
+    [V_USER].[ROLE_I03] AS [ROLE_I03], 
+    [V_USER].[ROLE_I04] AS [ROLE_I04], 
+    [V_USER].[ROLE_I05] AS [ROLE_I05], 
+    [V_USER].[ROLE_D01] AS [ROLE_D01], 
+    [V_USER].[ROLE_D02] AS [ROLE_D02], 
+    [V_USER].[ROLE_DATE] AS [ROLE_DATE], 
+    [V_USER].[ROLE_RID] AS [ROLE_RID]
+    FROM [dbo].[V_USER] AS [V_USER]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="V_WSAJ" EntityType="Self.V_WSAJ" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [V_WSAJ].[WS1_ID] AS [WS1_ID], 
+    [V_WSAJ].[WS1_JH] AS [WS1_JH], 
+    [V_WSAJ].[WS1_TM] AS [WS1_TM], 
+    [V_WSAJ].[WS1_BGQX] AS [WS1_BGQX], 
+    [V_WSAJ].[WS1_YEAR] AS [WS1_YEAR], 
+    [V_WSAJ].[WS1_FileNum] AS [WS1_FileNum], 
+    [V_WSAJ].[WS1_DrawNum] AS [WS1_DrawNum], 
+    [V_WSAJ].[WS1_OtherNum] AS [WS1_OtherNum], 
+    [V_WSAJ].[WS1_GDRQ] AS [WS1_GDRQ], 
+    [V_WSAJ].[WS1_BZ] AS [WS1_BZ], 
+    [V_WSAJ].[WS1_HH] AS [WS1_HH], 
+    [V_WSAJ].[WS1_HJBH] AS [WS1_HJBH], 
+    [V_WSAJ].[WS1_PID] AS [WS1_PID], 
+    [V_WSAJ].[WS1_MID] AS [WS1_MID], 
+    [V_WSAJ].[WS1_V01] AS [WS1_V01], 
+    [V_WSAJ].[MD_ID] AS [MD_ID], 
+    [V_WSAJ].[MD_PID] AS [MD_PID], 
+    [V_WSAJ].[MD_ORDER] AS [MD_ORDER], 
+    [V_WSAJ].[MD_NAME] AS [MD_NAME], 
+    [V_WSAJ].[MD_ISARCHIVE] AS [MD_ISARCHIVE], 
+    [V_WSAJ].[MD_PATH] AS [MD_PATH], 
+    [V_WSAJ].[MD_ICON] AS [MD_ICON], 
+    [V_WSAJ].[MD_STATUS] AS [MD_STATUS], 
+    [V_WSAJ].[MD_CONTROLLERS] AS [MD_CONTROLLERS], 
+    [V_WSAJ].[MD_ACTION] AS [MD_ACTION], 
+    [V_WSAJ].[MD_V01] AS [MD_V01], 
+    [V_WSAJ].[MD_V02] AS [MD_V02], 
+    [V_WSAJ].[MD_V03] AS [MD_V03], 
+    [V_WSAJ].[MD_V04] AS [MD_V04], 
+    [V_WSAJ].[MD_I01] AS [MD_I01], 
+    [V_WSAJ].[MD_I02] AS [MD_I02], 
+    [V_WSAJ].[MD_I03] AS [MD_I03], 
+    [V_WSAJ].[PR_ID] AS [PR_ID], 
+    [V_WSAJ].[PR_Name] AS [PR_Name], 
+    [V_WSAJ].[PR_BuildUnit] AS [PR_BuildUnit], 
+    [V_WSAJ].[PR_BuildUnitPhone] AS [PR_BuildUnitPhone], 
+    [V_WSAJ].[PR_BuildUnitAddress] AS [PR_BuildUnitAddress], 
+    [V_WSAJ].[PR_BuildAdress] AS [PR_BuildAdress], 
+    [V_WSAJ].[PR_DesignUnit] AS [PR_DesignUnit], 
+    [V_WSAJ].[PR_ConstructionUnit] AS [PR_ConstructionUnit], 
+    [V_WSAJ].[PR_SupervisionName] AS [PR_SupervisionName], 
+    [V_WSAJ].[PR_TotalArea] AS [PR_TotalArea], 
+    [V_WSAJ].[PR_StartDay] AS [PR_StartDay], 
+    [V_WSAJ].[PR_EndDay] AS [PR_EndDay], 
+    [V_WSAJ].[PR_StorageDay] AS [PR_StorageDay], 
+    [V_WSAJ].[PR_BGQX] AS [PR_BGQX], 
+    [V_WSAJ].[PR_TotalInvest] AS [PR_TotalInvest], 
+    [V_WSAJ].[PR_ARReceiver] AS [PR_ARReceiver], 
+    [V_WSAJ].[PR_RKReceiver] AS [PR_RKReceiver], 
+    [V_WSAJ].[PR_TotalNum] AS [PR_TotalNum], 
+    [V_WSAJ].[PR_FileNum] AS [PR_FileNum], 
+    [V_WSAJ].[PR_ImageNum] AS [PR_ImageNum], 
+    [V_WSAJ].[PR_PhotoNum] AS [PR_PhotoNum], 
+    [V_WSAJ].[PR_VideoNum] AS [PR_VideoNum], 
+    [V_WSAJ].[PR_VoiceNum] AS [PR_VoiceNum], 
+    [V_WSAJ].[PR_BZUnit] AS [PR_BZUnit], 
+    [V_WSAJ].[PR_BZDay] AS [PR_BZDay], 
+    [V_WSAJ].[PR_ProAccounts] AS [PR_ProAccounts], 
+    [V_WSAJ].[PR_ProAccountsUnit] AS [PR_ProAccountsUnit], 
+    [V_WSAJ].[PR_MID] AS [PR_MID], 
+    [V_WSAJ].[PR_BH] AS [PR_BH]
+    FROM [dbo].[V_WSAJ] AS [V_WSAJ]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="V_WSJN" EntityType="Self.V_WSJN" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [V_WSJN].[JN1_ID] AS [JN1_ID], 
+    [V_WSJN].[JN1_Name] AS [JN1_Name], 
+    [V_WSJN].[JN1_XH] AS [JN1_XH], 
+    [V_WSJN].[JN1_BH] AS [JN1_BH], 
+    [V_WSJN].[JN1_YS] AS [JN1_YS], 
+    [V_WSJN].[JN1_Start] AS [JN1_Start], 
+    [V_WSJN].[JN1_End] AS [JN1_End], 
+    [V_WSJN].[JN1_Type] AS [JN1_Type], 
+    [V_WSJN].[JN1_ZRZ] AS [JN1_ZRZ], 
+    [V_WSJN].[JN1_RQ] AS [JN1_RQ], 
+    [V_WSJN].[JN1_Remark] AS [JN1_Remark], 
+    [V_WSJN].[JN1_Scan] AS [JN1_Scan], 
+    [V_WSJN].[JN1_AJID] AS [JN1_AJID], 
+    [V_WSJN].[WS1_ID] AS [WS1_ID], 
+    [V_WSJN].[WS1_JH] AS [WS1_JH], 
+    [V_WSJN].[WS1_TM] AS [WS1_TM], 
+    [V_WSJN].[WS1_BGQX] AS [WS1_BGQX], 
+    [V_WSJN].[WS1_YEAR] AS [WS1_YEAR], 
+    [V_WSJN].[WS1_FileNum] AS [WS1_FileNum], 
+    [V_WSJN].[WS1_DrawNum] AS [WS1_DrawNum], 
+    [V_WSJN].[WS1_OtherNum] AS [WS1_OtherNum], 
+    [V_WSJN].[WS1_GDRQ] AS [WS1_GDRQ], 
+    [V_WSJN].[WS1_BZ] AS [WS1_BZ], 
+    [V_WSJN].[WS1_HH] AS [WS1_HH], 
+    [V_WSJN].[WS1_HJBH] AS [WS1_HJBH], 
+    [V_WSJN].[WS1_PID] AS [WS1_PID], 
+    [V_WSJN].[WS1_MID] AS [WS1_MID], 
+    [V_WSJN].[WS1_V01] AS [WS1_V01], 
+    [V_WSJN].[MD_ID] AS [MD_ID], 
+    [V_WSJN].[MD_PID] AS [MD_PID], 
+    [V_WSJN].[MD_ORDER] AS [MD_ORDER], 
+    [V_WSJN].[MD_NAME] AS [MD_NAME], 
+    [V_WSJN].[MD_ISARCHIVE] AS [MD_ISARCHIVE], 
+    [V_WSJN].[MD_PATH] AS [MD_PATH], 
+    [V_WSJN].[MD_ICON] AS [MD_ICON], 
+    [V_WSJN].[MD_STATUS] AS [MD_STATUS], 
+    [V_WSJN].[MD_CONTROLLERS] AS [MD_CONTROLLERS], 
+    [V_WSJN].[MD_ACTION] AS [MD_ACTION], 
+    [V_WSJN].[MD_V01] AS [MD_V01], 
+    [V_WSJN].[MD_V02] AS [MD_V02], 
+    [V_WSJN].[MD_V03] AS [MD_V03], 
+    [V_WSJN].[MD_V04] AS [MD_V04], 
+    [V_WSJN].[MD_I01] AS [MD_I01], 
+    [V_WSJN].[MD_I02] AS [MD_I02], 
+    [V_WSJN].[MD_I03] AS [MD_I03], 
+    [V_WSJN].[PR_ID] AS [PR_ID], 
+    [V_WSJN].[PR_Name] AS [PR_Name], 
+    [V_WSJN].[PR_BuildUnit] AS [PR_BuildUnit], 
+    [V_WSJN].[PR_BuildUnitPhone] AS [PR_BuildUnitPhone], 
+    [V_WSJN].[PR_BuildUnitAddress] AS [PR_BuildUnitAddress], 
+    [V_WSJN].[PR_BuildAdress] AS [PR_BuildAdress], 
+    [V_WSJN].[PR_DesignUnit] AS [PR_DesignUnit], 
+    [V_WSJN].[PR_ConstructionUnit] AS [PR_ConstructionUnit], 
+    [V_WSJN].[PR_SupervisionName] AS [PR_SupervisionName], 
+    [V_WSJN].[PR_TotalArea] AS [PR_TotalArea], 
+    [V_WSJN].[PR_StartDay] AS [PR_StartDay], 
+    [V_WSJN].[PR_EndDay] AS [PR_EndDay], 
+    [V_WSJN].[PR_StorageDay] AS [PR_StorageDay], 
+    [V_WSJN].[PR_BGQX] AS [PR_BGQX], 
+    [V_WSJN].[PR_TotalInvest] AS [PR_TotalInvest], 
+    [V_WSJN].[PR_ARReceiver] AS [PR_ARReceiver], 
+    [V_WSJN].[PR_RKReceiver] AS [PR_RKReceiver], 
+    [V_WSJN].[PR_TotalNum] AS [PR_TotalNum], 
+    [V_WSJN].[PR_FileNum] AS [PR_FileNum], 
+    [V_WSJN].[PR_ImageNum] AS [PR_ImageNum], 
+    [V_WSJN].[PR_PhotoNum] AS [PR_PhotoNum], 
+    [V_WSJN].[PR_VideoNum] AS [PR_VideoNum], 
+    [V_WSJN].[PR_VoiceNum] AS [PR_VoiceNum], 
+    [V_WSJN].[PR_BZUnit] AS [PR_BZUnit], 
+    [V_WSJN].[PR_BZDay] AS [PR_BZDay], 
+    [V_WSJN].[PR_ProAccounts] AS [PR_ProAccounts], 
+    [V_WSJN].[PR_ProAccountsUnit] AS [PR_ProAccountsUnit], 
+    [V_WSJN].[PR_MID] AS [PR_MID], 
+    [V_WSJN].[PR_BH] AS [PR_BH]
+    FROM [dbo].[V_WSJN] AS [V_WSJN]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="V_XM" EntityType="Self.V_XM" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [V_XM].[PR_ID] AS [PR_ID], 
+    [V_XM].[PR_Name] AS [PR_Name], 
+    [V_XM].[PR_BuildUnit] AS [PR_BuildUnit], 
+    [V_XM].[PR_BuildUnitPhone] AS [PR_BuildUnitPhone], 
+    [V_XM].[PR_BuildUnitAddress] AS [PR_BuildUnitAddress], 
+    [V_XM].[PR_BuildAdress] AS [PR_BuildAdress], 
+    [V_XM].[PR_DesignUnit] AS [PR_DesignUnit], 
+    [V_XM].[PR_ConstructionUnit] AS [PR_ConstructionUnit], 
+    [V_XM].[PR_SupervisionName] AS [PR_SupervisionName], 
+    [V_XM].[PR_TotalArea] AS [PR_TotalArea], 
+    [V_XM].[PR_StartDay] AS [PR_StartDay], 
+    [V_XM].[PR_EndDay] AS [PR_EndDay], 
+    [V_XM].[PR_StorageDay] AS [PR_StorageDay], 
+    [V_XM].[PR_BGQX] AS [PR_BGQX], 
+    [V_XM].[PR_TotalInvest] AS [PR_TotalInvest], 
+    [V_XM].[PR_ARReceiver] AS [PR_ARReceiver], 
+    [V_XM].[PR_RKReceiver] AS [PR_RKReceiver], 
+    [V_XM].[PR_TotalNum] AS [PR_TotalNum], 
+    [V_XM].[PR_FileNum] AS [PR_FileNum], 
+    [V_XM].[PR_ImageNum] AS [PR_ImageNum], 
+    [V_XM].[PR_PhotoNum] AS [PR_PhotoNum], 
+    [V_XM].[PR_VideoNum] AS [PR_VideoNum], 
+    [V_XM].[PR_VoiceNum] AS [PR_VoiceNum], 
+    [V_XM].[PR_BZUnit] AS [PR_BZUnit], 
+    [V_XM].[PR_BZDay] AS [PR_BZDay], 
+    [V_XM].[PR_ProAccounts] AS [PR_ProAccounts], 
+    [V_XM].[PR_ProAccountsUnit] AS [PR_ProAccountsUnit], 
+    [V_XM].[PR_MID] AS [PR_MID], 
+    [V_XM].[PR_BH] AS [PR_BH], 
+    [V_XM].[MD_ID] AS [MD_ID], 
+    [V_XM].[MD_PID] AS [MD_PID], 
+    [V_XM].[MD_ORDER] AS [MD_ORDER], 
+    [V_XM].[MD_NAME] AS [MD_NAME], 
+    [V_XM].[MD_ISARCHIVE] AS [MD_ISARCHIVE], 
+    [V_XM].[MD_PATH] AS [MD_PATH], 
+    [V_XM].[MD_ICON] AS [MD_ICON], 
+    [V_XM].[MD_STATUS] AS [MD_STATUS], 
+    [V_XM].[MD_CONTROLLERS] AS [MD_CONTROLLERS], 
+    [V_XM].[MD_ACTION] AS [MD_ACTION], 
+    [V_XM].[MD_V01] AS [MD_V01], 
+    [V_XM].[MD_V02] AS [MD_V02], 
+    [V_XM].[MD_V03] AS [MD_V03], 
+    [V_XM].[MD_V04] AS [MD_V04], 
+    [V_XM].[MD_I01] AS [MD_I01], 
+    [V_XM].[MD_I02] AS [MD_I02], 
+    [V_XM].[MD_I03] AS [MD_I03]
+    FROM [dbo].[V_XM] AS [V_XM]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GGArchiveSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="T_MODEL">
+          <Key>
+            <PropertyRef Name="MD_ID" />
+          </Key>
+          <Property Name="MD_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MD_PID" Type="Int32" Nullable="false" />
+          <Property Name="MD_ORDER" Type="Int32" />
+          <Property Name="MD_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MD_ISARCHIVE" Type="Int32" Nullable="false" />
+          <Property Name="MD_PATH" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MD_ICON" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MD_STATUS" Type="Int32" Nullable="false" />
+          <Property Name="MD_CONTROLLERS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MD_ACTION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MD_V01" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MD_V02" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MD_V03" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MD_V04" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MD_I01" Type="Int32" />
+          <Property Name="MD_I02" Type="Int32" />
+          <Property Name="MD_I03" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="GGArchiveSystemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="T_MODEL" EntityType="Self.T_MODEL" />
+          <EntitySet Name="T_ROLE" EntityType="GGArchiveSystemModel.T_ROLE" />
+          <EntitySet Name="T_SINGLEINFO" EntityType="GGArchiveSystemModel.T_SINGLEINFO" />
+          <EntitySet Name="T_QX" EntityType="GGArchiveSystemModel.T_QX" />
+          <EntitySet Name="T_Log" EntityType="GGArchiveSystemModel.T_Log" />
+          <EntitySet Name="T_USER" EntityType="GGArchiveSystemModel.T_USER" />
+          <EntitySet Name="V_USER" EntityType="GGArchiveSystemModel.V_USER" />
+          <EntitySet Name="T_DOCUMENT" EntityType="GGArchiveSystemModel.T_DOCUMENT" />
+          <EntitySet Name="T_ProjectInfo" EntityType="GGArchiveSystemModel.T_ProjectInfo" />
+          <EntitySet Name="T_TEXT" EntityType="GGArchiveSystemModel.T_TEXT" />
+          <EntitySet Name="T_WSJN1" EntityType="GGArchiveSystemModel.T_WSJN1" />
+          <EntitySet Name="T_Query" EntityType="GGArchiveSystemModel.T_Query" />
+          <EntitySet Name="T_SYSWD" EntityType="GGArchiveSystemModel.T_SYSWD" />
+          <EntitySet Name="T_Message" EntityType="GGArchiveSystemModel.T_Message" />
+          <EntitySet Name="T_WSAJ1" EntityType="GGArchiveSystemModel.T_WSAJ1" />
+          <EntitySet Name="V_WSAJ" EntityType="GGArchiveSystemModel.V_WSAJ" />
+          <EntitySet Name="V_WSJN" EntityType="GGArchiveSystemModel.V_WSJN" />
+          <EntitySet Name="V_XM" EntityType="GGArchiveSystemModel.V_XM" />
+          <EntitySet Name="V_TEXT1" EntityType="GGArchiveSystemModel.V_TEXT1" />
+        </EntityContainer>
+        <EntityType Name="T_ROLE">
+          <Key>
+            <PropertyRef Name="ROLE_ID" />
+          </Key>
+          <Property Name="ROLE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ROLE_NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ROLE_REMARK" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="ROLE_STATUS" Type="Int32" Nullable="false" />
+          <Property Name="ROLE_VIEWPIC" Type="Int32" Nullable="false" />
+          <Property Name="ROLE_MODIFY" Type="Int32" Nullable="false" />
+          <Property Name="ROLE_V01" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ROLE_V02" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ROLE_V03" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ROLE_V04" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ROLE_V05" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ROLE_I01" Type="Int32" />
+          <Property Name="ROLE_I02" Type="Int32" />
+          <Property Name="ROLE_I03" Type="Int32" />
+          <Property Name="ROLE_I04" Type="Int32" />
+          <Property Name="ROLE_I05" Type="Int32" />
+          <Property Name="ROLE_D01" Type="DateTime" Precision="3" />
+          <Property Name="ROLE_D02" Type="DateTime" Precision="3" />
+          <Property Name="ROLE_DATE" Type="DateTime" Precision="3" />
+          <Property Name="ROLE_RID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="T_SINGLEINFO">
+          <Key>
+            <PropertyRef Name="SG_ID" />
+          </Key>
+          <Property Name="SG_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SG_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SG_Xnum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SG_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SG_Area" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SG_Form" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SG_Bnum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SG_High" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SG_Znum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SG_Deep" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SG_Underfloor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SG_Overfloor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SG_CZ" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SG_Length" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SG_Vnum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SG_PD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SG_Norms" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SG_Dunit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SG_Wunit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SG_Junit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SG_Remark" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SG_V01" Type="Int32" />
+          <Property Name="SG_V02" Type="Int32" />
+          <Property Name="SG_V03" Type="DateTime" Precision="3" />
+          <Property Name="SG_V04" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SG_V05" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SG_V06" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SG_V07" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SG_V08" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SG_V09" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SG_V10" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SG_PID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="T_QX">
+          <Key>
+            <PropertyRef Name="QX_ID" />
+          </Key>
+          <Property Name="QX_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QX_RID" Type="Int32" Nullable="false" />
+          <Property Name="QX_MID" Type="Int32" Nullable="false" />
+          <Property Name="QX_STATUS" Type="Int32" Nullable="false" />
+          <Property Name="QX_V01" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="QX_V02" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="QX_V03" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="QX_I01" Type="Int32" />
+          <Property Name="QX_I02" Type="Int32" />
+          <Property Name="QX_I03" Type="Int32" />
+          <Property Name="QX_D01" Type="DateTime" Precision="3" />
+          <Property Name="QX_D02" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="T_Log">
+          <Key>
+            <PropertyRef Name="Log_ID" />
+          </Key>
+          <Property Name="Log_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Log_Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Log_UName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Log_UID" Type="Int32" Nullable="false" />
+          <Property Name="Log_Content" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Log_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Log_Level" Type="Int32" />
+          <Property Name="Log_Remark" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Log_V01" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Log_V02" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Log_V03" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Log_V04" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Log_V05" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Log_V06" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Log_V07" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Log_I01" Type="Int32" />
+          <Property Name="Log_I02" Type="Int32" />
+          <Property Name="Log_I03" Type="Int32" />
+          <Property Name="Log_D01" Type="DateTime" Precision="3" />
+          <Property Name="Log_D02" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="T_USER">
+          <Key>
+            <PropertyRef Name="U_ID" />
+          </Key>
+          <Property Name="U_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="U_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_PWD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_ROLEID" Type="Int32" Nullable="false" />
+          <Property Name="U_DEPARMENT" Type="Int32" />
+          <Property Name="U_ZW" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_STATUS" Type="Int32" Nullable="false" />
+          <Property Name="U_REALNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_PHONE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_REMARK" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="U_SEX" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="U_PHOTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_V01" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_V02" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_V03" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_V04" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_V05" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_I01" Type="Int32" />
+          <Property Name="U_I02" Type="Int32" />
+          <Property Name="U_I03" Type="Int32" />
+          <Property Name="U_I04" Type="Int32" />
+          <Property Name="U_I05" Type="Int32" />
+          <Property Name="U_D01" Type="DateTime" Precision="3" />
+          <Property Name="U_D02" Type="DateTime" Precision="3" />
+          <Property Name="U_DATE" Type="DateTime" Precision="3" />
+          <Property Name="U_IP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_ISIP" Type="Int32" />
+        </EntityType>
+        <EntityType Name="V_USER">
+          <Key>
+            <PropertyRef Name="U_ID" />
+            <PropertyRef Name="U_NAME" />
+            <PropertyRef Name="U_PWD" />
+            <PropertyRef Name="U_ROLEID" />
+            <PropertyRef Name="U_STATUS" />
+          </Key>
+          <Property Name="U_ID" Type="Int32" Nullable="false" />
+          <Property Name="U_NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_PWD" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_ROLEID" Type="Int32" Nullable="false" />
+          <Property Name="U_DEPARMENT" Type="Int32" />
+          <Property Name="U_ZW" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_STATUS" Type="Int32" Nullable="false" />
+          <Property Name="U_REALNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_PHONE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_REMARK" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="U_SEX" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="U_PHOTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_V01" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_V02" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_V03" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_V04" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_V05" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_I01" Type="Int32" />
+          <Property Name="U_I02" Type="Int32" />
+          <Property Name="U_I03" Type="Int32" />
+          <Property Name="U_I04" Type="Int32" />
+          <Property Name="U_I05" Type="Int32" />
+          <Property Name="U_D01" Type="DateTime" Precision="3" />
+          <Property Name="U_D02" Type="DateTime" Precision="3" />
+          <Property Name="U_DATE" Type="DateTime" Precision="3" />
+          <Property Name="U_IP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_ISIP" Type="Int32" />
+          <Property Name="ROLE_ID" Type="Int32" />
+          <Property Name="ROLE_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ROLE_REMARK" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="ROLE_STATUS" Type="Int32" />
+          <Property Name="ROLE_VIEWPIC" Type="Int32" />
+          <Property Name="ROLE_MODIFY" Type="Int32" />
+          <Property Name="ROLE_V01" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ROLE_V02" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ROLE_V03" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ROLE_V04" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ROLE_V05" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ROLE_I01" Type="Int32" />
+          <Property Name="ROLE_I02" Type="Int32" />
+          <Property Name="ROLE_I03" Type="Int32" />
+          <Property Name="ROLE_I04" Type="Int32" />
+          <Property Name="ROLE_I05" Type="Int32" />
+          <Property Name="ROLE_D01" Type="DateTime" Precision="3" />
+          <Property Name="ROLE_D02" Type="DateTime" Precision="3" />
+          <Property Name="ROLE_DATE" Type="DateTime" Precision="3" />
+          <Property Name="ROLE_RID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="T_DOCUMENT">
+          <Key>
+            <PropertyRef Name="DOC_ID" />
+          </Key>
+          <Property Name="DOC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DOC_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DOC_FILE" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DOC_PATH" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DOC_ATYPE" Type="Int32" Nullable="false" />
+          <Property Name="DOC_AID" Type="Int32" Nullable="false" />
+          <Property Name="DOC_NID" Type="Int32" Nullable="false" />
+          <Property Name="DOC_SIZE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DOC_TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DOC_ORDER" Type="Int32" />
+          <Property Name="DOC_DATET" Type="DateTime" Precision="3" />
+          <Property Name="DOC_V01" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DOC_V02" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DOC_V03" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DOC_V04" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DOC_V05" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DOC_V06" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DOC_V07" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DOC_V08" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DOC_I01" Type="Int32" />
+          <Property Name="DOC_I02" Type="Int32" />
+          <Property Name="DOC_I03" Type="Int32" />
+          <Property Name="DOC_I04" Type="Int32" />
+          <Property Name="DOC_I05" Type="Int32" />
+          <Property Name="DOC_D01" Type="DateTime" Precision="3" />
+          <Property Name="DOC_D02" Type="DateTime" Precision="3" />
+          <Property Name="DOC_D03" Type="DateTime" Precision="3" />
+          <Property Name="DOC_STATUS" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_ProjectInfo">
+          <Key>
+            <PropertyRef Name="PR_ID" />
+          </Key>
+          <Property Name="PR_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PR_Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PR_BuildUnit" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_BuildUnitPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_BuildUnitAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_BuildAdress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_DesignUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_ConstructionUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_SupervisionName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_TotalArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_StartDay" Type="DateTime" Precision="3" />
+          <Property Name="PR_EndDay" Type="DateTime" Precision="3" />
+          <Property Name="PR_StorageDay" Type="DateTime" Precision="3" />
+          <Property Name="PR_BGQX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_TotalInvest" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_ARReceiver" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_RKReceiver" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_TotalNum" Type="Int32" />
+          <Property Name="PR_FileNum" Type="Int32" />
+          <Property Name="PR_ImageNum" Type="Int32" />
+          <Property Name="PR_PhotoNum" Type="Int32" />
+          <Property Name="PR_VideoNum" Type="Int32" />
+          <Property Name="PR_VoiceNum" Type="Int32" />
+          <Property Name="PR_BZUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_BZDay" Type="DateTime" Precision="3" />
+          <Property Name="PR_ProAccounts" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_ProAccountsUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_MID" Type="Int32" />
+          <Property Name="PR_BH" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="T_TEXT">
+          <Key>
+            <PropertyRef Name="TEXT_ID" />
+          </Key>
+          <Property Name="TEXT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TEXT_DOCID" Type="Int32" Nullable="false" />
+          <Property Name="TEXT_CONTENT" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TEXT_PAGENUM" Type="Int32" Nullable="false" />
+          <Property Name="TEXT_STATUS" Type="Int32" Nullable="false" />
+          <Property Name="TEXT_V01" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TEXT_V02" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TEXT_V03" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TEXT_D01" Type="DateTime" Precision="3" />
+          <Property Name="TEXT_D02" Type="DateTime" Precision="3" />
+          <Property Name="TEXT_I01" Type="Int32" />
+          <Property Name="TEXT_I02" Type="Int32" />
+        </EntityType>
+        <EntityType Name="T_WSJN1">
+          <Key>
+            <PropertyRef Name="JN1_ID" />
+          </Key>
+          <Property Name="JN1_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JN1_Name" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="JN1_XH" Type="Int32" />
+          <Property Name="JN1_BH" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="JN1_YS" Type="Int32" />
+          <Property Name="JN1_Start" Type="Int32" />
+          <Property Name="JN1_End" Type="Int32" />
+          <Property Name="JN1_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="JN1_ZRZ" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="JN1_RQ" Type="DateTime" Precision="3" />
+          <Property Name="JN1_Remark" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="JN1_Scan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="JN1_AJID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="T_Query">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="Fields" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Grade" Type="Int32" />
+          <Property Name="Table" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="T_SYSWD">
+          <Key>
+            <PropertyRef Name="WD_ID" />
+          </Key>
+          <Property Name="WD_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WD_NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WD_CODE" Type="Int32" />
+          <Property Name="WD_TYPE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WD_ORDER" Type="Int32" />
+          <Property Name="WD_STATUS" Type="Int32" />
+        </EntityType>
+        <EntityType Name="T_Message">
+          <Key>
+            <PropertyRef Name="Message_ID" />
+          </Key>
+          <Property Name="Message_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Message_NO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Message_WH" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Message_Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Message_Date" Type="DateTime" Precision="3" />
+          <Property Name="Message_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Message_SendUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Message_ReceiveUnit" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Message_Sender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Message_Remark" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="MG_V01" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MG_V02" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MG_V03" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MG_V04" Type="Int32" />
+          <Property Name="MG_V05" Type="DateTime" Precision="3" />
+          <Property Name="MG_mid" Type="Int32" Nullable="false" />
+          <Property Name="Message_BGQX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="T_WSAJ1">
+          <Key>
+            <PropertyRef Name="WS1_ID" />
+          </Key>
+          <Property Name="WS1_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WS1_JH" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WS1_TM" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="WS1_BGQX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WS1_YEAR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WS1_FileNum" Type="Int32" />
+          <Property Name="WS1_DrawNum" Type="Int32" />
+          <Property Name="WS1_OtherNum" Type="Int32" />
+          <Property Name="WS1_GDRQ" Type="DateTime" Precision="3" />
+          <Property Name="WS1_BZ" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WS1_HH" Type="Int32" />
+          <Property Name="WS1_HJBH" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WS1_PID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WS1_MID" Type="Int32" />
+          <Property Name="WS1_V01" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="V_WSAJ">
+          <Key>
+            <PropertyRef Name="WS1_ID" />
+            <PropertyRef Name="WS1_JH" />
+            <PropertyRef Name="WS1_TM" />
+          </Key>
+          <Property Name="WS1_ID" Type="Int32" Nullable="false" />
+          <Property Name="WS1_JH" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WS1_TM" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="WS1_BGQX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WS1_YEAR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WS1_FileNum" Type="Int32" />
+          <Property Name="WS1_DrawNum" Type="Int32" />
+          <Property Name="WS1_OtherNum" Type="Int32" />
+          <Property Name="WS1_GDRQ" Type="DateTime" Precision="3" />
+          <Property Name="WS1_BZ" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WS1_HH" Type="Int32" />
+          <Property Name="WS1_HJBH" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WS1_PID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WS1_MID" Type="Int32" />
+          <Property Name="WS1_V01" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MD_ID" Type="Int32" />
+          <Property Name="MD_PID" Type="Int32" />
+          <Property Name="MD_ORDER" Type="Int32" />
+          <Property Name="MD_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MD_ISARCHIVE" Type="Int32" />
+          <Property Name="MD_PATH" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MD_ICON" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MD_STATUS" Type="Int32" />
+          <Property Name="MD_CONTROLLERS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MD_ACTION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MD_V01" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MD_V02" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MD_V03" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MD_V04" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MD_I01" Type="Int32" />
+          <Property Name="MD_I02" Type="Int32" />
+          <Property Name="MD_I03" Type="Int32" />
+          <Property Name="PR_ID" Type="Int32" />
+          <Property Name="PR_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PR_BuildUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_BuildUnitPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_BuildUnitAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_BuildAdress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_DesignUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_ConstructionUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_SupervisionName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_TotalArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_StartDay" Type="DateTime" Precision="3" />
+          <Property Name="PR_EndDay" Type="DateTime" Precision="3" />
+          <Property Name="PR_StorageDay" Type="DateTime" Precision="3" />
+          <Property Name="PR_BGQX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_TotalInvest" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_ARReceiver" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_RKReceiver" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_TotalNum" Type="Int32" />
+          <Property Name="PR_FileNum" Type="Int32" />
+          <Property Name="PR_ImageNum" Type="Int32" />
+          <Property Name="PR_PhotoNum" Type="Int32" />
+          <Property Name="PR_VideoNum" Type="Int32" />
+          <Property Name="PR_VoiceNum" Type="Int32" />
+          <Property Name="PR_BZUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_BZDay" Type="DateTime" Precision="3" />
+          <Property Name="PR_ProAccounts" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_ProAccountsUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_MID" Type="Int32" />
+          <Property Name="PR_BH" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="V_WSJN">
+          <Key>
+            <PropertyRef Name="JN1_ID" />
+            <PropertyRef Name="JN1_Name" />
+          </Key>
+          <Property Name="JN1_ID" Type="Int32" Nullable="false" />
+          <Property Name="JN1_Name" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="JN1_XH" Type="Int32" />
+          <Property Name="JN1_BH" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="JN1_YS" Type="Int32" />
+          <Property Name="JN1_Start" Type="Int32" />
+          <Property Name="JN1_End" Type="Int32" />
+          <Property Name="JN1_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="JN1_ZRZ" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="JN1_RQ" Type="DateTime" Precision="3" />
+          <Property Name="JN1_Remark" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="JN1_Scan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="JN1_AJID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WS1_ID" Type="Int32" />
+          <Property Name="WS1_JH" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WS1_TM" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="WS1_BGQX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WS1_YEAR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WS1_FileNum" Type="Int32" />
+          <Property Name="WS1_DrawNum" Type="Int32" />
+          <Property Name="WS1_OtherNum" Type="Int32" />
+          <Property Name="WS1_GDRQ" Type="DateTime" Precision="3" />
+          <Property Name="WS1_BZ" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WS1_HH" Type="Int32" />
+          <Property Name="WS1_HJBH" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WS1_PID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WS1_MID" Type="Int32" />
+          <Property Name="WS1_V01" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MD_ID" Type="Int32" />
+          <Property Name="MD_PID" Type="Int32" />
+          <Property Name="MD_ORDER" Type="Int32" />
+          <Property Name="MD_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MD_ISARCHIVE" Type="Int32" />
+          <Property Name="MD_PATH" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MD_ICON" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MD_STATUS" Type="Int32" />
+          <Property Name="MD_CONTROLLERS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MD_ACTION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MD_V01" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MD_V02" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MD_V03" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MD_V04" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MD_I01" Type="Int32" />
+          <Property Name="MD_I02" Type="Int32" />
+          <Property Name="MD_I03" Type="Int32" />
+          <Property Name="PR_ID" Type="Int32" />
+          <Property Name="PR_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PR_BuildUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_BuildUnitPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_BuildUnitAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_BuildAdress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_DesignUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_ConstructionUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_SupervisionName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_TotalArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_StartDay" Type="DateTime" Precision="3" />
+          <Property Name="PR_EndDay" Type="DateTime" Precision="3" />
+          <Property Name="PR_StorageDay" Type="DateTime" Precision="3" />
+          <Property Name="PR_BGQX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_TotalInvest" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_ARReceiver" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_RKReceiver" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_TotalNum" Type="Int32" />
+          <Property Name="PR_FileNum" Type="Int32" />
+          <Property Name="PR_ImageNum" Type="Int32" />
+          <Property Name="PR_PhotoNum" Type="Int32" />
+          <Property Name="PR_VideoNum" Type="Int32" />
+          <Property Name="PR_VoiceNum" Type="Int32" />
+          <Property Name="PR_BZUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_BZDay" Type="DateTime" Precision="3" />
+          <Property Name="PR_ProAccounts" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_ProAccountsUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_MID" Type="Int32" />
+          <Property Name="PR_BH" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="V_XM">
+          <Key>
+            <PropertyRef Name="PR_ID" />
+            <PropertyRef Name="PR_Name" />
+            <PropertyRef Name="PR_BuildUnit" />
+          </Key>
+          <Property Name="PR_ID" Type="Int32" Nullable="false" />
+          <Property Name="PR_Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PR_BuildUnit" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_BuildUnitPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_BuildUnitAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_BuildAdress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_DesignUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_ConstructionUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_SupervisionName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_TotalArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_StartDay" Type="DateTime" Precision="3" />
+          <Property Name="PR_EndDay" Type="DateTime" Precision="3" />
+          <Property Name="PR_StorageDay" Type="DateTime" Precision="3" />
+          <Property Name="PR_BGQX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_TotalInvest" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_ARReceiver" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_RKReceiver" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_TotalNum" Type="Int32" />
+          <Property Name="PR_FileNum" Type="Int32" />
+          <Property Name="PR_ImageNum" Type="Int32" />
+          <Property Name="PR_PhotoNum" Type="Int32" />
+          <Property Name="PR_VideoNum" Type="Int32" />
+          <Property Name="PR_VoiceNum" Type="Int32" />
+          <Property Name="PR_BZUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_BZDay" Type="DateTime" Precision="3" />
+          <Property Name="PR_ProAccounts" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_ProAccountsUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PR_MID" Type="Int32" />
+          <Property Name="PR_BH" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MD_ID" Type="Int32" />
+          <Property Name="MD_PID" Type="Int32" />
+          <Property Name="MD_ORDER" Type="Int32" />
+          <Property Name="MD_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MD_ISARCHIVE" Type="Int32" />
+          <Property Name="MD_PATH" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MD_ICON" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MD_STATUS" Type="Int32" />
+          <Property Name="MD_CONTROLLERS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MD_ACTION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MD_V01" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MD_V02" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MD_V03" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MD_V04" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MD_I01" Type="Int32" />
+          <Property Name="MD_I02" Type="Int32" />
+          <Property Name="MD_I03" Type="Int32" />
+        </EntityType>
+        <EntityType Name="V_TEXT1">
+          <Key>
+            <PropertyRef Name="TEXT_ID" />
+            <PropertyRef Name="TEXT_DOCID" />
+            <PropertyRef Name="TEXT_CONTENT" />
+            <PropertyRef Name="TEXT_PAGENUM" />
+            <PropertyRef Name="TEXT_STATUS" />
+          </Key>
+          <Property Name="TEXT_ID" Type="Int32" Nullable="false" />
+          <Property Name="TEXT_DOCID" Type="Int32" Nullable="false" />
+          <Property Name="TEXT_CONTENT" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TEXT_PAGENUM" Type="Int32" Nullable="false" />
+          <Property Name="TEXT_STATUS" Type="Int32" Nullable="false" />
+          <Property Name="TEXT_V01" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TEXT_V02" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TEXT_V03" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TEXT_D01" Type="DateTime" Precision="3" />
+          <Property Name="TEXT_D02" Type="DateTime" Precision="3" />
+          <Property Name="TEXT_I01" Type="Int32" />
+          <Property Name="TEXT_I02" Type="Int32" />
+          <Property Name="DOC_ID" Type="Int32" />
+          <Property Name="DOC_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DOC_FILE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DOC_PATH" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DOC_ATYPE" Type="Int32" />
+          <Property Name="DOC_AID" Type="Int32" />
+          <Property Name="DOC_NID" Type="Int32" />
+          <Property Name="DOC_SIZE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DOC_TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DOC_ORDER" Type="Int32" />
+          <Property Name="DOC_DATET" Type="DateTime" Precision="3" />
+          <Property Name="DOC_V01" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DOC_V02" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DOC_V03" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DOC_V04" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DOC_V05" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DOC_V06" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DOC_V07" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DOC_V08" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DOC_I01" Type="Int32" />
+          <Property Name="DOC_I02" Type="Int32" />
+          <Property Name="DOC_I03" Type="Int32" />
+          <Property Name="DOC_I04" Type="Int32" />
+          <Property Name="DOC_I05" Type="Int32" />
+          <Property Name="DOC_D01" Type="DateTime" Precision="3" />
+          <Property Name="DOC_D02" Type="DateTime" Precision="3" />
+          <Property Name="DOC_D03" Type="DateTime" Precision="3" />
+          <Property Name="DOC_STATUS" Type="Int32" />
+          <Property Name="JN1_ID" Type="Int32" />
+          <Property Name="JN1_Name" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="JN1_XH" Type="Int32" />
+          <Property Name="JN1_BH" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="JN1_YS" Type="Int32" />
+          <Property Name="JN1_Start" Type="Int32" />
+          <Property Name="JN1_End" Type="Int32" />
+          <Property Name="JN1_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="JN1_ZRZ" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="JN1_RQ" Type="DateTime" Precision="3" />
+          <Property Name="JN1_Remark" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="JN1_Scan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="JN1_AJID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WS1_ID" Type="Int32" />
+          <Property Name="WS1_JH" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WS1_TM" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="WS1_BGQX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WS1_YEAR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WS1_FileNum" Type="Int32" />
+          <Property Name="WS1_DrawNum" Type="Int32" />
+          <Property Name="WS1_OtherNum" Type="Int32" />
+          <Property Name="WS1_GDRQ" Type="DateTime" Precision="3" />
+          <Property Name="WS1_BZ" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WS1_HH" Type="Int32" />
+          <Property Name="WS1_HJBH" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WS1_PID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WS1_MID" Type="Int32" />
+          <Property Name="WS1_V01" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MD_ID" Type="Int32" />
+          <Property Name="MD_PID" Type="Int32" />
+          <Property Name="MD_ORDER" Type="Int32" />
+          <Property Name="MD_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MD_ISARCHIVE" Type="Int32" />
+          <Property Name="MD_PATH" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MD_ICON" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MD_STATUS" Type="Int32" />
+          <Property Name="MD_CONTROLLERS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MD_ACTION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MD_V01" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MD_V02" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MD_V03" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MD_V04" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MD_I01" Type="Int32" />
+          <Property Name="MD_I02" Type="Int32" />
+          <Property Name="MD_I03" Type="Int32" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GGArchiveSystemModelStoreContainer" CdmEntityContainer="GGArchiveSystemEntities">
+          <EntitySetMapping Name="T_MODEL">
+            <EntityTypeMapping TypeName="GGArchiveSystemModel.T_MODEL">
+              <MappingFragment StoreEntitySet="T_MODEL">
+                <ScalarProperty Name="MD_ID" ColumnName="MD_ID" />
+                <ScalarProperty Name="MD_PID" ColumnName="MD_PID" />
+                <ScalarProperty Name="MD_ORDER" ColumnName="MD_ORDER" />
+                <ScalarProperty Name="MD_NAME" ColumnName="MD_NAME" />
+                <ScalarProperty Name="MD_ISARCHIVE" ColumnName="MD_ISARCHIVE" />
+                <ScalarProperty Name="MD_PATH" ColumnName="MD_PATH" />
+                <ScalarProperty Name="MD_ICON" ColumnName="MD_ICON" />
+                <ScalarProperty Name="MD_STATUS" ColumnName="MD_STATUS" />
+                <ScalarProperty Name="MD_CONTROLLERS" ColumnName="MD_CONTROLLERS" />
+                <ScalarProperty Name="MD_ACTION" ColumnName="MD_ACTION" />
+                <ScalarProperty Name="MD_V01" ColumnName="MD_V01" />
+                <ScalarProperty Name="MD_V02" ColumnName="MD_V02" />
+                <ScalarProperty Name="MD_V03" ColumnName="MD_V03" />
+                <ScalarProperty Name="MD_V04" ColumnName="MD_V04" />
+                <ScalarProperty Name="MD_I01" ColumnName="MD_I01" />
+                <ScalarProperty Name="MD_I02" ColumnName="MD_I02" />
+                <ScalarProperty Name="MD_I03" ColumnName="MD_I03" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_ROLE">
+            <EntityTypeMapping TypeName="GGArchiveSystemModel.T_ROLE">
+              <MappingFragment StoreEntitySet="T_ROLE">
+                <ScalarProperty Name="ROLE_RID" ColumnName="ROLE_RID" />
+                <ScalarProperty Name="ROLE_DATE" ColumnName="ROLE_DATE" />
+                <ScalarProperty Name="ROLE_D02" ColumnName="ROLE_D02" />
+                <ScalarProperty Name="ROLE_D01" ColumnName="ROLE_D01" />
+                <ScalarProperty Name="ROLE_I05" ColumnName="ROLE_I05" />
+                <ScalarProperty Name="ROLE_I04" ColumnName="ROLE_I04" />
+                <ScalarProperty Name="ROLE_I03" ColumnName="ROLE_I03" />
+                <ScalarProperty Name="ROLE_I02" ColumnName="ROLE_I02" />
+                <ScalarProperty Name="ROLE_I01" ColumnName="ROLE_I01" />
+                <ScalarProperty Name="ROLE_V05" ColumnName="ROLE_V05" />
+                <ScalarProperty Name="ROLE_V04" ColumnName="ROLE_V04" />
+                <ScalarProperty Name="ROLE_V03" ColumnName="ROLE_V03" />
+                <ScalarProperty Name="ROLE_V02" ColumnName="ROLE_V02" />
+                <ScalarProperty Name="ROLE_V01" ColumnName="ROLE_V01" />
+                <ScalarProperty Name="ROLE_MODIFY" ColumnName="ROLE_MODIFY" />
+                <ScalarProperty Name="ROLE_VIEWPIC" ColumnName="ROLE_VIEWPIC" />
+                <ScalarProperty Name="ROLE_STATUS" ColumnName="ROLE_STATUS" />
+                <ScalarProperty Name="ROLE_REMARK" ColumnName="ROLE_REMARK" />
+                <ScalarProperty Name="ROLE_NAME" ColumnName="ROLE_NAME" />
+                <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_SINGLEINFO">
+            <EntityTypeMapping TypeName="GGArchiveSystemModel.T_SINGLEINFO">
+              <MappingFragment StoreEntitySet="T_SINGLEINFO">
+                <ScalarProperty Name="SG_PID" ColumnName="SG_PID" />
+                <ScalarProperty Name="SG_V10" ColumnName="SG_V10" />
+                <ScalarProperty Name="SG_V09" ColumnName="SG_V09" />
+                <ScalarProperty Name="SG_V08" ColumnName="SG_V08" />
+                <ScalarProperty Name="SG_V07" ColumnName="SG_V07" />
+                <ScalarProperty Name="SG_V06" ColumnName="SG_V06" />
+                <ScalarProperty Name="SG_V05" ColumnName="SG_V05" />
+                <ScalarProperty Name="SG_V04" ColumnName="SG_V04" />
+                <ScalarProperty Name="SG_V03" ColumnName="SG_V03" />
+                <ScalarProperty Name="SG_V02" ColumnName="SG_V02" />
+                <ScalarProperty Name="SG_V01" ColumnName="SG_V01" />
+                <ScalarProperty Name="SG_Remark" ColumnName="SG_Remark" />
+                <ScalarProperty Name="SG_Junit" ColumnName="SG_Junit" />
+                <ScalarProperty Name="SG_Wunit" ColumnName="SG_Wunit" />
+                <ScalarProperty Name="SG_Dunit" ColumnName="SG_Dunit" />
+                <ScalarProperty Name="SG_Norms" ColumnName="SG_Norms" />
+                <ScalarProperty Name="SG_PD" ColumnName="SG_PD" />
+                <ScalarProperty Name="SG_Vnum" ColumnName="SG_Vnum" />
+                <ScalarProperty Name="SG_Length" ColumnName="SG_Length" />
+                <ScalarProperty Name="SG_CZ" ColumnName="SG_CZ" />
+                <ScalarProperty Name="SG_Overfloor" ColumnName="SG_Overfloor" />
+                <ScalarProperty Name="SG_Underfloor" ColumnName="SG_Underfloor" />
+                <ScalarProperty Name="SG_Deep" ColumnName="SG_Deep" />
+                <ScalarProperty Name="SG_Znum" ColumnName="SG_Znum" />
+                <ScalarProperty Name="SG_High" ColumnName="SG_High" />
+                <ScalarProperty Name="SG_Bnum" ColumnName="SG_Bnum" />
+                <ScalarProperty Name="SG_Form" ColumnName="SG_Form" />
+                <ScalarProperty Name="SG_Area" ColumnName="SG_Area" />
+                <ScalarProperty Name="SG_Type" ColumnName="SG_Type" />
+                <ScalarProperty Name="SG_Xnum" ColumnName="SG_Xnum" />
+                <ScalarProperty Name="SG_Name" ColumnName="SG_Name" />
+                <ScalarProperty Name="SG_ID" ColumnName="SG_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_QX">
+            <EntityTypeMapping TypeName="GGArchiveSystemModel.T_QX">
+              <MappingFragment StoreEntitySet="T_QX">
+                <ScalarProperty Name="QX_D02" ColumnName="QX_D02" />
+                <ScalarProperty Name="QX_D01" ColumnName="QX_D01" />
+                <ScalarProperty Name="QX_I03" ColumnName="QX_I03" />
+                <ScalarProperty Name="QX_I02" ColumnName="QX_I02" />
+                <ScalarProperty Name="QX_I01" ColumnName="QX_I01" />
+                <ScalarProperty Name="QX_V03" ColumnName="QX_V03" />
+                <ScalarProperty Name="QX_V02" ColumnName="QX_V02" />
+                <ScalarProperty Name="QX_V01" ColumnName="QX_V01" />
+                <ScalarProperty Name="QX_STATUS" ColumnName="QX_STATUS" />
+                <ScalarProperty Name="QX_MID" ColumnName="QX_MID" />
+                <ScalarProperty Name="QX_RID" ColumnName="QX_RID" />
+                <ScalarProperty Name="QX_ID" ColumnName="QX_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_Log">
+            <EntityTypeMapping TypeName="GGArchiveSystemModel.T_Log">
+              <MappingFragment StoreEntitySet="T_Log">
+                <ScalarProperty Name="Log_D02" ColumnName="Log_D02" />
+                <ScalarProperty Name="Log_D01" ColumnName="Log_D01" />
+                <ScalarProperty Name="Log_I03" ColumnName="Log_I03" />
+                <ScalarProperty Name="Log_I02" ColumnName="Log_I02" />
+                <ScalarProperty Name="Log_I01" ColumnName="Log_I01" />
+                <ScalarProperty Name="Log_V07" ColumnName="Log_V07" />
+                <ScalarProperty Name="Log_V06" ColumnName="Log_V06" />
+                <ScalarProperty Name="Log_V05" ColumnName="Log_V05" />
+                <ScalarProperty Name="Log_V04" ColumnName="Log_V04" />
+                <ScalarProperty Name="Log_V03" ColumnName="Log_V03" />
+                <ScalarProperty Name="Log_V02" ColumnName="Log_V02" />
+                <ScalarProperty Name="Log_V01" ColumnName="Log_V01" />
+                <ScalarProperty Name="Log_Remark" ColumnName="Log_Remark" />
+                <ScalarProperty Name="Log_Level" ColumnName="Log_Level" />
+                <ScalarProperty Name="Log_Date" ColumnName="Log_Date" />
+                <ScalarProperty Name="Log_Content" ColumnName="Log_Content" />
+                <ScalarProperty Name="Log_UID" ColumnName="Log_UID" />
+                <ScalarProperty Name="Log_UName" ColumnName="Log_UName" />
+                <ScalarProperty Name="Log_Type" ColumnName="Log_Type" />
+                <ScalarProperty Name="Log_ID" ColumnName="Log_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_USER">
+            <EntityTypeMapping TypeName="GGArchiveSystemModel.T_USER">
+              <MappingFragment StoreEntitySet="T_USER">
+                <ScalarProperty Name="U_ISIP" ColumnName="U_ISIP" />
+                <ScalarProperty Name="U_IP" ColumnName="U_IP" />
+                <ScalarProperty Name="U_DATE" ColumnName="U_DATE" />
+                <ScalarProperty Name="U_D02" ColumnName="U_D02" />
+                <ScalarProperty Name="U_D01" ColumnName="U_D01" />
+                <ScalarProperty Name="U_I05" ColumnName="U_I05" />
+                <ScalarProperty Name="U_I04" ColumnName="U_I04" />
+                <ScalarProperty Name="U_I03" ColumnName="U_I03" />
+                <ScalarProperty Name="U_I02" ColumnName="U_I02" />
+                <ScalarProperty Name="U_I01" ColumnName="U_I01" />
+                <ScalarProperty Name="U_V05" ColumnName="U_V05" />
+                <ScalarProperty Name="U_V04" ColumnName="U_V04" />
+                <ScalarProperty Name="U_V03" ColumnName="U_V03" />
+                <ScalarProperty Name="U_V02" ColumnName="U_V02" />
+                <ScalarProperty Name="U_V01" ColumnName="U_V01" />
+                <ScalarProperty Name="U_PHOTO" ColumnName="U_PHOTO" />
+                <ScalarProperty Name="U_SEX" ColumnName="U_SEX" />
+                <ScalarProperty Name="U_REMARK" ColumnName="U_REMARK" />
+                <ScalarProperty Name="U_EMAIL" ColumnName="U_EMAIL" />
+                <ScalarProperty Name="U_PHONE" ColumnName="U_PHONE" />
+                <ScalarProperty Name="U_REALNAME" ColumnName="U_REALNAME" />
+                <ScalarProperty Name="U_STATUS" ColumnName="U_STATUS" />
+                <ScalarProperty Name="U_ZW" ColumnName="U_ZW" />
+                <ScalarProperty Name="U_DEPARMENT" ColumnName="U_DEPARMENT" />
+                <ScalarProperty Name="U_ROLEID" ColumnName="U_ROLEID" />
+                <ScalarProperty Name="U_PWD" ColumnName="U_PWD" />
+                <ScalarProperty Name="U_NAME" ColumnName="U_NAME" />
+                <ScalarProperty Name="U_ID" ColumnName="U_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_USER">
+            <EntityTypeMapping TypeName="GGArchiveSystemModel.V_USER">
+              <MappingFragment StoreEntitySet="V_USER">
+                <ScalarProperty Name="ROLE_RID" ColumnName="ROLE_RID" />
+                <ScalarProperty Name="ROLE_DATE" ColumnName="ROLE_DATE" />
+                <ScalarProperty Name="ROLE_D02" ColumnName="ROLE_D02" />
+                <ScalarProperty Name="ROLE_D01" ColumnName="ROLE_D01" />
+                <ScalarProperty Name="ROLE_I05" ColumnName="ROLE_I05" />
+                <ScalarProperty Name="ROLE_I04" ColumnName="ROLE_I04" />
+                <ScalarProperty Name="ROLE_I03" ColumnName="ROLE_I03" />
+                <ScalarProperty Name="ROLE_I02" ColumnName="ROLE_I02" />
+                <ScalarProperty Name="ROLE_I01" ColumnName="ROLE_I01" />
+                <ScalarProperty Name="ROLE_V05" ColumnName="ROLE_V05" />
+                <ScalarProperty Name="ROLE_V04" ColumnName="ROLE_V04" />
+                <ScalarProperty Name="ROLE_V03" ColumnName="ROLE_V03" />
+                <ScalarProperty Name="ROLE_V02" ColumnName="ROLE_V02" />
+                <ScalarProperty Name="ROLE_V01" ColumnName="ROLE_V01" />
+                <ScalarProperty Name="ROLE_MODIFY" ColumnName="ROLE_MODIFY" />
+                <ScalarProperty Name="ROLE_VIEWPIC" ColumnName="ROLE_VIEWPIC" />
+                <ScalarProperty Name="ROLE_STATUS" ColumnName="ROLE_STATUS" />
+                <ScalarProperty Name="ROLE_REMARK" ColumnName="ROLE_REMARK" />
+                <ScalarProperty Name="ROLE_NAME" ColumnName="ROLE_NAME" />
+                <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
+                <ScalarProperty Name="U_ISIP" ColumnName="U_ISIP" />
+                <ScalarProperty Name="U_IP" ColumnName="U_IP" />
+                <ScalarProperty Name="U_DATE" ColumnName="U_DATE" />
+                <ScalarProperty Name="U_D02" ColumnName="U_D02" />
+                <ScalarProperty Name="U_D01" ColumnName="U_D01" />
+                <ScalarProperty Name="U_I05" ColumnName="U_I05" />
+                <ScalarProperty Name="U_I04" ColumnName="U_I04" />
+                <ScalarProperty Name="U_I03" ColumnName="U_I03" />
+                <ScalarProperty Name="U_I02" ColumnName="U_I02" />
+                <ScalarProperty Name="U_I01" ColumnName="U_I01" />
+                <ScalarProperty Name="U_V05" ColumnName="U_V05" />
+                <ScalarProperty Name="U_V04" ColumnName="U_V04" />
+                <ScalarProperty Name="U_V03" ColumnName="U_V03" />
+                <ScalarProperty Name="U_V02" ColumnName="U_V02" />
+                <ScalarProperty Name="U_V01" ColumnName="U_V01" />
+                <ScalarProperty Name="U_PHOTO" ColumnName="U_PHOTO" />
+                <ScalarProperty Name="U_SEX" ColumnName="U_SEX" />
+                <ScalarProperty Name="U_REMARK" ColumnName="U_REMARK" />
+                <ScalarProperty Name="U_EMAIL" ColumnName="U_EMAIL" />
+                <ScalarProperty Name="U_PHONE" ColumnName="U_PHONE" />
+                <ScalarProperty Name="U_REALNAME" ColumnName="U_REALNAME" />
+                <ScalarProperty Name="U_STATUS" ColumnName="U_STATUS" />
+                <ScalarProperty Name="U_ZW" ColumnName="U_ZW" />
+                <ScalarProperty Name="U_DEPARMENT" ColumnName="U_DEPARMENT" />
+                <ScalarProperty Name="U_ROLEID" ColumnName="U_ROLEID" />
+                <ScalarProperty Name="U_PWD" ColumnName="U_PWD" />
+                <ScalarProperty Name="U_NAME" ColumnName="U_NAME" />
+                <ScalarProperty Name="U_ID" ColumnName="U_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_DOCUMENT">
+            <EntityTypeMapping TypeName="GGArchiveSystemModel.T_DOCUMENT">
+              <MappingFragment StoreEntitySet="T_DOCUMENT">
+                <ScalarProperty Name="DOC_STATUS" ColumnName="DOC_STATUS" />
+                <ScalarProperty Name="DOC_D03" ColumnName="DOC_D03" />
+                <ScalarProperty Name="DOC_D02" ColumnName="DOC_D02" />
+                <ScalarProperty Name="DOC_D01" ColumnName="DOC_D01" />
+                <ScalarProperty Name="DOC_I05" ColumnName="DOC_I05" />
+                <ScalarProperty Name="DOC_I04" ColumnName="DOC_I04" />
+                <ScalarProperty Name="DOC_I03" ColumnName="DOC_I03" />
+                <ScalarProperty Name="DOC_I02" ColumnName="DOC_I02" />
+                <ScalarProperty Name="DOC_I01" ColumnName="DOC_I01" />
+                <ScalarProperty Name="DOC_V08" ColumnName="DOC_V08" />
+                <ScalarProperty Name="DOC_V07" ColumnName="DOC_V07" />
+                <ScalarProperty Name="DOC_V06" ColumnName="DOC_V06" />
+                <ScalarProperty Name="DOC_V05" ColumnName="DOC_V05" />
+                <ScalarProperty Name="DOC_V04" ColumnName="DOC_V04" />
+                <ScalarProperty Name="DOC_V03" ColumnName="DOC_V03" />
+                <ScalarProperty Name="DOC_V02" ColumnName="DOC_V02" />
+                <ScalarProperty Name="DOC_V01" ColumnName="DOC_V01" />
+                <ScalarProperty Name="DOC_DATET" ColumnName="DOC_DATET" />
+                <ScalarProperty Name="DOC_ORDER" ColumnName="DOC_ORDER" />
+                <ScalarProperty Name="DOC_TYPE" ColumnName="DOC_TYPE" />
+                <ScalarProperty Name="DOC_SIZE" ColumnName="DOC_SIZE" />
+                <ScalarProperty Name="DOC_NID" ColumnName="DOC_NID" />
+                <ScalarProperty Name="DOC_AID" ColumnName="DOC_AID" />
+                <ScalarProperty Name="DOC_ATYPE" ColumnName="DOC_ATYPE" />
+                <ScalarProperty Name="DOC_PATH" ColumnName="DOC_PATH" />
+                <ScalarProperty Name="DOC_FILE" ColumnName="DOC_FILE" />
+                <ScalarProperty Name="DOC_NAME" ColumnName="DOC_NAME" />
+                <ScalarProperty Name="DOC_ID" ColumnName="DOC_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_ProjectInfo">
+            <EntityTypeMapping TypeName="GGArchiveSystemModel.T_ProjectInfo">
+              <MappingFragment StoreEntitySet="T_ProjectInfo">
+                <ScalarProperty Name="PR_BH" ColumnName="PR_BH" />
+                <ScalarProperty Name="PR_MID" ColumnName="PR_MID" />
+                <ScalarProperty Name="PR_ProAccountsUnit" ColumnName="PR_ProAccountsUnit" />
+                <ScalarProperty Name="PR_ProAccounts" ColumnName="PR_ProAccounts" />
+                <ScalarProperty Name="PR_BZDay" ColumnName="PR_BZDay" />
+                <ScalarProperty Name="PR_BZUnit" ColumnName="PR_BZUnit" />
+                <ScalarProperty Name="PR_VoiceNum" ColumnName="PR_VoiceNum" />
+                <ScalarProperty Name="PR_VideoNum" ColumnName="PR_VideoNum" />
+                <ScalarProperty Name="PR_PhotoNum" ColumnName="PR_PhotoNum" />
+                <ScalarProperty Name="PR_ImageNum" ColumnName="PR_ImageNum" />
+                <ScalarProperty Name="PR_FileNum" ColumnName="PR_FileNum" />
+                <ScalarProperty Name="PR_TotalNum" ColumnName="PR_TotalNum" />
+                <ScalarProperty Name="PR_RKReceiver" ColumnName="PR_RKReceiver" />
+                <ScalarProperty Name="PR_ARReceiver" ColumnName="PR_ARReceiver" />
+                <ScalarProperty Name="PR_TotalInvest" ColumnName="PR_TotalInvest" />
+                <ScalarProperty Name="PR_BGQX" ColumnName="PR_BGQX" />
+                <ScalarProperty Name="PR_StorageDay" ColumnName="PR_StorageDay" />
+                <ScalarProperty Name="PR_EndDay" ColumnName="PR_EndDay" />
+                <ScalarProperty Name="PR_StartDay" ColumnName="PR_StartDay" />
+                <ScalarProperty Name="PR_TotalArea" ColumnName="PR_TotalArea" />
+                <ScalarProperty Name="PR_SupervisionName" ColumnName="PR_SupervisionName" />
+                <ScalarProperty Name="PR_ConstructionUnit" ColumnName="PR_ConstructionUnit" />
+                <ScalarProperty Name="PR_DesignUnit" ColumnName="PR_DesignUnit" />
+                <ScalarProperty Name="PR_BuildAdress" ColumnName="PR_BuildAdress" />
+                <ScalarProperty Name="PR_BuildUnitAddress" ColumnName="PR_BuildUnitAddress" />
+                <ScalarProperty Name="PR_BuildUnitPhone" ColumnName="PR_BuildUnitPhone" />
+                <ScalarProperty Name="PR_BuildUnit" ColumnName="PR_BuildUnit" />
+                <ScalarProperty Name="PR_Name" ColumnName="PR_Name" />
+                <ScalarProperty Name="PR_ID" ColumnName="PR_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_TEXT">
+            <EntityTypeMapping TypeName="GGArchiveSystemModel.T_TEXT">
+              <MappingFragment StoreEntitySet="T_TEXT">
+                <ScalarProperty Name="TEXT_I02" ColumnName="TEXT_I02" />
+                <ScalarProperty Name="TEXT_I01" ColumnName="TEXT_I01" />
+                <ScalarProperty Name="TEXT_D02" ColumnName="TEXT_D02" />
+                <ScalarProperty Name="TEXT_D01" ColumnName="TEXT_D01" />
+                <ScalarProperty Name="TEXT_V03" ColumnName="TEXT_V03" />
+                <ScalarProperty Name="TEXT_V02" ColumnName="TEXT_V02" />
+                <ScalarProperty Name="TEXT_V01" ColumnName="TEXT_V01" />
+                <ScalarProperty Name="TEXT_STATUS" ColumnName="TEXT_STATUS" />
+                <ScalarProperty Name="TEXT_PAGENUM" ColumnName="TEXT_PAGENUM" />
+                <ScalarProperty Name="TEXT_CONTENT" ColumnName="TEXT_CONTENT" />
+                <ScalarProperty Name="TEXT_DOCID" ColumnName="TEXT_DOCID" />
+                <ScalarProperty Name="TEXT_ID" ColumnName="TEXT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_WSJN1">
+            <EntityTypeMapping TypeName="GGArchiveSystemModel.T_WSJN1">
+              <MappingFragment StoreEntitySet="T_WSJN1">
+                <ScalarProperty Name="JN1_AJID" ColumnName="JN1_AJID" />
+                <ScalarProperty Name="JN1_Scan" ColumnName="JN1_Scan" />
+                <ScalarProperty Name="JN1_Remark" ColumnName="JN1_Remark" />
+                <ScalarProperty Name="JN1_RQ" ColumnName="JN1_RQ" />
+                <ScalarProperty Name="JN1_ZRZ" ColumnName="JN1_ZRZ" />
+                <ScalarProperty Name="JN1_Type" ColumnName="JN1_Type" />
+                <ScalarProperty Name="JN1_End" ColumnName="JN1_End" />
+                <ScalarProperty Name="JN1_Start" ColumnName="JN1_Start" />
+                <ScalarProperty Name="JN1_YS" ColumnName="JN1_YS" />
+                <ScalarProperty Name="JN1_BH" ColumnName="JN1_BH" />
+                <ScalarProperty Name="JN1_XH" ColumnName="JN1_XH" />
+                <ScalarProperty Name="JN1_Name" ColumnName="JN1_Name" />
+                <ScalarProperty Name="JN1_ID" ColumnName="JN1_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_Query">
+            <EntityTypeMapping TypeName="GGArchiveSystemModel.T_Query">
+              <MappingFragment StoreEntitySet="T_Query">
+                <ScalarProperty Name="Table" ColumnName="Table" />
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+                <ScalarProperty Name="Fields" ColumnName="Fields" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_SYSWD">
+            <EntityTypeMapping TypeName="GGArchiveSystemModel.T_SYSWD">
+              <MappingFragment StoreEntitySet="T_SYSWD">
+                <ScalarProperty Name="WD_STATUS" ColumnName="WD_STATUS" />
+                <ScalarProperty Name="WD_ORDER" ColumnName="WD_ORDER" />
+                <ScalarProperty Name="WD_TYPE" ColumnName="WD_TYPE" />
+                <ScalarProperty Name="WD_CODE" ColumnName="WD_CODE" />
+                <ScalarProperty Name="WD_NAME" ColumnName="WD_NAME" />
+                <ScalarProperty Name="WD_ID" ColumnName="WD_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_Message">
+            <EntityTypeMapping TypeName="GGArchiveSystemModel.T_Message">
+              <MappingFragment StoreEntitySet="T_Message">
+                <ScalarProperty Name="Message_BGQX" ColumnName="Message_BGQX" />
+                <ScalarProperty Name="MG_mid" ColumnName="MG_mid" />
+                <ScalarProperty Name="MG_V05" ColumnName="MG_V05" />
+                <ScalarProperty Name="MG_V04" ColumnName="MG_V04" />
+                <ScalarProperty Name="MG_V03" ColumnName="MG_V03" />
+                <ScalarProperty Name="MG_V02" ColumnName="MG_V02" />
+                <ScalarProperty Name="MG_V01" ColumnName="MG_V01" />
+                <ScalarProperty Name="Message_Remark" ColumnName="Message_Remark" />
+                <ScalarProperty Name="Message_Sender" ColumnName="Message_Sender" />
+                <ScalarProperty Name="Message_ReceiveUnit" ColumnName="Message_ReceiveUnit" />
+                <ScalarProperty Name="Message_SendUnit" ColumnName="Message_SendUnit" />
+                <ScalarProperty Name="Message_Type" ColumnName="Message_Type" />
+                <ScalarProperty Name="Message_Date" ColumnName="Message_Date" />
+                <ScalarProperty Name="Message_Title" ColumnName="Message_Title" />
+                <ScalarProperty Name="Message_WH" ColumnName="Message_WH" />
+                <ScalarProperty Name="Message_NO" ColumnName="Message_NO" />
+                <ScalarProperty Name="Message_ID" ColumnName="Message_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_WSAJ1">
+            <EntityTypeMapping TypeName="GGArchiveSystemModel.T_WSAJ1">
+              <MappingFragment StoreEntitySet="T_WSAJ1">
+                <ScalarProperty Name="WS1_V01" ColumnName="WS1_V01" />
+                <ScalarProperty Name="WS1_MID" ColumnName="WS1_MID" />
+                <ScalarProperty Name="WS1_PID" ColumnName="WS1_PID" />
+                <ScalarProperty Name="WS1_HJBH" ColumnName="WS1_HJBH" />
+                <ScalarProperty Name="WS1_HH" ColumnName="WS1_HH" />
+                <ScalarProperty Name="WS1_BZ" ColumnName="WS1_BZ" />
+                <ScalarProperty Name="WS1_GDRQ" ColumnName="WS1_GDRQ" />
+                <ScalarProperty Name="WS1_OtherNum" ColumnName="WS1_OtherNum" />
+                <ScalarProperty Name="WS1_DrawNum" ColumnName="WS1_DrawNum" />
+                <ScalarProperty Name="WS1_FileNum" ColumnName="WS1_FileNum" />
+                <ScalarProperty Name="WS1_YEAR" ColumnName="WS1_YEAR" />
+                <ScalarProperty Name="WS1_BGQX" ColumnName="WS1_BGQX" />
+                <ScalarProperty Name="WS1_TM" ColumnName="WS1_TM" />
+                <ScalarProperty Name="WS1_JH" ColumnName="WS1_JH" />
+                <ScalarProperty Name="WS1_ID" ColumnName="WS1_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_WSAJ">
+            <EntityTypeMapping TypeName="GGArchiveSystemModel.V_WSAJ">
+              <MappingFragment StoreEntitySet="V_WSAJ">
+                <ScalarProperty Name="PR_BH" ColumnName="PR_BH" />
+                <ScalarProperty Name="PR_MID" ColumnName="PR_MID" />
+                <ScalarProperty Name="PR_ProAccountsUnit" ColumnName="PR_ProAccountsUnit" />
+                <ScalarProperty Name="PR_ProAccounts" ColumnName="PR_ProAccounts" />
+                <ScalarProperty Name="PR_BZDay" ColumnName="PR_BZDay" />
+                <ScalarProperty Name="PR_BZUnit" ColumnName="PR_BZUnit" />
+                <ScalarProperty Name="PR_VoiceNum" ColumnName="PR_VoiceNum" />
+                <ScalarProperty Name="PR_VideoNum" ColumnName="PR_VideoNum" />
+                <ScalarProperty Name="PR_PhotoNum" ColumnName="PR_PhotoNum" />
+                <ScalarProperty Name="PR_ImageNum" ColumnName="PR_ImageNum" />
+                <ScalarProperty Name="PR_FileNum" ColumnName="PR_FileNum" />
+                <ScalarProperty Name="PR_TotalNum" ColumnName="PR_TotalNum" />
+                <ScalarProperty Name="PR_RKReceiver" ColumnName="PR_RKReceiver" />
+                <ScalarProperty Name="PR_ARReceiver" ColumnName="PR_ARReceiver" />
+                <ScalarProperty Name="PR_TotalInvest" ColumnName="PR_TotalInvest" />
+                <ScalarProperty Name="PR_BGQX" ColumnName="PR_BGQX" />
+                <ScalarProperty Name="PR_StorageDay" ColumnName="PR_StorageDay" />
+                <ScalarProperty Name="PR_EndDay" ColumnName="PR_EndDay" />
+                <ScalarProperty Name="PR_StartDay" ColumnName="PR_StartDay" />
+                <ScalarProperty Name="PR_TotalArea" ColumnName="PR_TotalArea" />
+                <ScalarProperty Name="PR_SupervisionName" ColumnName="PR_SupervisionName" />
+                <ScalarProperty Name="PR_ConstructionUnit" ColumnName="PR_ConstructionUnit" />
+                <ScalarProperty Name="PR_DesignUnit" ColumnName="PR_DesignUnit" />
+                <ScalarProperty Name="PR_BuildAdress" ColumnName="PR_BuildAdress" />
+                <ScalarProperty Name="PR_BuildUnitAddress" ColumnName="PR_BuildUnitAddress" />
+                <ScalarProperty Name="PR_BuildUnitPhone" ColumnName="PR_BuildUnitPhone" />
+                <ScalarProperty Name="PR_BuildUnit" ColumnName="PR_BuildUnit" />
+                <ScalarProperty Name="PR_Name" ColumnName="PR_Name" />
+                <ScalarProperty Name="PR_ID" ColumnName="PR_ID" />
+                <ScalarProperty Name="MD_I03" ColumnName="MD_I03" />
+                <ScalarProperty Name="MD_I02" ColumnName="MD_I02" />
+                <ScalarProperty Name="MD_I01" ColumnName="MD_I01" />
+                <ScalarProperty Name="MD_V04" ColumnName="MD_V04" />
+                <ScalarProperty Name="MD_V03" ColumnName="MD_V03" />
+                <ScalarProperty Name="MD_V02" ColumnName="MD_V02" />
+                <ScalarProperty Name="MD_V01" ColumnName="MD_V01" />
+                <ScalarProperty Name="MD_ACTION" ColumnName="MD_ACTION" />
+                <ScalarProperty Name="MD_CONTROLLERS" ColumnName="MD_CONTROLLERS" />
+                <ScalarProperty Name="MD_STATUS" ColumnName="MD_STATUS" />
+                <ScalarProperty Name="MD_ICON" ColumnName="MD_ICON" />
+                <ScalarProperty Name="MD_PATH" ColumnName="MD_PATH" />
+                <ScalarProperty Name="MD_ISARCHIVE" ColumnName="MD_ISARCHIVE" />
+                <ScalarProperty Name="MD_NAME" ColumnName="MD_NAME" />
+                <ScalarProperty Name="MD_ORDER" ColumnName="MD_ORDER" />
+                <ScalarProperty Name="MD_PID" ColumnName="MD_PID" />
+                <ScalarProperty Name="MD_ID" ColumnName="MD_ID" />
+                <ScalarProperty Name="WS1_V01" ColumnName="WS1_V01" />
+                <ScalarProperty Name="WS1_MID" ColumnName="WS1_MID" />
+                <ScalarProperty Name="WS1_PID" ColumnName="WS1_PID" />
+                <ScalarProperty Name="WS1_HJBH" ColumnName="WS1_HJBH" />
+                <ScalarProperty Name="WS1_HH" ColumnName="WS1_HH" />
+                <ScalarProperty Name="WS1_BZ" ColumnName="WS1_BZ" />
+                <ScalarProperty Name="WS1_GDRQ" ColumnName="WS1_GDRQ" />
+                <ScalarProperty Name="WS1_OtherNum" ColumnName="WS1_OtherNum" />
+                <ScalarProperty Name="WS1_DrawNum" ColumnName="WS1_DrawNum" />
+                <ScalarProperty Name="WS1_FileNum" ColumnName="WS1_FileNum" />
+                <ScalarProperty Name="WS1_YEAR" ColumnName="WS1_YEAR" />
+                <ScalarProperty Name="WS1_BGQX" ColumnName="WS1_BGQX" />
+                <ScalarProperty Name="WS1_TM" ColumnName="WS1_TM" />
+                <ScalarProperty Name="WS1_JH" ColumnName="WS1_JH" />
+                <ScalarProperty Name="WS1_ID" ColumnName="WS1_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_WSJN">
+            <EntityTypeMapping TypeName="GGArchiveSystemModel.V_WSJN">
+              <MappingFragment StoreEntitySet="V_WSJN">
+                <ScalarProperty Name="PR_BH" ColumnName="PR_BH" />
+                <ScalarProperty Name="PR_MID" ColumnName="PR_MID" />
+                <ScalarProperty Name="PR_ProAccountsUnit" ColumnName="PR_ProAccountsUnit" />
+                <ScalarProperty Name="PR_ProAccounts" ColumnName="PR_ProAccounts" />
+                <ScalarProperty Name="PR_BZDay" ColumnName="PR_BZDay" />
+                <ScalarProperty Name="PR_BZUnit" ColumnName="PR_BZUnit" />
+                <ScalarProperty Name="PR_VoiceNum" ColumnName="PR_VoiceNum" />
+                <ScalarProperty Name="PR_VideoNum" ColumnName="PR_VideoNum" />
+                <ScalarProperty Name="PR_PhotoNum" ColumnName="PR_PhotoNum" />
+                <ScalarProperty Name="PR_ImageNum" ColumnName="PR_ImageNum" />
+                <ScalarProperty Name="PR_FileNum" ColumnName="PR_FileNum" />
+                <ScalarProperty Name="PR_TotalNum" ColumnName="PR_TotalNum" />
+                <ScalarProperty Name="PR_RKReceiver" ColumnName="PR_RKReceiver" />
+                <ScalarProperty Name="PR_ARReceiver" ColumnName="PR_ARReceiver" />
+                <ScalarProperty Name="PR_TotalInvest" ColumnName="PR_TotalInvest" />
+                <ScalarProperty Name="PR_BGQX" ColumnName="PR_BGQX" />
+                <ScalarProperty Name="PR_StorageDay" ColumnName="PR_StorageDay" />
+                <ScalarProperty Name="PR_EndDay" ColumnName="PR_EndDay" />
+                <ScalarProperty Name="PR_StartDay" ColumnName="PR_StartDay" />
+                <ScalarProperty Name="PR_TotalArea" ColumnName="PR_TotalArea" />
+                <ScalarProperty Name="PR_SupervisionName" ColumnName="PR_SupervisionName" />
+                <ScalarProperty Name="PR_ConstructionUnit" ColumnName="PR_ConstructionUnit" />
+                <ScalarProperty Name="PR_DesignUnit" ColumnName="PR_DesignUnit" />
+                <ScalarProperty Name="PR_BuildAdress" ColumnName="PR_BuildAdress" />
+                <ScalarProperty Name="PR_BuildUnitAddress" ColumnName="PR_BuildUnitAddress" />
+                <ScalarProperty Name="PR_BuildUnitPhone" ColumnName="PR_BuildUnitPhone" />
+                <ScalarProperty Name="PR_BuildUnit" ColumnName="PR_BuildUnit" />
+                <ScalarProperty Name="PR_Name" ColumnName="PR_Name" />
+                <ScalarProperty Name="PR_ID" ColumnName="PR_ID" />
+                <ScalarProperty Name="MD_I03" ColumnName="MD_I03" />
+                <ScalarProperty Name="MD_I02" ColumnName="MD_I02" />
+                <ScalarProperty Name="MD_I01" ColumnName="MD_I01" />
+                <ScalarProperty Name="MD_V04" ColumnName="MD_V04" />
+                <ScalarProperty Name="MD_V03" ColumnName="MD_V03" />
+                <ScalarProperty Name="MD_V02" ColumnName="MD_V02" />
+                <ScalarProperty Name="MD_V01" ColumnName="MD_V01" />
+                <ScalarProperty Name="MD_ACTION" ColumnName="MD_ACTION" />
+                <ScalarProperty Name="MD_CONTROLLERS" ColumnName="MD_CONTROLLERS" />
+                <ScalarProperty Name="MD_STATUS" ColumnName="MD_STATUS" />
+                <ScalarProperty Name="MD_ICON" ColumnName="MD_ICON" />
+                <ScalarProperty Name="MD_PATH" ColumnName="MD_PATH" />
+                <ScalarProperty Name="MD_ISARCHIVE" ColumnName="MD_ISARCHIVE" />
+                <ScalarProperty Name="MD_NAME" ColumnName="MD_NAME" />
+                <ScalarProperty Name="MD_ORDER" ColumnName="MD_ORDER" />
+                <ScalarProperty Name="MD_PID" ColumnName="MD_PID" />
+                <ScalarProperty Name="MD_ID" ColumnName="MD_ID" />
+                <ScalarProperty Name="WS1_V01" ColumnName="WS1_V01" />
+                <ScalarProperty Name="WS1_MID" ColumnName="WS1_MID" />
+                <ScalarProperty Name="WS1_PID" ColumnName="WS1_PID" />
+                <ScalarProperty Name="WS1_HJBH" ColumnName="WS1_HJBH" />
+                <ScalarProperty Name="WS1_HH" ColumnName="WS1_HH" />
+                <ScalarProperty Name="WS1_BZ" ColumnName="WS1_BZ" />
+                <ScalarProperty Name="WS1_GDRQ" ColumnName="WS1_GDRQ" />
+                <ScalarProperty Name="WS1_OtherNum" ColumnName="WS1_OtherNum" />
+                <ScalarProperty Name="WS1_DrawNum" ColumnName="WS1_DrawNum" />
+                <ScalarProperty Name="WS1_FileNum" ColumnName="WS1_FileNum" />
+                <ScalarProperty Name="WS1_YEAR" ColumnName="WS1_YEAR" />
+                <ScalarProperty Name="WS1_BGQX" ColumnName="WS1_BGQX" />
+                <ScalarProperty Name="WS1_TM" ColumnName="WS1_TM" />
+                <ScalarProperty Name="WS1_JH" ColumnName="WS1_JH" />
+                <ScalarProperty Name="WS1_ID" ColumnName="WS1_ID" />
+                <ScalarProperty Name="JN1_AJID" ColumnName="JN1_AJID" />
+                <ScalarProperty Name="JN1_Scan" ColumnName="JN1_Scan" />
+                <ScalarProperty Name="JN1_Remark" ColumnName="JN1_Remark" />
+                <ScalarProperty Name="JN1_RQ" ColumnName="JN1_RQ" />
+                <ScalarProperty Name="JN1_ZRZ" ColumnName="JN1_ZRZ" />
+                <ScalarProperty Name="JN1_Type" ColumnName="JN1_Type" />
+                <ScalarProperty Name="JN1_End" ColumnName="JN1_End" />
+                <ScalarProperty Name="JN1_Start" ColumnName="JN1_Start" />
+                <ScalarProperty Name="JN1_YS" ColumnName="JN1_YS" />
+                <ScalarProperty Name="JN1_BH" ColumnName="JN1_BH" />
+                <ScalarProperty Name="JN1_XH" ColumnName="JN1_XH" />
+                <ScalarProperty Name="JN1_Name" ColumnName="JN1_Name" />
+                <ScalarProperty Name="JN1_ID" ColumnName="JN1_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_XM">
+            <EntityTypeMapping TypeName="GGArchiveSystemModel.V_XM">
+              <MappingFragment StoreEntitySet="V_XM">
+                <ScalarProperty Name="MD_I03" ColumnName="MD_I03" />
+                <ScalarProperty Name="MD_I02" ColumnName="MD_I02" />
+                <ScalarProperty Name="MD_I01" ColumnName="MD_I01" />
+                <ScalarProperty Name="MD_V04" ColumnName="MD_V04" />
+                <ScalarProperty Name="MD_V03" ColumnName="MD_V03" />
+                <ScalarProperty Name="MD_V02" ColumnName="MD_V02" />
+                <ScalarProperty Name="MD_V01" ColumnName="MD_V01" />
+                <ScalarProperty Name="MD_ACTION" ColumnName="MD_ACTION" />
+                <ScalarProperty Name="MD_CONTROLLERS" ColumnName="MD_CONTROLLERS" />
+                <ScalarProperty Name="MD_STATUS" ColumnName="MD_STATUS" />
+                <ScalarProperty Name="MD_ICON" ColumnName="MD_ICON" />
+                <ScalarProperty Name="MD_PATH" ColumnName="MD_PATH" />
+                <ScalarProperty Name="MD_ISARCHIVE" ColumnName="MD_ISARCHIVE" />
+                <ScalarProperty Name="MD_NAME" ColumnName="MD_NAME" />
+                <ScalarProperty Name="MD_ORDER" ColumnName="MD_ORDER" />
+                <ScalarProperty Name="MD_PID" ColumnName="MD_PID" />
+                <ScalarProperty Name="MD_ID" ColumnName="MD_ID" />
+                <ScalarProperty Name="PR_BH" ColumnName="PR_BH" />
+                <ScalarProperty Name="PR_MID" ColumnName="PR_MID" />
+                <ScalarProperty Name="PR_ProAccountsUnit" ColumnName="PR_ProAccountsUnit" />
+                <ScalarProperty Name="PR_ProAccounts" ColumnName="PR_ProAccounts" />
+                <ScalarProperty Name="PR_BZDay" ColumnName="PR_BZDay" />
+                <ScalarProperty Name="PR_BZUnit" ColumnName="PR_BZUnit" />
+                <ScalarProperty Name="PR_VoiceNum" ColumnName="PR_VoiceNum" />
+                <ScalarProperty Name="PR_VideoNum" ColumnName="PR_VideoNum" />
+                <ScalarProperty Name="PR_PhotoNum" ColumnName="PR_PhotoNum" />
+                <ScalarProperty Name="PR_ImageNum" ColumnName="PR_ImageNum" />
+                <ScalarProperty Name="PR_FileNum" ColumnName="PR_FileNum" />
+                <ScalarProperty Name="PR_TotalNum" ColumnName="PR_TotalNum" />
+                <ScalarProperty Name="PR_RKReceiver" ColumnName="PR_RKReceiver" />
+                <ScalarProperty Name="PR_ARReceiver" ColumnName="PR_ARReceiver" />
+                <ScalarProperty Name="PR_TotalInvest" ColumnName="PR_TotalInvest" />
+                <ScalarProperty Name="PR_BGQX" ColumnName="PR_BGQX" />
+                <ScalarProperty Name="PR_StorageDay" ColumnName="PR_StorageDay" />
+                <ScalarProperty Name="PR_EndDay" ColumnName="PR_EndDay" />
+                <ScalarProperty Name="PR_StartDay" ColumnName="PR_StartDay" />
+                <ScalarProperty Name="PR_TotalArea" ColumnName="PR_TotalArea" />
+                <ScalarProperty Name="PR_SupervisionName" ColumnName="PR_SupervisionName" />
+                <ScalarProperty Name="PR_ConstructionUnit" ColumnName="PR_ConstructionUnit" />
+                <ScalarProperty Name="PR_DesignUnit" ColumnName="PR_DesignUnit" />
+                <ScalarProperty Name="PR_BuildAdress" ColumnName="PR_BuildAdress" />
+                <ScalarProperty Name="PR_BuildUnitAddress" ColumnName="PR_BuildUnitAddress" />
+                <ScalarProperty Name="PR_BuildUnitPhone" ColumnName="PR_BuildUnitPhone" />
+                <ScalarProperty Name="PR_BuildUnit" ColumnName="PR_BuildUnit" />
+                <ScalarProperty Name="PR_Name" ColumnName="PR_Name" />
+                <ScalarProperty Name="PR_ID" ColumnName="PR_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_TEXT1">
+            <EntityTypeMapping TypeName="GGArchiveSystemModel.V_TEXT1">
+              <MappingFragment StoreEntitySet="V_TEXT1">
+                <ScalarProperty Name="MD_I03" ColumnName="MD_I03" />
+                <ScalarProperty Name="MD_I02" ColumnName="MD_I02" />
+                <ScalarProperty Name="MD_I01" ColumnName="MD_I01" />
+                <ScalarProperty Name="MD_V04" ColumnName="MD_V04" />
+                <ScalarProperty Name="MD_V03" ColumnName="MD_V03" />
+                <ScalarProperty Name="MD_V02" ColumnName="MD_V02" />
+                <ScalarProperty Name="MD_V01" ColumnName="MD_V01" />
+                <ScalarProperty Name="MD_ACTION" ColumnName="MD_ACTION" />
+                <ScalarProperty Name="MD_CONTROLLERS" ColumnName="MD_CONTROLLERS" />
+                <ScalarProperty Name="MD_STATUS" ColumnName="MD_STATUS" />
+                <ScalarProperty Name="MD_ICON" ColumnName="MD_ICON" />
+                <ScalarProperty Name="MD_PATH" ColumnName="MD_PATH" />
+                <ScalarProperty Name="MD_ISARCHIVE" ColumnName="MD_ISARCHIVE" />
+                <ScalarProperty Name="MD_NAME" ColumnName="MD_NAME" />
+                <ScalarProperty Name="MD_ORDER" ColumnName="MD_ORDER" />
+                <ScalarProperty Name="MD_PID" ColumnName="MD_PID" />
+                <ScalarProperty Name="MD_ID" ColumnName="MD_ID" />
+                <ScalarProperty Name="WS1_V01" ColumnName="WS1_V01" />
+                <ScalarProperty Name="WS1_MID" ColumnName="WS1_MID" />
+                <ScalarProperty Name="WS1_PID" ColumnName="WS1_PID" />
+                <ScalarProperty Name="WS1_HJBH" ColumnName="WS1_HJBH" />
+                <ScalarProperty Name="WS1_HH" ColumnName="WS1_HH" />
+                <ScalarProperty Name="WS1_BZ" ColumnName="WS1_BZ" />
+                <ScalarProperty Name="WS1_GDRQ" ColumnName="WS1_GDRQ" />
+                <ScalarProperty Name="WS1_OtherNum" ColumnName="WS1_OtherNum" />
+                <ScalarProperty Name="WS1_DrawNum" ColumnName="WS1_DrawNum" />
+                <ScalarProperty Name="WS1_FileNum" ColumnName="WS1_FileNum" />
+                <ScalarProperty Name="WS1_YEAR" ColumnName="WS1_YEAR" />
+                <ScalarProperty Name="WS1_BGQX" ColumnName="WS1_BGQX" />
+                <ScalarProperty Name="WS1_TM" ColumnName="WS1_TM" />
+                <ScalarProperty Name="WS1_JH" ColumnName="WS1_JH" />
+                <ScalarProperty Name="WS1_ID" ColumnName="WS1_ID" />
+                <ScalarProperty Name="JN1_AJID" ColumnName="JN1_AJID" />
+                <ScalarProperty Name="JN1_Scan" ColumnName="JN1_Scan" />
+                <ScalarProperty Name="JN1_Remark" ColumnName="JN1_Remark" />
+                <ScalarProperty Name="JN1_RQ" ColumnName="JN1_RQ" />
+                <ScalarProperty Name="JN1_ZRZ" ColumnName="JN1_ZRZ" />
+                <ScalarProperty Name="JN1_Type" ColumnName="JN1_Type" />
+                <ScalarProperty Name="JN1_End" ColumnName="JN1_End" />
+                <ScalarProperty Name="JN1_Start" ColumnName="JN1_Start" />
+                <ScalarProperty Name="JN1_YS" ColumnName="JN1_YS" />
+                <ScalarProperty Name="JN1_BH" ColumnName="JN1_BH" />
+                <ScalarProperty Name="JN1_XH" ColumnName="JN1_XH" />
+                <ScalarProperty Name="JN1_Name" ColumnName="JN1_Name" />
+                <ScalarProperty Name="JN1_ID" ColumnName="JN1_ID" />
+                <ScalarProperty Name="DOC_STATUS" ColumnName="DOC_STATUS" />
+                <ScalarProperty Name="DOC_D03" ColumnName="DOC_D03" />
+                <ScalarProperty Name="DOC_D02" ColumnName="DOC_D02" />
+                <ScalarProperty Name="DOC_D01" ColumnName="DOC_D01" />
+                <ScalarProperty Name="DOC_I05" ColumnName="DOC_I05" />
+                <ScalarProperty Name="DOC_I04" ColumnName="DOC_I04" />
+                <ScalarProperty Name="DOC_I03" ColumnName="DOC_I03" />
+                <ScalarProperty Name="DOC_I02" ColumnName="DOC_I02" />
+                <ScalarProperty Name="DOC_I01" ColumnName="DOC_I01" />
+                <ScalarProperty Name="DOC_V08" ColumnName="DOC_V08" />
+                <ScalarProperty Name="DOC_V07" ColumnName="DOC_V07" />
+                <ScalarProperty Name="DOC_V06" ColumnName="DOC_V06" />
+                <ScalarProperty Name="DOC_V05" ColumnName="DOC_V05" />
+                <ScalarProperty Name="DOC_V04" ColumnName="DOC_V04" />
+                <ScalarProperty Name="DOC_V03" ColumnName="DOC_V03" />
+                <ScalarProperty Name="DOC_V02" ColumnName="DOC_V02" />
+                <ScalarProperty Name="DOC_V01" ColumnName="DOC_V01" />
+                <ScalarProperty Name="DOC_DATET" ColumnName="DOC_DATET" />
+                <ScalarProperty Name="DOC_ORDER" ColumnName="DOC_ORDER" />
+                <ScalarProperty Name="DOC_TYPE" ColumnName="DOC_TYPE" />
+                <ScalarProperty Name="DOC_SIZE" ColumnName="DOC_SIZE" />
+                <ScalarProperty Name="DOC_NID" ColumnName="DOC_NID" />
+                <ScalarProperty Name="DOC_AID" ColumnName="DOC_AID" />
+                <ScalarProperty Name="DOC_ATYPE" ColumnName="DOC_ATYPE" />
+                <ScalarProperty Name="DOC_PATH" ColumnName="DOC_PATH" />
+                <ScalarProperty Name="DOC_FILE" ColumnName="DOC_FILE" />
+                <ScalarProperty Name="DOC_NAME" ColumnName="DOC_NAME" />
+                <ScalarProperty Name="DOC_ID" ColumnName="DOC_ID" />
+                <ScalarProperty Name="TEXT_I02" ColumnName="TEXT_I02" />
+                <ScalarProperty Name="TEXT_I01" ColumnName="TEXT_I01" />
+                <ScalarProperty Name="TEXT_D02" ColumnName="TEXT_D02" />
+                <ScalarProperty Name="TEXT_D01" ColumnName="TEXT_D01" />
+                <ScalarProperty Name="TEXT_V03" ColumnName="TEXT_V03" />
+                <ScalarProperty Name="TEXT_V02" ColumnName="TEXT_V02" />
+                <ScalarProperty Name="TEXT_V01" ColumnName="TEXT_V01" />
+                <ScalarProperty Name="TEXT_STATUS" ColumnName="TEXT_STATUS" />
+                <ScalarProperty Name="TEXT_PAGENUM" ColumnName="TEXT_PAGENUM" />
+                <ScalarProperty Name="TEXT_CONTENT" ColumnName="TEXT_CONTENT" />
+                <ScalarProperty Name="TEXT_DOCID" ColumnName="TEXT_DOCID" />
+                <ScalarProperty Name="TEXT_ID" ColumnName="TEXT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
